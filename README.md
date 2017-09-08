@@ -39,11 +39,11 @@ module "github-repository-my-website" {
   auto_init                            = true
   gitignore_template                   = "Terraform"
   license_template                     = "apache-2.0"
-  branch                               = "master"
-  enable_branch_protection             = 1 // only works after initial creation of repositry
-  enable_team_repository               = 1
+  enable_team_repository               = 1  
   team_repository_team                 = "${github_team.internal.id}"
   team_repository_permission           = "pull"
+  branch                               = "master"
+  enable_branch_protection             = 1 // only works after initial creation of repositry
   enforce_admins                       = true
   req_status_checks_strict             = false
   req_status_checks_context            = ["continuous-integration/travis-ci"]
@@ -76,6 +76,9 @@ Available variables are listed below, along with their default values:
 | `auto_init`                             | Set to `true` to produce an initial commit in the repository |
 | `gitignore_template`                    | Set to a [template](https://github.com/github/gitignore) to use for the `.gitignore` file |
 | `license_template`                      | Set to a [template](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) to use for the license |
+| `enable_team_repository`                | Boolean to toggle team repository settings |
+| `team_repository_team`                  | The GitHub team ID |
+| `team_repository_permission`            | The permissions of team members regarding the repository |
 | `branch`                                | The name of the default branch of the repository |
 | `enforce_admins`                        | Boolean to toggle enforcement of status checks for administrators |
 | `req_status_checks_strict`              | Boolean to toggle strictness of status checks |
