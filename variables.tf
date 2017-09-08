@@ -93,7 +93,7 @@ variable "team_repository_permission" {
 
 variable "enable_branch_protection" {
   type        = "string"
-  description = "Boolean to toggle branch protection settings. Only works when repository has been created."
+  description = "Boolean to toggle branch protection settings. Only works when repository has been created"
   default     = 0
 }
 
