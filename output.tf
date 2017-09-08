@@ -20,11 +20,3 @@ output "git_clone_url" {
 output "svn_url" {
   value = "${github_repository.repository.svn_url}"
 }
-
-##
-# outputs for `github_branch_protection`
-##
-
-
-# This resource currently has no outputs
-
