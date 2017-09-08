@@ -37,9 +37,10 @@ module "github-repository-my-website" {
   allow_rebase_merge                   = false
   has_downloads                        = false
   auto_init                            = true
-  gitignore_template                   = "Linux,macOS,Windows"
+  gitignore_template                   = "Terraform"
   license_template                     = "apache-2.0"
   branch                               = "master"
+  enable_branch_protection             = 1 // only works after initial creation of repositry
   enable_team_repository               = 1
   team_repository_team                 = "${github_team.internal.id}"
   team_repository_permission           = "pull"
