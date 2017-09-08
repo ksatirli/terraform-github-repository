@@ -87,7 +87,7 @@ variable "team_repository_team" {
 
 variable "team_repository_permission" {
   type        = "string"
-  description = "The permissions of team members regarding the repository."
+  description = "The permissions of team members regarding the repository"
   default     = "pull"
 }
 
