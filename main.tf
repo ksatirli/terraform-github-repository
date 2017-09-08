@@ -11,7 +11,7 @@ resource "github_repository" "repository" {
   has_downloads      = "${var.has_downloads}"
   auto_init          = "${var.auto_init}"
   gitignore_template = "${var.gitignore_template}"
-  license_template = "${var.license_template}"
+  license_template   = "${var.license_template}"
 }
 
 resource "github_branch_protection" "protected-branch" {
