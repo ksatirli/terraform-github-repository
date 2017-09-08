@@ -74,6 +74,23 @@ variable "branch" {
   default     = "master"
 }
 
+variable "enable_team_repository" {
+  description = "Boolean to toggle team repository settings"
+  default     = 0
+}
+
+variable "team_repository_team" {
+  type = "string"
+  description = "The GitHub team ID"
+  default = ""
+}
+
+variable "team_repository_permission" {
+  type        = "string"
+  description = "The permissions of team members regarding the repository."
+  default     = "pull"
+}
+
 variable "enable_branch_protection" {
   type        = "string"
   description = "Boolean to toggle branch protection settings. Only works when repository has been created."

@@ -40,6 +40,9 @@ module "github-repository-my-website" {
   gitignore_template                   = "Linux,macOS,Windows"
   license_template                     = "apache-2.0"
   branch                               = "master"
+  enable_team_repository               = 1
+  team_repository_team                 = "${github_team.internal.id}"
+  team_repository_permission           = "pull"
   enforce_admins                       = true
   req_status_checks_strict             = false
   req_status_checks_context            = ["continuous-integration/travis-ci"]
