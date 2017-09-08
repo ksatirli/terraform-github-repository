@@ -80,9 +80,9 @@ variable "enable_team_repository" {
 }
 
 variable "team_repository_team" {
-  type = "string"
+  type        = "string"
   description = "The GitHub team ID"
-  default = ""
+  default     = ""
 }
 
 variable "team_repository_permission" {
