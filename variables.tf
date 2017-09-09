@@ -59,7 +59,7 @@ variable "auto_init" {
 variable "gitignore_template" {
   type        = "string"
   description = "Set to a template to use for the `.gitignore` file"
-  default     = "Global/Linux,Global/macOS,Global/Windows"
+  default     = ""
 }
 
 variable "license_template" {

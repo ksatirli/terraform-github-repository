@@ -92,7 +92,6 @@ Available variables are listed below, along with their default values:
 
 - `private` defaults to `true`
 - `has_downloads` defaults to `false`
-- `gitignore_template` defaults to `Linux,macOS,Windows`
 - `license_template` defaults to `apache-2.0`
 - `branch` defaults to `master`
 - `enforce_admins` defaults to `true`
