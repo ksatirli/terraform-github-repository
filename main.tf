@@ -15,6 +15,8 @@ resource "github_repository" "repository" {
 }
 
 resource "github_team_repository" "team-repository" {
+  count = "${var.enable_team_repository}"
+
   team_id    = "${var.team_repository_team}"
   repository = "${github_repository.repository.name}"
   permission = "${var.team_repository_permission}"
