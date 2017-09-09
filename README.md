@@ -25,7 +25,7 @@ Add the module to your Terraform resources like so:
 
 ```hcl
 module "github-repository-my-website" {
-  source                               = "../terraform-module-github-repository"
+  source                               = "github.com/withmethod/terraform-module-github-repository"
   name                                 = "my-website"
   description                          = "My Website"
   homepage_url                         = "https://withmethod.com/open-source/"
@@ -39,7 +39,7 @@ module "github-repository-my-website" {
   auto_init                            = true
   gitignore_template                   = "Terraform"
   license_template                     = "apache-2.0"
-  enable_team_repository               = 1  
+  enable_team_repository               = 1
   team_repository_team                 = "${github_team.internal.id}"
   team_repository_permission           = "pull"
   branch                               = "master"
