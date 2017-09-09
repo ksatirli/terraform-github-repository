@@ -25,7 +25,7 @@ Add the module to your Terraform resources like so:
 
 ```hcl
 module "github-repository-my-website" {
-  source                               = "github.com/withmethod/terraform-module-github-repository"
+  source                               = "github.com/withmethod/terraform-module-github-repository?ref=0.3.1"
   name                                 = "my-website"
   description                          = "My Website"
   homepage_url                         = "https://withmethod.com/open-source/"
