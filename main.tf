@@ -15,6 +15,8 @@ resource "github_repository" "repository" {
 }
 
 resource "github_team_repository" "team-repository" {
+  count = "${var.enable_team_repository}"
+
   team_id    = "${var.team_repository_team}"
   repository = "${github_repository.repository.name}"
   permission = "${var.team_repository_permission}"
@@ -35,11 +37,11 @@ resource "github_branch_protection" "protected-branch" {
   required_pull_request_reviews {
     dismiss_stale_reviews = "${var.req_pr_reviews_dismiss_stale_reviews}"
     dismissal_users       = "${var.req_pr_reviews_dismissal_users}"
-    dismissal_teams       = ["${var.req_pr_reviews_dismissal_teams}"]
+    dismissal_teams       = "${var.req_pr_reviews_dismissal_teams}"
   }
 
   restrictions {
     users = "${var.restrictions_users}"
-    teams = ["${var.restrictions_teams}"]
+    teams = "${var.restrictions_teams}"
   }
 }
