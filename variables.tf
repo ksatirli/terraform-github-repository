@@ -121,25 +121,21 @@ variable "req_pr_reviews_dismiss_stale_reviews" {
 }
 
 variable "req_pr_reviews_dismissal_users" {
-  type        = "list"
   description = "The list of user logins with dismissal access"
   default     = []
 }
 
 variable "req_pr_reviews_dismissal_teams" {
-  type        = "list"
   description = "The list of team slugs with dismissal access"
   default     = []
 }
 
 variable "restrictions_users" {
-  type        = "list"
   description = "The list of user logins with push access"
   default     = []
 }
 
 variable "restrictions_teams" {
-  type        = "list"
   description = "The list of team slugs with push access"
   default     = []
 }
