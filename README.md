@@ -92,11 +92,12 @@ Available variables are listed below, along with their default values:
 
 - `private` defaults to `true`
 - `has_downloads` defaults to `false`
-- `gitignore_template` defaults to `Linux,macOS,Windows`
 - `license_template` defaults to `apache-2.0`
 - `branch` defaults to `master`
 - `enforce_admins` defaults to `true`
 - `req_pr_reviews_dismiss_stale_reviews` defaults to `true`
+
+Please note: `auto_init`, `gitignore_template` as well as `license_template` are actions that will result in commits being made to the GitHub Repository. These commits will be attributed to the user that is linked to the token that is used for the GitHub provider.
 
 ### Module outputs
 
