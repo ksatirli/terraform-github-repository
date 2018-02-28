@@ -120,7 +120,7 @@ variable "req_pr_reviews_dismiss_stale_reviews" {
   default     = true
 }
 
-variable "req_pr_reviews_dismiss_stale_reviews" {
+variable "req_pr_reviews_require_code_owner_reviews" {
   description = "Boolean to toggle requiring review from designated code owner"
   default     = false
 }
