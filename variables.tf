@@ -1,7 +1,6 @@
 variable "name" {
   type        = "string"
   description = "The name of the repository"
-  default     = ""
 }
 
 variable "description" {
@@ -29,6 +28,11 @@ variable "has_issues" {
 variable "has_wiki" {
   description = "Set to `true` to enable the Github Wiki features on the repository"
   default     = true
+}
+
+variable "has_projects" {
+  default     = "false"
+  description = "Set to true to enable the GitHub Projects features on the repository"
 }
 
 variable "allow_merge_commit" {
@@ -138,4 +142,14 @@ variable "restrictions_users" {
 variable "restrictions_teams" {
   description = "The list of team slugs with push access"
   default     = []
+}
+
+variable "topics" {
+  default     = []
+  description = "The list of topics of the repository"
+}
+
+variable "archived" {
+  default     = "false"
+  description = "Specifies if the repository should be archived"
 }
