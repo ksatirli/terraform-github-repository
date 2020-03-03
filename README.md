@@ -25,33 +25,34 @@ Add the module to your Terraform resources like so:
 
 ```hcl
 module "foo-cli" {
-  source                               = "github.com/withmethod/terraform-module-github-repository?ref=0.3.1"
-  name                                 = "foo-cli"
-  description                          = "foo CLI"
-  homepage_url                         = "https://withmethod.com/open-source/"
-  private                              = true
-  has_issues                           = true
-  has_wiki                             = false
-  allow_merge_commit                   = false
-  allow_squash_merge                   = true
-  allow_rebase_merge                   = false
-  has_downloads                        = false
-  auto_init                            = true
-  gitignore_template                   = "Terraform"
-  license_template                     = "apache-2.0"
-  enable_team_repository               = 1
-  team_repository_team                 = "${github_team.internal.id}"
-  team_repository_permission           = "pull"
-  branch                               = "master"
-  enable_branch_protection             = 1 // only works after initial creation of repository
-  enforce_admins                       = true
-  req_status_checks_strict             = false
-  req_status_checks_context            = ["continuous-integration/travis-ci"]
-  req_pr_reviews_dismiss_stale_reviews = true
-  req_pr_reviews_dismissal_users       = []
-  req_pr_reviews_dismissal_teams       = []
-  restrictions_users                   = []
-  restrictions_teams                   = []
+  source                                    = "github.com/withmethod/terraform-module-github-repository?ref=0.3.1"
+  name                                      = "foo-cli"
+  description                               = "foo CLI"
+  homepage_url                              = "https://withmethod.com/open-source/"
+  private                                   = true
+  has_issues                                = true
+  has_wiki                                  = false
+  allow_merge_commit                        = false
+  allow_squash_merge                        = true
+  allow_rebase_merge                        = false
+  has_downloads                             = false
+  auto_init                                 = true
+  gitignore_template                        = "Terraform"
+  license_template                          = "apache-2.0"
+  enable_team_repository                    = 1
+  team_repository_team                      = "${github_team.internal.id}"
+  team_repository_permission                = "pull"
+  branch                                    = "master"
+  enable_branch_protection                  = 1 // only works after initial creation of repository
+  enforce_admins                            = true
+  req_status_checks_strict                  = false
+  req_status_checks_context                 = ["continuous-integration/travis-ci"]
+  req_pr_reviews_dismiss_stale_reviews      = true
+  req_pr_reviews_require_code_owner_reviews = false
+  req_pr_reviews_dismissal_users            = []
+  req_pr_reviews_dismissal_teams            = []
+  restrictions_users                        = []
+  restrictions_teams                        = []
 }
 ```
 
@@ -61,34 +62,35 @@ Then, load the module using `terraform get`.
 
 Available variables are listed below, along with their default values:
 
-| variable                                | description |
-|-----------------------------------------|-|
-| `name`                                  | The name of the repository |
-| `description`                           | A description of the repository |
-| `homepage_url`                          | URL of a page describing the project |
-| `private`                               | Set to `true` to create a private repository |
-| `has_issues`                            | Set to `true` to enable the GitHub Issues features on the repository |
-| `has_wiki`                              | Set to `true` to enable the GitHub Wiki features on the repository |
-| `allow_merge_commit`                    | Set to `false` to disable merge commits on the repository |
-| `allow_squash_merge`                    | Set to `false` to disable squash merges on the repository |
-| `allow_rebase_merge`                    | Set to `false` to disable rebase merges on the repository |
-| `has_downloads`                         | Set to `true` to enable the (deprecated) downloads features on the repository |
-| `auto_init`                             | Set to `true` to produce an initial commit in the repository |
-| `gitignore_template`                    | Set to a [template](https://github.com/github/gitignore) to use for the `.gitignore` file |
-| `license_template`                      | Set to a [template](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) to use for the license |
-| `enable_team_repository`                | Boolean to toggle team repository settings |
-| `team_repository_team`                  | The GitHub team ID |
-| `team_repository_permission`            | The permissions of team members regarding the repository |
-| `enable_branch_protection`              | Boolean to toggle branch protection settings. Only works after repository has been created |
-| `branch`                                | The name of the default branch of the repository |
-| `enforce_admins`                        | Boolean to toggle enforcement of status checks for administrators |
-| `req_status_checks_strict`              | Boolean to toggle strictness of status checks |
-| `req_status_checks_context`             | List of status checks to require in order to merge into this branch |
-| `req_pr_reviews_dismiss_stale_reviews`  | Boolean to toggle dismissal of reviews when a new commit is pushed |
-| `req_pr_reviews_dismissal_users`        | The list of user logins with dismissal access |
-| `req_pr_reviews_dismissal_teams`        | The list of team slugs with dismissal access |
-| `restrictions_users`                    | The list of user logins with push access |
-| `restrictions_teams`                    | The list of team slugs with push access |
+| variable                                     | description |
+|----------------------------------------------|-|
+| `name`                                       | The name of the repository |
+| `description`                                | A description of the repository |
+| `homepage_url`                               | URL of a page describing the project |
+| `private`                                    | Set to `true` to create a private repository |
+| `has_issues`                                 | Set to `true` to enable the GitHub Issues features on the repository |
+| `has_wiki`                                   | Set to `true` to enable the GitHub Wiki features on the repository |
+| `allow_merge_commit`                         | Set to `false` to disable merge commits on the repository |
+| `allow_squash_merge`                         | Set to `false` to disable squash merges on the repository |
+| `allow_rebase_merge`                         | Set to `false` to disable rebase merges on the repository |
+| `has_downloads`                              | Set to `true` to enable the (deprecated) downloads features on the repository |
+| `auto_init`                                  | Set to `true` to produce an initial commit in the repository |
+| `gitignore_template`                         | Set to a [template](https://github.com/github/gitignore) to use for the `.gitignore` file |
+| `license_template`                           | Set to a [template](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) to use for the license |
+| `enable_team_repository`                     | Boolean to toggle team repository settings |
+| `team_repository_team`                       | The GitHub team ID |
+| `team_repository_permission`                 | The permissions of team members regarding the repository |
+| `enable_branch_protection`                   | Boolean to toggle branch protection settings. Only works after repository has been created |
+| `branch`                                     | The name of the default branch of the repository |
+| `enforce_admins`                             | Boolean to toggle enforcement of status checks for administrators |
+| `req_status_checks_strict`                   | Boolean to toggle strictness of status checks |
+| `req_status_checks_context`                  | List of status checks to require in order to merge into this branch |
+| `req_pr_reviews_dismiss_stale_reviews`       | Boolean to toggle dismissal of reviews when a new commit is pushed |
+| `req_pr_reviews_require_code_owner_reviews`  | Boolean to toggle requiring review from designated code owner |
+| `req_pr_reviews_dismissal_users`             | The list of user logins with dismissal access |
+| `req_pr_reviews_dismissal_teams`             | The list of team slugs with dismissal access |
+| `restrictions_users`                         | The list of user logins with push access |
+| `restrictions_teams`                         | The list of team slugs with push access |
 
 - `private` defaults to `true`
 - `has_downloads` defaults to `false`
