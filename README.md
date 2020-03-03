@@ -1,19 +1,22 @@
 # Terraform Module: GitHub Repository
 
-> This repository is a [Terraform](https://terraform.io/) Module for managing GitHub Repository and Branch Protection resources.
+> Terraform Module for managing GitHub [Repositories](https://developer.github.com/v3/repos/) and associated resources.
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [Dependencies](#dependencies)
-- [Usage](#usage)
-  - [Module Variables](#module-variables)
-- [Author Information](#author-information)
-- [License](#license)
+- [Terraform Module: GitHub Repository](#terraform-module-github-repository)
+  - [Table of Contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Dependencies](#dependencies)
+  - [Usage](#usage)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+  - [Author Information](#author-information)
+  - [License](#license)
 
 ## Requirements
 
-This module requires Terraform version `0.10.x` or newer.
+This module requires Terraform version `0.12.x` or newer.
 
 ## Dependencies
 
@@ -113,19 +116,17 @@ Available outputs are listed below, along with their description
 | `git_clone_url`   | URL that can be provided to git clone to clone the repository anonymously via the git protocol.                     |
 | `svn_url`         | URL that can be provided to `svn checkout` to check out the repository via GitHub's Subversion protocol emulation.  |
 
+
+
 ## Author Information
 
-This module is currently maintained by the individuals listed below.
+This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-github-repositories/graphs/contributors)
 
-- [Kerim Satirli](https://github.com/ksatirli)
-
-Development of this module was sponsored by [Method](https://github.com/withmethod).
+Development of this module was sponsored by [Operate Happy](https://github.com/operatehappy).
 
 ## License
 
-Copyright 2017 [Kerim Satirli](https://github.com/ksatirli)
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+Licensed under the Apache License, Version 2.0 (the "License").
 
 You may obtain a copy of the License at [apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
