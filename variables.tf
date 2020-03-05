@@ -106,14 +106,16 @@ variable "template" {
 }
 
 variable "team_repository_teams" {
-  type        = list(map(string))
-  description = "List of Team Maps"
+  // `team_repository_teams.permission` is optional and defaults to `push`
+  type        = list(object({ team_id = string }))
+  description = "List of Team Objects"
   default     = []
 }
 
 variable "repository_collaborators" {
-  type        = list(map(string))
-  description = "List of Collaborator Maps"
+  // `repository_collaborators.permission` is optional and defaults to `push`
+  type        = list(object({ username = string }))
+  description = "List of Collaborator Objects"
   default     = []
 }
 
@@ -178,13 +180,14 @@ variable "restrictions_teams" {
 }
 
 variable "deploy_keys" {
-  type        = list(map(string))
-  description = "List of Deploy Key Maps"
+  type        = list(object({ title = string, key = string, read_only = bool }))
+  description = "List of Deploy Key Objects"
   default     = []
 }
 
 variable "issue_labels" {
-  type        = list(map(string))
-  description = "List of Repository Maps"
+  // `issue_labels.description` is optional and defaults to `""`
+  type        = list(object({ name = string, color = string }))
+  description = "List of Issue Label Objects"
   default     = []
 }

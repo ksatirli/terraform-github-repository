@@ -63,10 +63,10 @@ resource "github_repository_collaborator" "collaborator" {
 resource "github_repository_deploy_key" "deploy_key" {
   count = length(var.deploy_keys)
 
-  title      = lookup(var.deploy_keys[count.index], "title", "Terraform-managed deploy key")
+  title      = var.deploy_keys[count.index].title
   repository = github_repository.repository.name
-  key        = lookup(var.deploy_keys[count.index], "key", null)
-  read_only  = lookup(var.deploy_keys[count.index], "read_only", null)
+  key        = var.deploy_keys[count.index].key
+  read_only  = var.deploy_keys[count.index].read_only
 }
 
 resource "github_team_repository" "team_repository" {
@@ -74,7 +74,7 @@ resource "github_team_repository" "team_repository" {
 
   team_id    = var.team_repository_teams[count.index].team_id
   repository = github_repository.repository.name
-  permission = var.team_repository_teams[count.index].permission
+  permission = lookup(var.team_repository_teams[count.index], "permission", "push")
 }
 
 resource "github_issue_label" "issue_label" {
