@@ -28,3 +28,9 @@ output "svn_url" {
   description = "URL to check out the repository via GitHub's Subversion protocol emulation"
 }
 
+// TOOD: define a good way to make this useful for consumption
+//output "repository_collaborator_invitation_id" {
+//  value       = github_repository_collaborator.collaborator[*].invitation_id
+//  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
+//}
+

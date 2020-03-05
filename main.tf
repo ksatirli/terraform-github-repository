@@ -27,23 +27,7 @@ resource "github_repository" "repository" {
   }
 }
 
-resource "github_team_repository" "team_repository" {
-  count = length(var.team_repository_teams)
-
-  team_id    = var.team_repository_teams[count.index].team_id
-  repository = github_repository.repository.name
-  permission = var.team_repository_teams[count.index].permission
-}
-
-resource "github_repository_collaborator" "collaborator" {
-  count = length(var.repository_collaborators)
-
-  repository = github_repository.repository.name
-  username   = var.repository_collaborators[count.index].username
-  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
-}
-
-resource "github_branch_protection" "protected_branch" {
+resource "github_branch_protection" "branch_protection" {
   count = var.enable_branch_protection
 
   repository     = var.name
@@ -66,6 +50,22 @@ resource "github_branch_protection" "protected_branch" {
     users = [var.restrictions_users]
     teams = [var.restrictions_teams]
   }
+}
+
+resource "github_repository_collaborator" "collaborator" {
+  count = length(var.repository_collaborators)
+
+  repository = github_repository.repository.name
+  username   = var.repository_collaborators[count.index].username
+  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
+}
+
+resource "github_team_repository" "team_repository" {
+  count = length(var.team_repository_teams)
+
+  team_id    = var.team_repository_teams[count.index].team_id
+  repository = github_repository.repository.name
+  permission = var.team_repository_teams[count.index].permission
 }
 
 resource "github_issue_label" "issue_label" {
