@@ -27,7 +27,7 @@ resource "github_repository" "repository" {
   }
 }
 
-resource "github_team_repository" "team-repository" {
+resource "github_team_repository" "team_repository" {
   count = length(var.team_repository_teams)
 
   team_id    = var.team_repository_teams[count.index].team_id
@@ -35,7 +35,7 @@ resource "github_team_repository" "team-repository" {
   permission = var.team_repository_teams[count.index].permission
 }
 
-resource "github_branch_protection" "protected-branch" {
+resource "github_branch_protection" "protected_branch" {
   count = var.enable_branch_protection
 
   repository     = var.name
