@@ -16,6 +16,15 @@ resource "github_repository" "repository" {
   default_branch     = var.default_branch
   archived           = var.archived
   topics             = var.topics
+
+  dynamic "template" {
+    for_each = length(var.template) != 0 ? [var.template] : []
+
+    content {
+      owner      = lookup(template.value, "owner", null)
+      repository = lookup(template.value, "repository", null)
+    }
+  }
 }
 
 resource "github_team_repository" "team-repository" {
