@@ -59,3 +59,11 @@ resource "github_branch_protection" "protected-branch" {
     teams = [var.restrictions_teams]
   }
 }
+
+resource "github_issue_label" "issue_label" {
+  count       = length(var.issue_labels)
+  repository  = github_repository.repository.name
+  name        = var.issue_labels[count.index].name
+  color       = var.issue_labels[count.index].color
+  description = lookup(var.issue_labels[count.index], "description", null)
+}

@@ -176,3 +176,9 @@ variable "restrictions_teams" {
   description = "The list of team slugs with push access"
   default     = []
 }
+
+variable "issue_labels" {
+  type        = list(map(string))
+  description = "List of Repository Maps"
+  default     = []
+}
