@@ -119,63 +119,10 @@ variable "repository_collaborators" {
   default     = []
 }
 
-variable "enable_branch_protection" {
-  type        = bool
-  description = "Boolean to toggle branch protection settings. Only works when repository has been created"
-  default     = false
-}
-
-variable "enforce_admins" {
-  type        = bool
-  description = "Boolean to toggle enforcement of status checks for administrators"
-  default     = true
-}
-
-variable "req_status_checks_strict" {
-  type        = bool
-  description = "Boolean to toggle strictness of status checks"
-  default     = false
-}
-
-variable "req_status_checks_context" {
-  type        = list(string)
-  description = "List of status checks to require in order to merge into this branch"
-  default     = []
-}
-
-variable "req_pr_reviews_dismiss_stale_reviews" {
-  type        = bool
-  description = "Boolean to toggle dismissal of reviews when a new commit is pushed"
-  default     = true
-}
-
-variable "req_pr_reviews_require_code_owner_reviews" {
-  type        = bool
-  description = "Boolean to toggle requiring review from designated code owner"
-  default     = false
-}
-
-variable "req_pr_reviews_dismissal_users" {
-  type        = list
-  description = "The list of user logins with dismissal access"
-  default     = []
-}
-
-variable "req_pr_reviews_dismissal_teams" {
-  type        = list
-  description = "The list of team slugs with dismissal access"
-  default     = []
-}
-
-variable "restrictions_users" {
-  type        = list
-  description = "The list of user logins with push access"
-  default     = []
-}
-
-variable "restrictions_teams" {
-  type        = list
-  description = "The list of team slugs with push access"
+variable "branch_protections" {
+  // TODO: consider switching this to a more strict validation
+  type        = list(any)
+  description = "List of Branch Protection Objects"
   default     = []
 }
 
