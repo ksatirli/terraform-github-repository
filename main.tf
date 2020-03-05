@@ -28,11 +28,11 @@ resource "github_repository" "repository" {
 }
 
 resource "github_team_repository" "team-repository" {
-  count = var.enable_team_repository
+  count = length(var.team_repository_teams)
 
-  team_id    = var.team_repository_team
+  team_id    = var.team_repository_teams[count.index].team_id
   repository = github_repository.repository.name
-  permission = var.team_repository_permission
+  permission = var.team_repository_teams[count.index].permission
 }
 
 resource "github_branch_protection" "protected-branch" {

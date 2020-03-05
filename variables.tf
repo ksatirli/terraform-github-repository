@@ -105,28 +105,16 @@ variable "template" {
   default     = {}
 }
 
+variable "team_repository_teams" {
+  type        = list(map(string))
+  description = "List of Team Maps"
+  default     = []
+}
+
 variable "restrictions_teams" {
   type        = list
   description = "The list of team slugs with push access"
   default     = []
-}
-
-variable "enable_team_repository" {
-  type        = bool
-  description = "Boolean to toggle team repository settings"
-  default     = true
-}
-
-variable "team_repository_team" {
-  type        = string
-  description = "The GitHub team ID"
-  default     = ""
-}
-
-variable "team_repository_permission" {
-  type        = string
-  description = "The permissions of team members regarding the repository"
-  default     = "pull"
 }
 
 variable "enable_branch_protection" {
