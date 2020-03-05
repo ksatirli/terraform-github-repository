@@ -111,6 +111,12 @@ variable "team_repository_teams" {
   default     = []
 }
 
+variable "repository_collaborators" {
+  type        = list(map(string))
+  description = "List of Collaborator Maps"
+  default     = []
+}
+
 variable "restrictions_teams" {
   type        = list
   description = "The list of team slugs with push access"

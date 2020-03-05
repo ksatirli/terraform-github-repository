@@ -35,6 +35,14 @@ resource "github_team_repository" "team_repository" {
   permission = var.team_repository_teams[count.index].permission
 }
 
+resource "github_repository_collaborator" "collaborator" {
+  count = length(var.repository_collaborators)
+
+  repository = github_repository.repository.name
+  username   = var.repository_collaborators[count.index].username
+  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
+}
+
 resource "github_branch_protection" "protected_branch" {
   count = var.enable_branch_protection
 
