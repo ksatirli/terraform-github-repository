@@ -1,0 +1,51 @@
+---
+
+name: "Code Quality: Terraform"
+
+on:
+  pull_request:
+
+env:
+  TERRAFORM_VERSION: 0.12.20
+  TERRAFORM_ACTIONS_COMMENT: true
+
+jobs:
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Run `terraform fmt`
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
+          tf_actions_subcommand: fmt
+          tf_actions_working_dir: '.'
+          tf_actions_comment: ${{ env.TERRAFORM_ACTIONS_COMMENT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run `terraform init`
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
+          tf_actions_subcommand: init
+          tf_actions_working_dir: '.'
+          tf_actions_comment: ${{ env.TERRAFORM_ACTIONS_COMMENT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run `terraform validate`
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
+          tf_actions_subcommand: validate
+          tf_actions_working_dir: '.'
+          tf_actions_comment: ${{ env.TERRAFORM_ACTIONS_COMMENT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_REGION: xx-xxxx-0
