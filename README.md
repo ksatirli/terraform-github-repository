@@ -69,29 +69,29 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| allow_merge_commit | Set to `false` to disable merge commits on the repository | `bool` | `true` |
-| allow_rebase_merge | Set to `false` to disable rebase merges on the repository | `bool` | `true` |
-| allow_squash_merge | Set to `false` to disable squash merges on the repository | `bool` | `true` |
-| archived | Set to `true` to mark this repository as archived | `bool` | `false` |
-| auto_init | Set to `true` to produce an initial commit in the repository | `bool` | `false` |
+| allow_merge_commit | Toggle to enable Merge Commits for the Repository | `bool` | `true` |
+| allow_rebase_merge | Toggle to enable Rebase Merges for the Repository | `bool` | `true` |
+| allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
+| archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
+| auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
 | branch_protections | List of Branch Protection Objects | `list(any)` | `[]` |
-| default_branch | The name of the default branch of the repository | `string` | `"master"` |
+| default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
 | deploy_keys | List of Deploy Key Objects | `list(object({ title = string, key = string, read_only = bool }))` | `[]` |
-| description | A description of the repository | `string` | `""` |
-| gitignore_template | Set a template to use for the `.gitignore` file | `string` | `""` |
-| has_downloads | Set to `true` to enable the (deprecated) downloads features on the repository | `bool` | `false` |
-| has_issues | Set to `true` to enable the Github Issues features on the repository | `bool` | `true` |
-| has_projects | Set to `true` to enable the Github Projects features on the repository | `bool` | `true` |
-| has_wiki | Set to `true` to enable the Github Wiki features on the repository | `bool` | `true` |
-| homepage_url | URL of a page describing the project | `string` | `""` |
+| description | Description of the Repository | `string` | `""` |
+| gitignore_template | Template to use for initial `.gitignore` file for the Repository | `string` | `""` |
+| has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository | `bool` | `false` |
+| has_issues | Toggle to enable GitHub Issues for the Repository | `bool` | `true` |
+| has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `true` |
+| has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
+| homepage_url | URL of a page describing the Repository | `string` | `""` |
 | issue_labels | List of Issue Label Objects | `list(object({ name = string, color = string }))` | `[]` |
-| license_template | Set to a template to use for the license | `string` | `""` |
-| name | The name of the repository | `string` | `""` |
-| private | Set to `true` to create a private repository | `bool` | `true` |
+| license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
+| name | Name of the Repository | `string` | `""` |
+| private | Toggle to create a Private Repository | `bool` | `true` |
 | repository_collaborators | List of Collaborator Objects | `list(object({ username = string }))` | `[]` |
-| team_repository_teams | List of Team Objects | `list(object({ team_id = string }))` | `[]` |
-| template | Template repository to use to create this repository | `map(string)` | `{}` |
-| topics | The list of topics of the repository | `list(string)` | `[]` |
+| team_repository_teams | List of Team Repository Team Objects | `list(object({ team_id = string }))` | `[]` |
+| template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
+| topics | List of Topics of the Repository | `list(string)` | `[]` |
 
 ### Outputs
 

@@ -1,107 +1,107 @@
 variable "name" {
   type        = string
-  description = "The name of the repository"
+  description = "Name of the Repository"
   default     = ""
 }
 
 variable "description" {
   type        = string
-  description = "A description of the repository"
+  description = "Description of the Repository"
   default     = ""
 }
 
 variable "homepage_url" {
   type        = string
-  description = "URL of a page describing the project"
+  description = "URL of a page describing the Repository"
   default     = ""
 }
 
 variable "private" {
   type        = bool
-  description = "Set to `true` to create a private repository"
+  description = "Toggle to create a Private Repository"
   default     = true
 }
 
 variable "has_issues" {
   type        = bool
-  description = "Set to `true` to enable the Github Issues features on the repository"
+  description = "Toggle to enable GitHub Issues for the Repository"
   default     = true
 }
 
 variable "has_projects" {
   type        = bool
-  description = "Set to `true` to enable the Github Projects features on the repository"
+  description = "Toggle to enable GitHub Projects for the Repository"
   default     = true
 }
 
 variable "has_wiki" {
-  description = "Set to `true` to enable the Github Wiki features on the repository"
+  description = "Toggle to enable GitHub Wiki for the Repository"
   default     = true
 }
 
 variable "allow_merge_commit" {
   type        = bool
-  description = "Set to `false` to disable merge commits on the repository"
+  description = "Toggle to enable Merge Commits for the Repository"
   default     = true
 }
 
 variable "allow_squash_merge" {
   type        = bool
-  description = "Set to `false` to disable squash merges on the repository"
+  description = "Toggle to enable Squash Merges for the Repository"
   default     = true
 }
 
 variable "allow_rebase_merge" {
   type        = bool
-  description = "Set to `false` to disable rebase merges on the repository"
+  description = "Toggle to enable Rebase Merges for the Repository"
   default     = true
 }
 
 variable "has_downloads" {
   type        = bool
-  description = "Set to `true` to enable the (deprecated) downloads features on the repository"
+  description = "Toggle to enable (deprecated) GitHub Downloads for the Repository"
   default     = false
 }
 
 variable "auto_init" {
   type        = bool
-  description = "Set to `true` to produce an initial commit in the repository"
+  description = "Toggle to create an initial commit in the Repository"
   default     = false
 }
 
 variable "gitignore_template" {
   type        = string
-  description = "Set a template to use for the `.gitignore` file"
+  description = "Template to use for initial `.gitignore` file for the Repository"
   default     = ""
 }
 
 variable "license_template" {
   type        = string
-  description = "Set to a template to use for the license"
+  description = "Identifier to use for initial `LICENSE` file for the Repository"
   default     = ""
 }
 
 variable "default_branch" {
   type        = string
-  description = "The name of the default branch of the repository"
+  description = "Name of the Default Branch of the Repository"
   default     = "master"
 }
 
 variable "archived" {
   type        = bool
-  description = "Set to `true` to mark this repository as archived"
+  description = "Toggle to archive the Repository (see notes in `README.md`)"
   default     = false
 }
 
 variable "topics" {
   type        = list(string)
-  description = "The list of topics of the repository"
+  description = "List of Topics of the Repository"
   default     = []
 }
 
 variable "template" {
   type        = map(string)
-  description = "Template repository to use to create this repository"
+  description = "Template Repository to use when creating the Repository"
   default     = {}
 }
 
@@ -130,7 +130,7 @@ variable "repository_collaborators" {
 variable "team_repository_teams" {
   // `team_repository_teams.permission` is optional and defaults to `push`
   type        = list(object({ team_id = string }))
-  description = "List of Team Objects"
+  description = "List of Team Repository Team Objects"
   default     = []
 }
 
