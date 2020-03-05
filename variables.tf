@@ -87,148 +87,104 @@ variable "default_branch" {
   default     = "master"
 }
 
+variable "archived" {
+  type        = bool
+  description = "Set to `true` to mark this repository as archived"
+  default     = false
+}
+
+variable "topics" {
+  type        = list(string)
+  description = "The list of topics of the repository"
+  default     = []
+}
+
+variable "template" {
+  type        = map(string)
+  description = "Template repository to use to create this repository"
+  default     = {}
+}
+
+variable "restrictions_teams" {
+  type        = list
+  description = "The list of team slugs with push access"
+  default     = []
+}
+
 variable "enable_team_repository" {
+  type        = bool
   description = "Boolean to toggle team repository settings"
-  default     = 0
+  default     = true
 }
 
 variable "team_repository_team" {
-  type        = "string"
+  type        = string
   description = "The GitHub team ID"
   default     = ""
 }
 
 variable "team_repository_permission" {
-  type        = "string"
+  type        = string
   description = "The permissions of team members regarding the repository"
   default     = "pull"
 }
 
 variable "enable_branch_protection" {
-  type        = "string"
+  type        = bool
   description = "Boolean to toggle branch protection settings. Only works when repository has been created"
   default     = 0
 }
 
 variable "enforce_admins" {
+  type        = bool
   description = "Boolean to toggle enforcement of status checks for administrators"
   default     = true
 }
 
 variable "req_status_checks_strict" {
-  type = "string"
-
+  type        = bool
   description = "Boolean to toggle strictness of status checks"
   default     = false
 }
 
 variable "req_status_checks_context" {
-  type        = "list"
+  type        = list(string)
   description = "List of status checks to require in order to merge into this branch"
   default     = []
 }
 
 variable "req_pr_reviews_dismiss_stale_reviews" {
+  type        = bool
   description = "Boolean to toggle dismissal of reviews when a new commit is pushed"
   default     = true
 }
 
 variable "req_pr_reviews_require_code_owner_reviews" {
+  type        = bool
   description = "Boolean to toggle requiring review from designated code owner"
   default     = false
 }
 
 variable "req_pr_reviews_dismissal_users" {
+  type        = list
   description = "The list of user logins with dismissal access"
   default     = []
 }
 
 variable "req_pr_reviews_dismissal_teams" {
+  type        = list
   description = "The list of team slugs with dismissal access"
   default     = []
 }
 
 variable "restrictions_users" {
+  type        = list
   description = "The list of user logins with push access"
   default     = []
 }
 
 variable "restrictions_teams" {
+  type        = list
   description = "The list of team slugs with push access"
   default     = []
-variable "template" {
-  type = map(string)
-  description = "Template repository to use to create this repository"
-  default = {}
 }
-
-//variable "enable_team_repository" {
-//  description = "Boolean to toggle team repository settings"
-//  default     = 0
-//}
-//
-//variable "team_repository_team" {
-//  type        = string
-//  description = "The GitHub team ID"
-//  default     = ""
-//}
-//
-//variable "team_repository_permission" {
-//  type        = string
-//  description = "The permissions of team members regarding the repository"
-//  default     = "pull"
-//}
-//
-//variable "enable_branch_protection" {
-//  type        = string
-//  description = "Boolean to toggle branch protection settings. Only works when repository has been created"
-//  default     = 0
-//}
-//
-//variable "enforce_admins" {
-//  description = "Boolean to toggle enforcement of status checks for administrators"
-//  default     = true
-//}
-//
-//variable "req_status_checks_strict" {
-//  type = "string"
-//
-//  description = "Boolean to toggle strictness of status checks"
-//  default     = false
-//}
-//
-//variable "req_status_checks_context" {
-//  type        = list(string)
-//  description = "List of status checks to require in order to merge into this branch"
-//  default     = []
-//}
-//
-//variable "req_pr_reviews_dismiss_stale_reviews" {
-//  description = "Boolean to toggle dismissal of reviews when a new commit is pushed"
-//  default     = true
-//}
-//
-//variable "req_pr_reviews_require_code_owner_reviews" {
-//  description = "Boolean to toggle requiring review from designated code owner"
-//  default     = false
-//}
-//
-//variable "req_pr_reviews_dismissal_users" {
-//  description = "The list of user logins with dismissal access"
-//  default     = []
-//}
-//
-//variable "req_pr_reviews_dismissal_teams" {
-//  description = "The list of team slugs with dismissal access"
-//  default     = []
-//}
-//
-//variable "restrictions_users" {
-//  description = "The list of user logins with push access"
-//  default     = []
-//}
-//
-//variable "restrictions_teams" {
-//  description = "The list of team slugs with push access"
-//  default     = []
-//}
