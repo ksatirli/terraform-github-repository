@@ -33,4 +33,3 @@ output "svn_url" {
 //  value       = github_repository_collaborator.collaborator[*].invitation_id
 //  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
 //}
-

@@ -105,10 +105,18 @@ variable "template" {
   default     = {}
 }
 
-variable "team_repository_teams" {
-  // `team_repository_teams.permission` is optional and defaults to `push`
-  type        = list(object({ team_id = string }))
-  description = "List of Team Objects"
+variable "branch_protections" {
+  // TODO: consider switching this to a more strict validation
+  type        = list(any)
+  description = "List of Branch Protection Objects"
+  default     = []
+}
+
+// TODO: add support for `github_repository_webhook`
+
+variable "deploy_keys" {
+  type        = list(object({ title = string, key = string, read_only = bool }))
+  description = "List of Deploy Key Objects"
   default     = []
 }
 
@@ -119,16 +127,10 @@ variable "repository_collaborators" {
   default     = []
 }
 
-variable "branch_protections" {
-  // TODO: consider switching this to a more strict validation
-  type        = list(any)
-  description = "List of Branch Protection Objects"
-  default     = []
-}
-
-variable "deploy_keys" {
-  type        = list(object({ title = string, key = string, read_only = bool }))
-  description = "List of Deploy Key Objects"
+variable "team_repository_teams" {
+  // `team_repository_teams.permission` is optional and defaults to `push`
+  type        = list(object({ team_id = string }))
+  description = "List of Team Objects"
   default     = []
 }
 
@@ -138,3 +140,5 @@ variable "issue_labels" {
   description = "List of Issue Label Objects"
   default     = []
 }
+
+// TODO: add support for `github_repository_project`

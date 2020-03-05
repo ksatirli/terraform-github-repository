@@ -52,13 +52,7 @@ resource "github_branch_protection" "branch_protection" {
   }
 }
 
-resource "github_repository_collaborator" "collaborator" {
-  count = length(var.repository_collaborators)
-
-  repository = github_repository.repository.name
-  username   = var.repository_collaborators[count.index].username
-  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
-}
+// TODO: add support for `github_repository_webhook`
 
 resource "github_repository_deploy_key" "deploy_key" {
   count = length(var.deploy_keys)
@@ -67,6 +61,14 @@ resource "github_repository_deploy_key" "deploy_key" {
   repository = github_repository.repository.name
   key        = var.deploy_keys[count.index].key
   read_only  = var.deploy_keys[count.index].read_only
+}
+
+resource "github_repository_collaborator" "collaborator" {
+  count = length(var.repository_collaborators)
+
+  repository = github_repository.repository.name
+  username   = var.repository_collaborators[count.index].username
+  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
 }
 
 resource "github_team_repository" "team_repository" {
@@ -84,3 +86,5 @@ resource "github_issue_label" "issue_label" {
   color       = var.issue_labels[count.index].color
   description = lookup(var.issue_labels[count.index], "description", null)
 }
+
+// TODO: add support for `github_repository_project`
