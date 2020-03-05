@@ -117,16 +117,10 @@ variable "repository_collaborators" {
   default     = []
 }
 
-variable "restrictions_teams" {
-  type        = list
-  description = "The list of team slugs with push access"
-  default     = []
-}
-
 variable "enable_branch_protection" {
   type        = bool
   description = "Boolean to toggle branch protection settings. Only works when repository has been created"
-  default     = 0
+  default     = false
 }
 
 variable "enforce_admins" {
