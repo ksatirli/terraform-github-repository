@@ -60,6 +60,15 @@ resource "github_repository_collaborator" "collaborator" {
   permission = lookup(var.repository_collaborators[count.index], "permission", "push")
 }
 
+resource "github_repository_deploy_key" "deploy_key" {
+  count = length(var.deploy_keys)
+
+  title      = lookup(var.deploy_keys[count.index], "title", "Terraform-managed deploy key")
+  repository = github_repository.repository.name
+  key        = lookup(var.deploy_keys[count.index], "key", null)
+  read_only  = lookup(var.deploy_keys[count.index], "read_only", null)
+}
+
 resource "github_team_repository" "team_repository" {
   count = length(var.team_repository_teams)
 

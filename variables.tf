@@ -177,6 +177,12 @@ variable "restrictions_teams" {
   default     = []
 }
 
+variable "deploy_keys" {
+  type        = list(map(string))
+  description = "List of Deploy Key Maps"
+  default     = []
+}
+
 variable "issue_labels" {
   type        = list(map(string))
   description = "List of Repository Maps"
