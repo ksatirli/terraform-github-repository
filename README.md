@@ -11,6 +11,7 @@
   - [Usage](#usage)
     - [Inputs](#inputs)
     - [Outputs](#outputs)
+  - [Notes](#notes)
   - [Author Information](#author-information)
   - [License](#license)
 
@@ -103,6 +104,14 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | http_clone_url | URL to clone the repository via HTTPs |
 | ssh_clone_url | URL to the repository to clone via SSH |
 | svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+
+## Notes
+
+### For `github_repository` resources
+
+- Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed.
+
+- Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this.
 
 
 ## Author Information
