@@ -33,3 +33,9 @@ output "svn_url" {
 //  value       = github_repository_collaborator.collaborator[*].invitation_id
 //  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
 //}
+
+// TOOD: define a good way to make this useful for consumption
+//output "file_sha" {
+//  value       = github_repository_file.file[*].sha
+//  description = "SHA blob of the file"
+//}

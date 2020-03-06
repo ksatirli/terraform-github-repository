@@ -112,33 +112,59 @@ variable "branch_protections" {
   default     = []
 }
 
-// TODO: add support for `github_repository_webhook`
+// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
 
 variable "deploy_keys" {
-  type        = list(object({ title = string, key = string, read_only = bool }))
+  type = list(object({
+    title     = string,
+    key       = string,
+    read_only = bool
+  }))
+
   description = "List of Deploy Key Objects"
   default     = []
 }
 
 variable "repository_collaborators" {
   // `repository_collaborators.permission` is optional and defaults to `push`
-  type        = list(object({ username = string }))
+  type        = list(object({
+    username = string
+  }))
+
   description = "List of Collaborator Objects"
   default     = []
 }
 
 variable "team_repository_teams" {
   // `team_repository_teams.permission` is optional and defaults to `push`
-  type        = list(object({ team_id = string }))
+  type        = list(object({
+    team_id = string
+  }))
+
   description = "List of Team Repository Team Objects"
   default     = []
 }
 
 variable "issue_labels" {
   // `issue_labels.description` is optional and defaults to `""`
-  type        = list(object({ name = string, color = string }))
+  type = list(object({
+    name  = string,
+    color = string
+  }))
+
   description = "List of Issue Label Objects"
   default     = []
 }
 
-// TODO: add support for `github_repository_project`
+// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_project.html
+
+variable "files" {
+  // `files.{branch,commit_author,commit_email,commit_message}` are optional and ommitted when not set
+  type = list(object({
+    file    = string,
+    content = string
+  }))
+
+  description = "List of File Objecs"
+  default     = []
+}
