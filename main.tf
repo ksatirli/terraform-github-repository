@@ -89,4 +89,9 @@ resource "github_issue_label" "issue_label" {
   description = lookup(var.issue_labels[count.index], "description", null)
 }
 
-// TODO: add support for `github_repository_project`
+resource "github_repository_project" "project" {
+  count       = length(var.projects)
+  name       = var.projects[count.index].name
+  repository = github_repository.repository.name
+  body       = var.projects[count.index].body
+}

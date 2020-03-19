@@ -178,7 +178,15 @@ variable "issue_labels" {
   default     = []
 }
 
-// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_project.html
+variable "projects" {
+  type = list(object({
+    name = string,
+    body = string
+  }))
+
+  description = "List of Project Objecs"
+  default     = []
+}
 
 variable "files" {
   // `files.{branch,commit_author,commit_email,commit_message}` are optional and ommitted when not set
