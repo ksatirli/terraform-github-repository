@@ -31,7 +31,7 @@ variable "has_issues" {
 variable "has_projects" {
   type        = bool
   description = "Toggle to enable GitHub Projects for the Repository"
-  default     = true
+  default     = false
 }
 
 variable "has_wiki" {
@@ -149,7 +149,7 @@ variable "deploy_keys" {
 
 variable "repository_collaborators" {
   // `repository_collaborators.permission` is optional and defaults to `push`
-  type        = list(object({
+  type = list(object({
     username = string
   }))
 
@@ -159,7 +159,7 @@ variable "repository_collaborators" {
 
 variable "team_repository_teams" {
   // `team_repository_teams.permission` is optional and defaults to `push`
-  type        = list(object({
+  type = list(object({
     team_id = string
   }))
 
