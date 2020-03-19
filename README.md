@@ -75,22 +75,24 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
-| branch_protections | List of Branch Protection Objects | `list(any)` | `[]` |
+| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      //      include_admins = bool // TOOD: currently unsupported<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
 | default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
-| deploy_keys | List of Deploy Key Objects | `list(object({ title = string, key = string, read_only = bool }))` | `[]` |
+| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
 | description | Description of the Repository | `string` | `""` |
+| files | List of File Objecs | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` |
 | gitignore_template | Template to use for initial `.gitignore` file for the Repository | `string` | `""` |
 | has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository | `bool` | `false` |
 | has_issues | Toggle to enable GitHub Issues for the Repository | `bool` | `true` |
-| has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `true` |
+| has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `false` |
 | has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
 | homepage_url | URL of a page describing the Repository | `string` | `""` |
-| issue_labels | List of Issue Label Objects | `list(object({ name = string, color = string }))` | `[]` |
+| issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
 | name | Name of the Repository | `string` | `""` |
 | private | Toggle to create a Private Repository | `bool` | `true` |
-| repository_collaborators | List of Collaborator Objects | `list(object({ username = string }))` | `[]` |
-| team_repository_teams | List of Team Repository Team Objects | `list(object({ team_id = string }))` | `[]` |
+| projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
+| repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
+| team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
 | template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
 | topics | List of Topics of the Repository | `list(string)` | `[]` |
 
@@ -104,6 +106,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | http_clone_url | URL to clone the repository via HTTPs |
 | ssh_clone_url | URL to the repository to clone via SSH |
 | svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+
 
 ## Notes
 
