@@ -28,27 +28,29 @@ resource "github_repository" "repository" {
 }
 
 resource "github_branch_protection" "branch_protection" {
-  count = var.enable_branch_protection
+  count = length(var.branch_protections)
 
-  repository     = var.name
-  branch         = var.branch
-  enforce_admins = var.enforce_admins
+  repository             = github_repository.repository.name
+  branch                 = var.branch_protections[count.index].branch
+  enforce_admins         = var.branch_protections[count.index].enforce_admins
+  require_signed_commits = var.branch_protections[count.index].require_signed_commits
 
   required_status_checks {
-    strict   = var.req_status_checks_strict
-    contexts = [var.req_status_checks_context]
+    strict   = lookup(lookup(var.branch_protections[count.index], "required_status_checks", null), "strict", null)
+    contexts = lookup(lookup(var.branch_protections[count.index], "required_status_checks", null), "contexts", null)
   }
 
   required_pull_request_reviews {
-    dismiss_stale_reviews      = var.req_pr_reviews_dismiss_stale_reviews
-    require_code_owner_reviews = var.req_pr_reviews_require_code_owner_reviews
-    dismissal_users            = [var.req_pr_reviews_dismissal_users]
-    dismissal_teams            = [var.req_pr_reviews_dismissal_teams]
+    dismiss_stale_reviews      = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismiss_stale_reviews", null)
+    dismissal_users            = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_users", null)
+    dismissal_teams            = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_teams", null)
+    require_code_owner_reviews = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "require_code_owner_reviews", null)
+    required_approving_review_count = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "required_approving_review_count", null)
   }
 
   restrictions {
-    users = [var.restrictions_users]
-    teams = [var.restrictions_teams]
+    users = lookup(lookup(var.branch_protections[count.index], "restrictions", null), "users", null)
+    teams = lookup(lookup(var.branch_protections[count.index], "restrictions", null), "teams", null)
   }
 }
 

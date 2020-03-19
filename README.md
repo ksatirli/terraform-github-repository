@@ -113,6 +113,9 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 - Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this.
 
+### For `github_branch_protection` resources
+
+- The numeric value for [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) has a range of `>= 1 and <= 6`
 
 ## Author Information
 

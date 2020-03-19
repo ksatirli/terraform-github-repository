@@ -106,8 +106,30 @@ variable "template" {
 }
 
 variable "branch_protections" {
-  // TODO: consider switching this to a more strict validation
-  type        = list(any)
+  type = list(object({
+    branch                 = string,
+    enforce_admins         = bool,
+    require_signed_commits = bool,
+    required_status_checks = object({
+      strict = bool
+//      include_admins = bool // TOOD: currently unsupported
+      contexts = list(string)
+    })
+
+    required_pull_request_reviews = object({
+      dismiss_stale_reviews           = bool,
+      dismissal_users                 = list(string),
+      dismissal_teams                 = list(string),
+      require_code_owner_reviews      = bool,
+      required_approving_review_count = number // NOTE: this can be at most 6
+    })
+
+    restrictions = object({
+      users = list(string),
+      teams = list(string)
+    })
+  }))
+
   description = "List of Branch Protection Objects"
   default     = []
 }
