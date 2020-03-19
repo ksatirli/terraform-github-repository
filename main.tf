@@ -54,7 +54,7 @@ resource "github_branch_protection" "branch_protection" {
   }
 }
 
-// TODO: add support for `github_repository_webhook`
+// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
 
 resource "github_repository_deploy_key" "deploy_key" {
   count = length(var.deploy_keys)
