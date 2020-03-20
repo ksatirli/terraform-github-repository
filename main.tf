@@ -41,10 +41,10 @@ resource "github_branch_protection" "branch_protection" {
   }
 
   required_pull_request_reviews {
-    dismiss_stale_reviews      = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismiss_stale_reviews", null)
-    dismissal_users            = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_users", null)
-    dismissal_teams            = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_teams", null)
-    require_code_owner_reviews = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "require_code_owner_reviews", null)
+    dismiss_stale_reviews           = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismiss_stale_reviews", null)
+    dismissal_users                 = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_users", null)
+    dismissal_teams                 = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "dismissal_teams", null)
+    require_code_owner_reviews      = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "require_code_owner_reviews", null)
     required_approving_review_count = lookup(lookup(var.branch_protections[count.index], "required_pull_request_reviews", null), "required_approving_review_count", null)
   }
 
@@ -90,7 +90,7 @@ resource "github_issue_label" "issue_label" {
 }
 
 resource "github_repository_project" "project" {
-  count       = length(var.projects)
+  count      = length(var.projects)
   name       = var.projects[count.index].name
   repository = github_repository.repository.name
   body       = var.projects[count.index].body
