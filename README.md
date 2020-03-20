@@ -12,6 +12,9 @@
     - [Inputs](#inputs)
     - [Outputs](#outputs)
   - [Notes](#notes)
+    - [github_repository resources](#for-github-repository-resources)
+    - [github_repository_deploy_key resource](#for-github-repository-deploy-key-resources)
+    - [github_branch_protection resources](#for-github-branch-protection-resources)
   - [Author Information](#author-information)
   - [License](#license)
 
@@ -107,7 +110,6 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | ssh_clone_url | URL to the repository to clone via SSH |
 | svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
-
 ## Notes
 
 ### For `github_repository` resources
@@ -115,6 +117,12 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 - Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed.
 
 - Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this.
+
+### For `github_repository_deploy_key` resources
+
+- For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
+
+- the `deploy_key` map's `key` attribute expects a string. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
 
 ### For `github_branch_protection` resources
 
