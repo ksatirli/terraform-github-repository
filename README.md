@@ -121,19 +121,23 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ### For `github_repository_deploy_key` resources
 
-- For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
+- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
 
-- the `deploy_key` map's `key` attribute expects a string. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
+- For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
 
 ### For `github_branch_protection` resources
 
-- The numeric value for [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) has a range of `>= 1 and <= 6`
+- Branch Protection resources that set the [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
+
+### For `github_repository_project` resources
+
+- Project resources require GitHub Projects to be enabled for the Organization as well as the `has_projects` variable set to `true`
 
 ### For `github_repository_file` resources
 
-- Resources that are created with the `files` option will default to the `master` branch, if no value for `branch` has been specified
+- File resources require an (already existing) `master` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
 
-- Creating files in repositories without a `master` branch _and_ without specifying a branch will result in an error
+- File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
 
 ## Author Information
 
