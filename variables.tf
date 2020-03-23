@@ -127,6 +127,7 @@ variable "branch_protections" {
     restrictions = object({
       users = list(string),
       teams = list(string)
+      //      apps = list(string) // TOOD: currently unreleased
     })
   }))
 
