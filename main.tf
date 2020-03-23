@@ -82,7 +82,8 @@ resource "github_team_repository" "team_repository" {
 }
 
 resource "github_issue_label" "issue_label" {
-  count       = length(var.issue_labels)
+  count = length(var.issue_labels)
+
   repository  = github_repository.repository.name
   name        = var.issue_labels[count.index].name
   color       = var.issue_labels[count.index].color
@@ -90,7 +91,8 @@ resource "github_issue_label" "issue_label" {
 }
 
 resource "github_repository_project" "project" {
-  count      = length(var.projects)
+  count = length(var.projects)
+
   name       = var.projects[count.index].name
   repository = github_repository.repository.name
   body       = var.projects[count.index].body
