@@ -112,7 +112,6 @@ variable "branch_protections" {
     require_signed_commits = bool,
     required_status_checks = object({
       strict = bool
-      //      include_admins = bool // TOOD: currently unsupported
       contexts = list(string)
     })
 
@@ -127,7 +126,6 @@ variable "branch_protections" {
     restrictions = object({
       users = list(string),
       teams = list(string)
-      //      apps = list(string) // TOOD: currently unreleased
     })
   }))
 

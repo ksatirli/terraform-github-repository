@@ -64,8 +64,6 @@ module "foo-cli" {
 }
 ```
 
-Then, load the module using `terraform get`.
-
 Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository) using `terraform get`.
 
 Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/master/examples).
@@ -79,7 +77,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
-| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      //      include_admins = bool // TOOD: currently unsupported<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
+| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
 | default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
 | deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
 | description | Description of the Repository | `string` | `""` |
