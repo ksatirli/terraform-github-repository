@@ -29,7 +29,7 @@ module "deploy-keys-example" {
   deploy_keys = [
     {
       title     = "Terraform-managed deploy key"
-      key       = "ssh-rsa AAA...0BSL== github@example.com"
+      key       = "ssh-rsa AAA...DpQ== github@example.com"
       read_only = true
     }
   ]
