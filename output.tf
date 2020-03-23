@@ -35,8 +35,8 @@ output "svn_url" {
 //}
 
 output "project_urls" {
-  value       = zipmap(github_repository_project.project[*].name, github_repository_project.project[*].url)
-  description = "Map of Repository Project names and corresponding URLs"
+  value       = zipmap(github_repository_project.project[*].id, github_repository_project.project[*].url)
+  description = "Map of Repository Project IDs, and corresponding URLs"
 }
 
 output "file_shas" {
