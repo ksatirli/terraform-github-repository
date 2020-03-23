@@ -114,9 +114,9 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ### For `github_repository` resources
 
-- Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed.
+- Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed
 
-- Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this.
+- Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this
 
 ### For `github_repository_deploy_key` resources
 
