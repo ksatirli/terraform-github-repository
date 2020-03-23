@@ -61,6 +61,12 @@ module "foo-cli" {
   req_pr_reviews_dismissal_teams            = []
   restrictions_users                        = []
   restrictions_teams                        = []
+module "simple-example" {
+  source  = "operatehappy/repository/github"
+  version = "2.0.0"
+
+  name    = "oh-demo-simple-example"
+  private = false // NOTE: private repositories require a paid subscription
 }
 ```
 
@@ -136,6 +142,8 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 - File resources require an (already existing) `master` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
 
 - File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
+
+- File resources that are removed from Terraform will _also_ be removed from the Repository. This is visible in the Repository History
 
 ## Author Information
 
