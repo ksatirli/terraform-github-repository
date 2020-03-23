@@ -15,6 +15,7 @@
     - [github_repository resources](#for-github-repository-resources)
     - [github_repository_deploy_key resource](#for-github-repository-deploy-key-resources)
     - [github_branch_protection resources](#for-github-branch-protection-resources)
+    - [github_repository_project resources](#for-github-repository-project-resources)
     - [github_repository_file resources](#for-github-repository-file-resources)
   - [Author Information](#author-information)
   - [License](#license)
@@ -32,35 +33,6 @@ This module depends on a correctly configured [GitHub Provider](https://www.terr
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "foo-cli" {
-  source                                    = "github.com/withmethod/terraform-module-github-repository?ref=0.3.1"
-  name                                      = "foo-cli"
-  description                               = "foo CLI"
-  homepage_url                              = "https://withmethod.com/open-source/"
-  private                                   = true
-  has_issues                                = true
-  has_wiki                                  = false
-  allow_merge_commit                        = false
-  allow_squash_merge                        = true
-  allow_rebase_merge                        = false
-  has_downloads                             = false
-  auto_init                                 = true
-  gitignore_template                        = "Terraform"
-  license_template                          = "apache-2.0"
-  enable_team_repository                    = 1
-  team_repository_team                      = "${github_team.internal.id}"
-  team_repository_permission                = "pull"
-  branch                                    = "master"
-  enable_branch_protection                  = 1 // only works after initial creation of repository
-  enforce_admins                            = true
-  req_status_checks_strict                  = false
-  req_status_checks_context                 = ["continuous-integration/travis-ci"]
-  req_pr_reviews_dismiss_stale_reviews      = true
-  req_pr_reviews_require_code_owner_reviews = false
-  req_pr_reviews_dismissal_users            = []
-  req_pr_reviews_dismissal_teams            = []
-  restrictions_users                        = []
-  restrictions_teams                        = []
 module "simple-example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
@@ -70,7 +42,7 @@ module "simple-example" {
 }
 ```
 
-Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository) using `terraform get`.
+Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository/github) using `terraform get`.
 
 Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/master/examples).
 
