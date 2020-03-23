@@ -1,10 +1,10 @@
-# Example: `complex`
+# Example: `branch-protection`
 
-> This is an example of a _complex_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
+> This is an example of a _branch-protection_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `complex`](#example-complex)
+- [Example: `branch-protection`](#example-branch-protection)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,14 +16,14 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _complex_ configuration of the `terraform-github-repository` Module could look like this:
+A _branch-protection_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "complex-example" {
+module "branch-protection-example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
-  name    = "oh-demo-complex-example"
+  name    = "oh-demo-branch-protection-example"
   private = false // NOTE: private repositories require a paid subscription
 
   branch_protections = [
