@@ -34,8 +34,12 @@ output "svn_url" {
 //  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
 //}
 
-// TOOD: define a good way to make this useful for consumption
-//output "file_sha" {
-//  value       = github_repository_file.file[*].sha
-//  description = "SHA blob of the file"
-//}
+output "project_urls" {
+  value       = zipmap(github_repository_project.project[*].name, github_repository_project.project[*].url)
+  description = "Map of Repository Project names and corresponding URLs"
+}
+
+output "file_shas" {
+  value       = zipmap(github_repository_file.file[*].file, github_repository_file.file[*].sha)
+  description = "Map of Repository File names and corresponding SHA blobs"
+}

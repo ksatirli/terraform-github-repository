@@ -86,6 +86,8 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | http_clone_url | URL to clone the repository via HTTPs |
 | ssh_clone_url | URL to the repository to clone via SSH |
 | svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+| file_shas | Map of Repository File names and corresponding SHA blobs |
+| project_urls | Map of Repository Project names and corresponding URLs |
 
 ## Notes
 
