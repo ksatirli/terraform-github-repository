@@ -97,3 +97,16 @@ resource "github_repository_project" "project" {
   repository = github_repository.repository.name
   body       = var.projects[count.index].body
 }
+
+resource "github_repository_file" "file" {
+  count = length(var.files)
+
+  repository = github_repository.repository.name
+  file       = var.files[count.index].file
+  content    = var.files[count.index].content
+  branch     = lookup(var.files[count.index], "branch", "master")
+
+  commit_author  = lookup(var.files[count.index], "author", null)
+  commit_email   = lookup(var.files[count.index], "email", null)
+  commit_message = lookup(var.files[count.index], "message", null)
+}

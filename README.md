@@ -15,6 +15,7 @@
     - [github_repository resources](#for-github-repository-resources)
     - [github_repository_deploy_key resource](#for-github-repository-deploy-key-resources)
     - [github_branch_protection resources](#for-github-branch-protection-resources)
+    - [github_repository_file resources](#for-github-repository-file-resources)
   - [Author Information](#author-information)
   - [License](#license)
 
@@ -127,6 +128,12 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 ### For `github_branch_protection` resources
 
 - The numeric value for [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) has a range of `>= 1 and <= 6`
+
+### For `github_repository_file` resources
+
+- Resources that are created with the `files` option will default to the `master` branch, if no value for `branch` has been specified
+
+- Creating files in repositories without a `master` branch _and_ without specifying a branch will result in an error
 
 ## Author Information
 
