@@ -9,7 +9,7 @@ module "project-column-example" {
     {
       name = "Providence Facility Infra"
       body = "Infrastructure issues for the Providence Facility"
-    }, {
+      }, {
       name = "Providence Facility Frontend"
       body = "Frontend issues for the Providence Facility"
     }

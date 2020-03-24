@@ -111,7 +111,7 @@ variable "branch_protections" {
     enforce_admins         = bool,
     require_signed_commits = bool,
     required_status_checks = object({
-      strict = bool
+      strict   = bool
       contexts = list(string)
     })
 
