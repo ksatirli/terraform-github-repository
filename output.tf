@@ -34,12 +34,22 @@ output "svn_url" {
 //  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
 //}
 
+output "project_ids" {
+  value       = github_repository_project.project[*].id
+  description = "List of Repository Project IDs"
+}
+
 output "project_urls" {
+  value       = github_repository_project.project[*].url
+  description = "List of Repository Project IDs"
+}
+
+output "projects" {
   value       = zipmap(github_repository_project.project[*].id, github_repository_project.project[*].url)
   description = "Map of Repository Project IDs, and corresponding URLs"
 }
 
-output "file_shas" {
+output "files" {
   value       = zipmap(github_repository_file.file[*].file, github_repository_file.file[*].sha)
   description = "Map of Repository File names and corresponding SHA blobs"
 }
