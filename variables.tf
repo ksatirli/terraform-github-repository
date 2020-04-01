@@ -39,11 +39,6 @@ variable "has_wiki" {
   default     = true
 }
 
-variable "has_projects" {
-  default     = "false"
-  description = "Set to true to enable the GitHub Projects features on the repository"
-}
-
 variable "allow_merge_commit" {
   type        = bool
   description = "Toggle to enable Merge Commits for the Repository"
