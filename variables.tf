@@ -203,12 +203,3 @@ variable "files" {
   default     = []
 }
 
-variable "topics" {
-  default     = []
-  description = "The list of topics of the repository"
-}
-
-variable "archived" {
-  default     = "false"
-  description = "Specifies if the repository should be archived"
-}
