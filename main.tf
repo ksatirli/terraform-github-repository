@@ -38,9 +38,10 @@ resource "github_branch_protection" "protected_branch" {
   }
 
   required_pull_request_reviews {
-    dismiss_stale_reviews = "${var.req_pr_reviews_dismiss_stale_reviews}"
-    dismissal_users       = ["${var.req_pr_reviews_dismissal_users}"]
-    dismissal_teams       = ["${var.req_pr_reviews_dismissal_teams}"]
+    dismiss_stale_reviews      = "${var.req_pr_reviews_dismiss_stale_reviews}"
+    require_code_owner_reviews = "${var.req_pr_reviews_require_code_owner_reviews}"
+    dismissal_users            = ["${var.req_pr_reviews_dismissal_users}"]
+    dismissal_teams            = ["${var.req_pr_reviews_dismissal_teams}"]
   }
 
   restrictions {
