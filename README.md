@@ -123,7 +123,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ## Author Information
 
-This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-github-repositories/graphs/contributors).
+This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-github-repository/graphs/contributors).
 
 Development of this module was sponsored by [Operate Happy](https://github.com/operatehappy).
 
