@@ -38,7 +38,7 @@ module "simple-example" {
   version = "2.0.0"
 
   name    = "oh-demo-simple-example"
-  private = false // NOTE: private repositories require a paid subscription
+  private = false
 }
 ```
 

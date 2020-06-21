@@ -3,7 +3,7 @@ module "deploy-keys-example" {
   version = "2.0.0"
 
   name    = "oh-demo-deploy-keys-example"
-  private = false // NOTE: private repositories require a paid subscription
+  private = false
 
   deploy_keys = [
     {

@@ -3,7 +3,7 @@ module "project-column-example" {
   version = "2.0.0"
 
   name    = "oh-demo-project-example"
-  private = false // NOTE: private repositories require a paid subscription
+  private = false
 
   projects = [
     {

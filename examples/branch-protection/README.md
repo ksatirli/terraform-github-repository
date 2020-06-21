@@ -24,7 +24,7 @@ module "branch-protection-example" {
   version = "2.0.0"
 
   name    = "oh-demo-branch-protection-example"
-  private = false // NOTE: private repositories require a paid subscription
+  private = false
 
   branch_protections = [
     {

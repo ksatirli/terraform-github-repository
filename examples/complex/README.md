@@ -26,7 +26,7 @@ module "complex-example" {
   name               = "oh-demo-complex-example"
   description        = "Complex Repository Example"
   homepage_url       = "https://operatehappy.com/"
-  private            = false // NOTE: private repositories require a paid subscription
+  private            = false
   has_issues         = true
   has_projects       = true
   has_wiki           = false
