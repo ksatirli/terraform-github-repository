@@ -62,6 +62,11 @@ variable "allow_rebase_merge" {
   default     = true
 }
 
+variable "delete_branch_on_merge" {
+  description = "Toggle to automatically delete merged Branches for the Repository"
+  default     = false
+}
+
 variable "has_downloads" {
   type        = bool
   description = "Toggle to enable (deprecated) GitHub Downloads for the Repository"
