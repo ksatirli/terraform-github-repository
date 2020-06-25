@@ -1,160 +1,199 @@
 variable "name" {
-  type        = "string"
-  description = "The name of the repository"
+  type        = string
+  description = "Name of the Repository"
+  default     = ""
 }
 
 variable "description" {
-  type        = "string"
-  description = "A description of the repository"
+  type        = string
+  description = "Description of the Repository"
   default     = ""
 }
 
 variable "homepage_url" {
-  type        = "string"
-  description = "URL of a page describing the project"
+  type        = string
+  description = "URL of a page describing the Repository"
   default     = ""
 }
 
 variable "private" {
-  description = "Set to `true` to create a private repository"
+  type        = bool
+  description = "Toggle to create a Private Repository"
   default     = true
 }
 
 variable "has_issues" {
-  description = "Set to `true` to enable the Github Issues features on the repository"
-  default     = true
-}
-
-variable "has_wiki" {
-  description = "Set to `true` to enable the Github Wiki features on the repository"
+  type        = bool
+  description = "Toggle to enable GitHub Issues for the Repository"
   default     = true
 }
 
 variable "has_projects" {
-  default     = "false"
-  description = "Set to true to enable the GitHub Projects features on the repository"
+  type        = bool
+  description = "Toggle to enable GitHub Projects for the Repository"
+  default     = false
+}
+
+variable "has_wiki" {
+  description = "Toggle to enable GitHub Wiki for the Repository"
+  default     = true
 }
 
 variable "allow_merge_commit" {
-  description = "Set to `false` to disable merge commits on the repository"
+  type        = bool
+  description = "Toggle to enable Merge Commits for the Repository"
   default     = true
 }
 
 variable "allow_squash_merge" {
-  description = "Set to `false` to disable squash merges on the repository"
+  type        = bool
+  description = "Toggle to enable Squash Merges for the Repository"
   default     = true
 }
 
 variable "allow_rebase_merge" {
-  description = "Set to `false` to disable rebase merges on the repository"
+  type        = bool
+  description = "Toggle to enable Rebase Merges for the Repository"
   default     = true
 }
 
 variable "has_downloads" {
-  description = "Set to `true` to enable the (deprecated) downloads features on the repository"
+  type        = bool
+  description = "Toggle to enable (deprecated) GitHub Downloads for the Repository"
   default     = false
 }
 
 variable "auto_init" {
-  description = "Set to `true` to produce an initial commit in the repository"
-  default     = true
+  type        = bool
+  description = "Toggle to create an initial commit in the Repository"
+  default     = false
 }
 
 variable "gitignore_template" {
-  type        = "string"
-  description = "Set to a template to use for the `.gitignore` file"
+  type        = string
+  description = "Template to use for initial `.gitignore` file for the Repository"
   default     = ""
 }
 
 variable "license_template" {
-  type        = "string"
-  description = "Set to a template to use for the license"
-  default     = "apache-2.0"
-}
-
-variable "branch" {
-  type        = "string"
-  description = "The name of the default branch of the repository"
-  default     = "master"
-}
-
-variable "enable_team_repository" {
-  description = "Boolean to toggle team repository settings"
-  default     = 0
-}
-
-variable "team_repository_team" {
-  type        = "string"
-  description = "The GitHub team ID"
+  type        = string
+  description = "Identifier to use for initial `LICENSE` file for the Repository"
   default     = ""
 }
 
-variable "team_repository_permission" {
-  type        = "string"
-  description = "The permissions of team members regarding the repository"
-  default     = "pull"
-}
-
-variable "enable_branch_protection" {
-  type        = "string"
-  description = "Boolean to toggle branch protection settings. Only works when repository has been created"
-  default     = 0
-}
-
-variable "enforce_admins" {
-  description = "Boolean to toggle enforcement of status checks for administrators"
-  default     = true
-}
-
-variable "req_status_checks_strict" {
-  type = "string"
-
-  description = "Boolean to toggle strictness of status checks"
-  default     = false
-}
-
-variable "req_status_checks_context" {
-  type        = "list"
-  description = "List of status checks to require in order to merge into this branch"
-  default     = []
-}
-
-variable "req_pr_reviews_dismiss_stale_reviews" {
-  description = "Boolean to toggle dismissal of reviews when a new commit is pushed"
-  default     = true
-}
-
-variable "req_pr_reviews_require_code_owner_reviews" {
-  description = "Boolean to toggle requiring review from designated code owner"
-  default     = false
-}
-
-variable "req_pr_reviews_dismissal_users" {
-  description = "The list of user logins with dismissal access"
-  default     = []
-}
-
-variable "req_pr_reviews_dismissal_teams" {
-  description = "The list of team slugs with dismissal access"
-  default     = []
-}
-
-variable "restrictions_users" {
-  description = "The list of user logins with push access"
-  default     = []
-}
-
-variable "restrictions_teams" {
-  description = "The list of team slugs with push access"
-  default     = []
-}
-
-variable "topics" {
-  default     = []
-  description = "The list of topics of the repository"
+variable "default_branch" {
+  type        = string
+  description = "Name of the Default Branch of the Repository"
+  default     = "master"
 }
 
 variable "archived" {
-  default     = "false"
-  description = "Specifies if the repository should be archived"
+  type        = bool
+  description = "Toggle to archive the Repository (see notes in `README.md`)"
+  default     = false
+}
+
+variable "topics" {
+  type        = list(string)
+  description = "List of Topics of the Repository"
+  default     = []
+}
+
+variable "template" {
+  type        = map(string)
+  description = "Template Repository to use when creating the Repository"
+  default     = {}
+}
+
+variable "branch_protections" {
+  type = list(object({
+    branch                 = string,
+    enforce_admins         = bool,
+    require_signed_commits = bool,
+    required_status_checks = object({
+      strict   = bool
+      contexts = list(string)
+    })
+
+    required_pull_request_reviews = object({
+      dismiss_stale_reviews           = bool,
+      dismissal_users                 = list(string),
+      dismissal_teams                 = list(string),
+      require_code_owner_reviews      = bool,
+      required_approving_review_count = number // NOTE: this can be at most 6
+    })
+
+    restrictions = object({
+      users = list(string),
+      teams = list(string)
+    })
+  }))
+
+  description = "List of Branch Protection Objects"
+  default     = []
+}
+
+// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
+
+variable "deploy_keys" {
+  type = list(object({
+    title     = string,
+    key       = string,
+    read_only = bool
+  }))
+
+  description = "List of Deploy Key Objects"
+  default     = []
+}
+
+variable "repository_collaborators" {
+  // `repository_collaborators.permission` is optional and defaults to `push`
+  type = list(object({
+    username = string
+  }))
+
+  description = "List of Collaborator Objects"
+  default     = []
+}
+
+variable "team_repository_teams" {
+  // `team_repository_teams.permission` is optional and defaults to `push`
+  type = list(object({
+    team_id = string
+  }))
+
+  description = "List of Team Repository Team Objects"
+  default     = []
+}
+
+variable "issue_labels" {
+  // `issue_labels.description` is optional and defaults to `""`
+  type = list(object({
+    name  = string,
+    color = string
+  }))
+
+  description = "List of Issue Label Objects"
+  default     = []
+}
+
+variable "projects" {
+  type = list(object({
+    name = string,
+    body = string
+  }))
+
+  description = "List of Project Objecs"
+  default     = []
+}
+
+variable "files" {
+  // `files.{branch,commit_author,commit_email,commit_message}` are optional and ommitted when not set
+  type = list(object({
+    file    = string,
+    content = string
+  }))
+
+  description = "List of File Objecs"
+  default     = []
 }

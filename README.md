@@ -1,19 +1,28 @@
 # Terraform Module: GitHub Repository
 
-> This repository is a [Terraform](https://terraform.io/) Module for managing GitHub Repository and Branch Protection resources.
+> Terraform Module for managing GitHub [Repositories](https://developer.github.com/v3/repos/) and associated resources.
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [Dependencies](#dependencies)
-- [Usage](#usage)
-  - [Module Variables](#module-variables)
-- [Author Information](#author-information)
-- [License](#license)
+- [Terraform Module: GitHub Repository](#terraform-module-github-repository)
+  - [Table of Contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Dependencies](#dependencies)
+  - [Usage](#usage)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+  - [Notes](#notes)
+    - [github_repository resources](#for-github-repository-resources)
+    - [github_repository_deploy_key resource](#for-github-repository-deploy-key-resources)
+    - [github_branch_protection resources](#for-github-branch-protection-resources)
+    - [github_repository_project resources](#for-github-repository-project-resources)
+    - [github_repository_file resources](#for-github-repository-file-resources)
+  - [Author Information](#author-information)
+  - [License](#license)
 
 ## Requirements
 
-This module requires Terraform version `0.10.x` or newer.
+This module requires Terraform version `0.12.x` or newer.
 
 ## Dependencies
 
@@ -24,112 +33,105 @@ This module depends on a correctly configured [GitHub Provider](https://www.terr
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "foo-cli" {
-  source                                    = "github.com/withmethod/terraform-module-github-repository?ref=0.3.1"
-  name                                      = "foo-cli"
-  description                               = "foo CLI"
-  homepage_url                              = "https://withmethod.com/open-source/"
-  private                                   = true
-  has_issues                                = true
-  has_wiki                                  = false
-  allow_merge_commit                        = false
-  allow_squash_merge                        = true
-  allow_rebase_merge                        = false
-  has_downloads                             = false
-  auto_init                                 = true
-  gitignore_template                        = "Terraform"
-  license_template                          = "apache-2.0"
-  enable_team_repository                    = 1
-  team_repository_team                      = "${github_team.internal.id}"
-  team_repository_permission                = "pull"
-  branch                                    = "master"
-  enable_branch_protection                  = 1 // only works after initial creation of repository
-  enforce_admins                            = true
-  req_status_checks_strict                  = false
-  req_status_checks_context                 = ["continuous-integration/travis-ci"]
-  req_pr_reviews_dismiss_stale_reviews      = true
-  req_pr_reviews_require_code_owner_reviews = false
-  req_pr_reviews_dismissal_users            = []
-  req_pr_reviews_dismissal_teams            = []
-  restrictions_users                        = []
-  restrictions_teams                        = []
+module "simple-example" {
+  source  = "operatehappy/repository/github"
+  version = "2.0.0"
+
+  name    = "oh-demo-simple-example"
+  private = false
 }
 ```
 
-Then, load the module using `terraform get`.
+Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository/github) using `terraform get`.
 
-### Module Variables
+Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/master/examples).
 
-Available variables are listed below, along with their default values:
+### Inputs
 
-| Name                                 | Description                                                                               |  Type  |    Default     | Required |
-|:-------------------------------------|:------------------------------------------------------------------------------------------|:------:|:--------------:|:--------:|
-| name                                 | The name of the repository                                                                | string |      n/a       |   yes    |
-| allow_merge_commit                   | Set to `false` to disable merge commits on the repository                                 | string |    `"true"`    |    no    |
-| allow_rebase_merge                   | Set to `false` to disable rebase merges on the repository                                 | string |    `"true"`    |    no    |
-| allow_squash_merge                   | Set to `false` to disable squash merges on the repository                                 | string |    `"true"`    |    no    |
-| archived                             | Specifies if the repository should be archived                                            | string |   `"false"`    |    no    |
-| auto_init                            | Set to `true` to produce an initial commit in the repository                              | string |    `"true"`    |    no    |
-| branch                               | The name of the default branch of the repository                                          | string |   `"master"`   |    no    |
-| description                          | A description of the repository                                                           | string |      `""`      |    no    |
-| enable_branch_protection             | Boolean to toggle branch protection settings. Only works when repository has been created | string |     `"0"`      |    no    |
-| enable_team_repository               | Boolean to toggle team repository settings                                                | string |     `"0"`      |    no    |
-| enforce_admins                       | Boolean to toggle enforcement of status checks for administrators                         | string |    `"true"`    |    no    |
-| gitignore_template                   | Set to a template to use for the `.gitignore` file                                        | string |      `""`      |    no    |
-| has_downloads                        | Set to `true` to enable the (deprecated) downloads features on the repository             | string |   `"false"`    |    no    |
-| has_issues                           | Set to `true` to enable the Github Issues features on the repository                      | string |    `"true"`    |    no    |
-| has_projects                         | Set to true to enable the GitHub Projects features on the repository                      | string |   `"false"`    |    no    |
-| has_wiki                             | Set to `true` to enable the Github Wiki features on the repository                        | string |    `"true"`    |    no    |
-| homepage_url                         | URL of a page describing the project                                                      | string |      `""`      |    no    |
-| license_template                     | Set to a template to use for the license                                                  | string | `"apache-2.0"` |    no    |
-| private                              | Set to `true` to create a private repository                                              | string |    `"true"`    |    no    |
-| req_pr_reviews_dismiss_stale_reviews | Boolean to toggle dismissal of reviews when a new commit is pushed                        | string |    `"true"`    |    no    |
-| req_pr_reviews_dismissal_teams       | The list of team slugs with dismissal access                                              |  list  |    `<list>`    |    no    |
-| req_pr_reviews_dismissal_users       | The list of user logins with dismissal access                                             |  list  |    `<list>`    |    no    |
-| req_status_checks_context            | List of status checks to require in order to merge into this branch                       |  list  |    `<list>`    |    no    |
-| req_status_checks_strict             | Boolean to toggle strictness of status checks                                             | string |   `"false"`    |    no    |
-| restrictions_teams                   | The list of team slugs with push access                                                   |  list  |    `<list>`    |    no    |
-| restrictions_users                   | The list of user logins with push access                                                  |  list  |    `<list>`    |    no    |
-| team_repository_permission           | The permissions of team members regarding the repository                                  | string |    `"pull"`    |    no    |
-| team_repository_team                 | The GitHub team ID                                                                        | string |      `""`      |    no    |
-| topics                               | The list of topics of the repository                                                      |  list  |    `<list>`    |    no    |
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+| allow_merge_commit | Toggle to enable Merge Commits for the Repository | `bool` | `true` |
+| allow_rebase_merge | Toggle to enable Rebase Merges for the Repository | `bool` | `true` |
+| allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
+| archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
+| auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
+| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
+| default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
+| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
+| description | Description of the Repository | `string` | `""` |
+| files | List of File Objecs | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` |
+| gitignore_template | Template to use for initial `.gitignore` file for the Repository | `string` | `""` |
+| has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository | `bool` | `false` |
+| has_issues | Toggle to enable GitHub Issues for the Repository | `bool` | `true` |
+| has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `false` |
+| has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
+| homepage_url | URL of a page describing the Repository | `string` | `""` |
+| issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
+| license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
+| name | Name of the Repository | `string` | `""` |
+| private | Toggle to create a Private Repository | `bool` | `true` |
+| projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
+| repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
+| team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
+| template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
+| topics | List of Topics of the Repository | `list(string)` | `[]` |
 
-- `private` defaults to `true`
-- `has_downloads` defaults to `false`
-- `license_template` defaults to `apache-2.0`
-- `branch` defaults to `master`
-- `enforce_admins` defaults to `true`
-- `req_pr_reviews_dismiss_stale_reviews` defaults to `true`
+### Outputs
 
-Please note: `auto_init`, `gitignore_template` as well as `license_template` are actions that will result in commits being made to the GitHub Repository. These commits will be attributed to the user that is linked to the token that is used for the GitHub provider.
+| Name | Description |
+|------|-------------|
+| full_name | A string of the form "orgname/reponame" |
+| git_clone_url | URL to clone the repository via the git protocol |
+| html_url | URL to the repository on the web |
+| http_clone_url | URL to clone the repository via HTTPs |
+| ssh_clone_url | URL to the repository to clone via SSH |
+| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+| files | Map of Repository File names and corresponding SHA blobs |
+| projects | Map of Repository Project names and corresponding URLs |
+| project_ids | List of Repository Project IDs |
+| project_urls | List of Repository Project IDs |
 
-### Module outputs
+## Notes
 
-Available outputs are listed below, along with their description
+### For `github_repository` resources
 
-| Name           | Description                                                                                                        |
-|:---------------|:-------------------------------------------------------------------------------------------------------------------|
-| full_name      | A string of the form `orgname/reponame`.                                                                           |
-| git_clone_url  | URL that can be provided to git clone to clone the repository anonymously via the git protocol.                    |
-| http_clone_url | URL that can be provided to `git clone` to clone the repository via HTTPS.                                         |
-| ssh_clone_url  | URL that can be provided to `git clone` to clone the repository via SSH.                                           |
-| svn_url        | URL that can be provided to `svn checkout` to check out the repository via GitHub's Subversion protocol emulation. |
+- Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed
+
+- Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this
+
+### For `github_repository_deploy_key` resources
+
+- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
+
+- For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
+
+### For `github_branch_protection` resources
+
+- Branch Protection resources that set the [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
+
+### For `github_repository_project` resources
+
+- Project resources require GitHub Projects to be enabled for the Organization as well as the `has_projects` variable set to `true`
+
+### For `github_repository_file` resources
+
+- File resources require an (already existing) `master` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
+
+- File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
+
+- File resources that are removed from Terraform will _also_ be removed from the Repository. This is visible in the Repository History
 
 ## Author Information
 
-This module is currently maintained by the individuals listed below.
+This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-github-repository/graphs/contributors).
 
-- [Kerim Satirli](https://github.com/ksatirli)
-
-Development of this module was sponsored by [Method](https://github.com/withmethod).
+Development of this module was sponsored by [Operate Happy](https://github.com/operatehappy).
 
 ## License
 
-Copyright 2017 [Kerim Satirli](https://github.com/ksatirli)
+Licensed under the Apache License, Version 2.0 (the "License").
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at [apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+You may obtain a copy of the License at [apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an _"AS IS"_ basis, without WARRANTIES or conditions of any kind, either express or implied.
 
