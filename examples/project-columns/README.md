@@ -19,7 +19,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 A _project-columns_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "project-column-example" {
+module "project_column_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -30,7 +30,7 @@ module "project-column-example" {
     {
       name = "Providence Facility Infra"
       body = "Infrastructure issues for the Providence Facility"
-    }, {
+      }, {
       name = "Providence Facility Frontend"
       body = "Frontend issues for the Providence Facility"
     }
@@ -44,7 +44,7 @@ resource "github_project_column" "todo" {
   name       = "To Do"
 }
 
-resource "github_project_column" "in-progress" {
+resource "github_project_column" "in_progress" {
   count = length(module.project-column-example.project_ids)
 
   project_id = module.project-column-example.project_ids[count.index]

@@ -19,7 +19,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 A _issue-labels_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "issue-labels-example" {
+module "issue_labels_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

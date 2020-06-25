@@ -19,7 +19,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 A _simple_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "simple-example" {
+module "simple_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
