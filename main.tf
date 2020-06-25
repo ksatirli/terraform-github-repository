@@ -112,10 +112,10 @@ resource "github_repository_file" "this" {
 }
 
 ///TODO: add support for `github_actions_secret`
-//resource "github_actions_secret" "secret" {
+//resource "github_actions_secret" "this" {
 //  count = length(var.secrets)
 //
-//  repository       = github_repository.repository.name
+//  repository       = github_repository.this.name
 //  secret_name      = var.secrets[count.index].name
 //  plaintext_value  = var.secrets[count.index].plaintext_value
 //}
