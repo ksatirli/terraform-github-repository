@@ -1,4 +1,4 @@
-module "project-column-example" {
+module "project_column_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

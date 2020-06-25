@@ -1,4 +1,4 @@
-module "files-example" {
+module "files_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

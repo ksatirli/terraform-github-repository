@@ -1,4 +1,4 @@
-module "complex-example" {
+module "complex_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

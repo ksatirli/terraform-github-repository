@@ -1,4 +1,4 @@
-module "project-example" {
+module "project_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
