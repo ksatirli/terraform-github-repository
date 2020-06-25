@@ -120,7 +120,7 @@ variable "branch_protections" {
       dismissal_users                 = list(string),
       dismissal_teams                 = list(string),
       require_code_owner_reviews      = bool,
-      required_approving_review_count = number // NOTE: this can be at most 6
+      required_approving_review_count = number // NOTE: this must be 6 or less
     })
 
     restrictions = object({
