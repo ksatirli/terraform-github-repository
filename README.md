@@ -33,7 +33,7 @@ This module depends on a correctly configured [GitHub Provider](https://www.terr
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "simple-example" {
+module "simple_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -55,7 +55,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
-| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
+| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
 | default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
 | deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
 | description | Description of the Repository | `string` | `""` |
@@ -80,16 +80,16 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 | Name | Description |
 |------|-------------|
+| files | Map of Repository File names and corresponding SHA blobs |
 | full_name | A string of the form "orgname/reponame" |
 | git_clone_url | URL to clone the repository via the git protocol |
 | html_url | URL to the repository on the web |
 | http_clone_url | URL to clone the repository via HTTPs |
-| ssh_clone_url | URL to the repository to clone via SSH |
-| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
-| files | Map of Repository File names and corresponding SHA blobs |
-| projects | Map of Repository Project names and corresponding URLs |
 | project_ids | List of Repository Project IDs |
 | project_urls | List of Repository Project IDs |
+| projects | Map of Repository Project IDs, and corresponding URLs |
+| ssh_clone_url | URL to the repository to clone via SSH |
+| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
 ## Notes
 
