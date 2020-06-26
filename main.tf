@@ -106,7 +106,7 @@ resource "github_repository_file" "this" {
   repository = github_repository.this.name
   file       = var.files[count.index].file
   content    = var.files[count.index].content
-  branch     = lookup(var.files[count.index], "branch", "master")
+  branch     = lookup(var.files[count.index], "branch", "main")
 
   commit_author  = lookup(var.files[count.index], "author", null)
   commit_email   = lookup(var.files[count.index], "email", null)

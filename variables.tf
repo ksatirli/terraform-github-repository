@@ -94,7 +94,7 @@ variable "license_template" {
 variable "default_branch" {
   type        = string
   description = "Name of the Default Branch of the Repository"
-  default     = "master"
+  default     = "main"
 }
 
 variable "archived" {
