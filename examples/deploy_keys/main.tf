@@ -1,4 +1,4 @@
-module "deploy-keys-example" {
+module "deploy_keys_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

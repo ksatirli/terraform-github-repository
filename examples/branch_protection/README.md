@@ -19,7 +19,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 A _branch-protection_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "branch-protection-example" {
+module "branch_protection_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -28,7 +28,7 @@ module "branch-protection-example" {
 
   branch_protections = [
     {
-      branch                 = "master"
+      branch                 = "main"
       enforce_admins         = true
       require_signed_commits = true
 
@@ -58,4 +58,4 @@ module "branch-protection-example" {
 
 For a list of available variables and outputs, see the [Readme document](https://registry.terraform.io/modules/operatehappy/repository/github) on the Terraform Registry.
 
-A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/master/README.md#readme).
+A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/main/README.md#readme).

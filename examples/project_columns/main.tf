@@ -1,4 +1,4 @@
-module "project-column-example" {
+module "project_column_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -23,7 +23,7 @@ resource "github_project_column" "todo" {
   name       = "To Do"
 }
 
-resource "github_project_column" "in-progress" {
+resource "github_project_column" "in_progress" {
   count = length(module.project-column-example.project_ids)
 
   project_id = module.project-column-example.project_ids[count.index]

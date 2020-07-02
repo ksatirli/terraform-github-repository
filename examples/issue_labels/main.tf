@@ -1,4 +1,4 @@
-module "issue-labels-example" {
+module "issue_labels_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 

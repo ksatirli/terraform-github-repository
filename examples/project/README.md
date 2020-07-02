@@ -19,7 +19,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 A _project_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "project-example" {
+module "project_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -39,4 +39,4 @@ module "project-example" {
 
 For a list of available variables and outputs, see the [Readme document](https://registry.terraform.io/modules/operatehappy/repository/github) on the Terraform Registry.
 
-A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/master/README.md#readme).
+A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/main/README.md#readme).

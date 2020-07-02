@@ -39,6 +39,11 @@ variable "has_wiki" {
   default     = true
 }
 
+variable "is_template" {
+  description = "Toggle to enable Template use for the Repository"
+  default     = true
+}
+
 variable "allow_merge_commit" {
   type        = bool
   description = "Toggle to enable Merge Commits for the Repository"
@@ -55,6 +60,11 @@ variable "allow_rebase_merge" {
   type        = bool
   description = "Toggle to enable Rebase Merges for the Repository"
   default     = true
+}
+
+variable "delete_branch_on_merge" {
+  description = "Toggle to automatically delete merged Branches for the Repository"
+  default     = false
 }
 
 variable "has_downloads" {
@@ -84,7 +94,7 @@ variable "license_template" {
 variable "default_branch" {
   type        = string
   description = "Name of the Default Branch of the Repository"
-  default     = "master"
+  default     = "main"
 }
 
 variable "archived" {
@@ -120,7 +130,7 @@ variable "branch_protections" {
       dismissal_users                 = list(string),
       dismissal_teams                 = list(string),
       require_code_owner_reviews      = bool,
-      required_approving_review_count = number // NOTE: this can be at most 6
+      required_approving_review_count = number // NOTE: this must be 6 or less
     })
 
     restrictions = object({

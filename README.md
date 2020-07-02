@@ -33,7 +33,7 @@ This module depends on a correctly configured [GitHub Provider](https://www.terr
 Add the module to your Terraform resources like so:
 
 ```hcl
-module "simple-example" {
+module "simple_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
@@ -44,7 +44,7 @@ module "simple-example" {
 
 Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository/github) using `terraform get`.
 
-Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/master/examples).
+Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/main/examples).
 
 ### Inputs
 
@@ -55,8 +55,9 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
-| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this can be at most 6<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
-| default_branch | Name of the Default Branch of the Repository | `string` | `"master"` |
+| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this must be 6 or less<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
+| default_branch | Name of the Default Branch of the Repository | `string` | `"main"` |
+| delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository | `bool` | `false` |
 | deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
 | description | Description of the Repository | `string` | `""` |
 | files | List of File Objecs | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` |
@@ -66,6 +67,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `false` |
 | has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
 | homepage_url | URL of a page describing the Repository | `string` | `""` |
+| is_template | Toggle to enable Template use for the Repository | `bool` | `true` |
 | issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
 | name | Name of the Repository | `string` | `""` |
@@ -80,16 +82,16 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 | Name | Description |
 |------|-------------|
+| files | Map of Repository File names and corresponding SHA blobs |
 | full_name | A string of the form "orgname/reponame" |
 | git_clone_url | URL to clone the repository via the git protocol |
 | html_url | URL to the repository on the web |
 | http_clone_url | URL to clone the repository via HTTPs |
-| ssh_clone_url | URL to the repository to clone via SSH |
-| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
-| files | Map of Repository File names and corresponding SHA blobs |
-| projects | Map of Repository Project names and corresponding URLs |
 | project_ids | List of Repository Project IDs |
 | project_urls | List of Repository Project IDs |
+| projects | Map of Repository Project IDs, and corresponding URLs |
+| ssh_clone_url | URL to the repository to clone via SSH |
+| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
 ## Notes
 
@@ -115,7 +117,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ### For `github_repository_file` resources
 
-- File resources require an (already existing) `master` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
+- File resources require an (already existing) `main` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
 
 - File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
 

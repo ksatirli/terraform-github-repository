@@ -1,13 +1,13 @@
-module "branch-protection-example" {
+module "branch_protection_example" {
   source  = "operatehappy/repository/github"
   version = "2.0.0"
 
-  name    = "oh-demo-complex-example"
+  name    = "oh-demo-branch-protection-example"
   private = false
 
   branch_protections = [
     {
-      branch                 = "master"
+      branch                 = "main"
       enforce_admins         = true
       require_signed_commits = true
 
