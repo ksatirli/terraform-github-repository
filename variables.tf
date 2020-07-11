@@ -41,7 +41,7 @@ variable "has_wiki" {
 
 variable "is_template" {
   description = "Toggle to enable Template use for the Repository"
-  default     = true
+  default     = false
 }
 
 variable "allow_merge_commit" {

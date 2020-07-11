@@ -67,7 +67,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `false` |
 | has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
 | homepage_url | URL of a page describing the Repository | `string` | `""` |
-| is_template | Toggle to enable Template use for the Repository | `bool` | `true` |
+| is_template | Toggle to enable Template use for the Repository | `bool` | `false` |
 | issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
 | name | Name of the Repository | `string` | `""` |
