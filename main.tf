@@ -1,10 +1,10 @@
 resource "github_repository" "this" {
-  name                   = var.name
-  description            = var.description
-  homepage_url           = var.homepage_url
+  name         = var.name
+  description  = var.description
+  homepage_url = var.homepage_url
 
   # NOTE: `private` has been deprecated in favor of `visibility`
-  visibility             = var.visibility
+  visibility = var.visibility
 
   has_issues             = var.has_issues
   has_projects           = var.has_projects
@@ -21,10 +21,10 @@ resource "github_repository" "this" {
 
   # NOTE: `default_branch` has been deprecated in favor of a `github_branch_default` resource
 
-  archived               = var.archived
-  archive_on_destroy     = var.archive_on_destroy
-  topics                 = var.topics
+  archived           = var.archived
+  archive_on_destroy = var.archive_on_destroy
   pages              = var.pages
+  topics             = var.topics
 
   dynamic "template" {
     for_each = length(var.template) != 0 ? [var.template] : []
