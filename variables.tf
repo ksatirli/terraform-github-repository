@@ -121,6 +121,12 @@ variable "template" {
   default     = {}
 }
 
+variable "vulnerability_alerts" {
+  type        = bool
+  description = "Toggle to enable Vulnerability Alerts for the Repository"
+  default     = true
+}
+
 variable "branch_protections" {
   type = list(object({
     branch                 = string,

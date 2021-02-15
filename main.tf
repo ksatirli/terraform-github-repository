@@ -33,6 +33,8 @@ resource "github_repository" "this" {
       repository = lookup(template.value, "repository", null)
     }
   }
+
+  vulnerability_alerts = var.vulnerability_alerts
 }
 
 # TODO: add github_branch_default resource
