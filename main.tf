@@ -83,10 +83,9 @@ resource "github_branch_protection_v3" "this" {
 resource "github_repository_deploy_key" "this" {
   count = length(var.deploy_keys)
 
-  title      = var.deploy_keys[count.index].title
-  repository = github_repository.this.name
   key        = var.deploy_keys[count.index].key
   read_only  = var.deploy_keys[count.index].read_only
+  repository = github_repository.this.name
   title      = var.deploy_keys[count.index].title
 }
 
