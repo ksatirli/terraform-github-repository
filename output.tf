@@ -1,6 +1,6 @@
 output "full_name" {
   value       = github_repository.this.full_name
-  description = " A string of the form \"orgname/reponame\""
+  description = "A string of the form \"orgname/reponame\""
 }
 
 output "html_url" {
