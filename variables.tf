@@ -16,10 +16,10 @@ variable "homepage_url" {
   default     = ""
 }
 
-variable "private" {
-  type        = bool
+variable "visibility" {
+  type        = string
   description = "Toggle to create a Private Repository"
-  default     = true
+  default     = "private"
 }
 
 variable "has_issues" {
