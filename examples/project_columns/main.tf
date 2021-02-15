@@ -17,22 +17,22 @@ module "project_column_example" {
 }
 
 resource "github_project_column" "todo" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "To Do"
 }
 
 resource "github_project_column" "in_progress" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "In Progress"
 }
 
 resource "github_project_column" "done" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "Done"
 }

@@ -43,11 +43,11 @@ output "repo_id" {
   description = "ID of the Repository"
 }
 
-// TOOD: define a good way to make this useful for consumption
-//output "repository_collaborator_invitation_id" {
-//  value       = github_repository_collaborator.this[*].invitation_id
-//  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
-//}
+# TOOD: define a good way to make this useful for consumption
+#output "repository_collaborator_invitation_id" {
+#  value       = github_repository_collaborator.this[*].invitation_id
+#  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
+#}
 
 output "project_ids" {
   value       = github_repository_project.this[*].id
