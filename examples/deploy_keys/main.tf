@@ -1,9 +1,9 @@
 module "deploy_keys_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
-  name    = "oh-demo-deploy-keys-example"
-  private = false
+  name       = "oh-demo-deploy-keys-example"
+  visibility = "public"
 
   deploy_keys = [
     {

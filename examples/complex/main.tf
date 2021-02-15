@@ -1,11 +1,11 @@
 module "complex_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name               = "oh-demo-complex-example"
   description        = "Complex Repository Example"
   homepage_url       = "https://operatehappy.com/"
-  private            = false
+  visibility         = "private"
   has_issues         = true
   has_projects       = true
   has_wiki           = false
