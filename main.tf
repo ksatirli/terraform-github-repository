@@ -17,6 +17,7 @@ resource "github_repository" "this" {
   license_template       = var.license_template
   default_branch         = var.default_branch
   archived               = var.archived
+  archive_on_destroy     = var.archive_on_destroy
   topics                 = var.topics
 
   dynamic "template" {
