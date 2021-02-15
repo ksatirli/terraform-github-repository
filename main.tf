@@ -15,7 +15,9 @@ resource "github_repository" "this" {
   auto_init              = var.auto_init
   gitignore_template     = var.gitignore_template
   license_template       = var.license_template
-  default_branch         = var.default_branch
+
+  # NOTE: `default_branch` has been deprecated in favor of a `github_branch_default` resource
+
   archived               = var.archived
   archive_on_destroy     = var.archive_on_destroy
   topics                 = var.topics
@@ -30,7 +32,7 @@ resource "github_repository" "this" {
   }
 }
 
-resource "github_branch_protection" "this" {
+# TODO: add github_branch_default resource
   count = length(var.branch_protections)
 
   repository             = github_repository.this.name
