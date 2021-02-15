@@ -24,6 +24,7 @@ resource "github_repository" "this" {
   archived               = var.archived
   archive_on_destroy     = var.archive_on_destroy
   topics                 = var.topics
+  pages              = var.pages
 
   dynamic "template" {
     for_each = length(var.template) != 0 ? [var.template] : []

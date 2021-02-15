@@ -109,6 +109,12 @@ variable "archive_on_destroy" {
   default     = false
 }
 
+variable "pages" {
+  type        = map(any)
+  description = "Configuration block for GitHub Pages"
+  default     = {}
+}
+
 variable "topics" {
   type        = list(string)
   description = "List of Topics of the Repository"
