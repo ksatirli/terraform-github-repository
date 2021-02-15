@@ -3,10 +3,8 @@
 *.tfstate
 *.tfstate.*.backup
 *.tfstate.backup
+.terraform.lock.hcl
 
 # Module directory
 .terraform/
 
-# special files in examples
-examples/*/.terraform
-examples/*/.terraform.lock.hcl
