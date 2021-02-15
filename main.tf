@@ -23,8 +23,19 @@ resource "github_repository" "this" {
 
   archived           = var.archived
   archive_on_destroy = var.archive_on_destroy
-  pages              = var.pages
-  topics             = var.topics
+
+  dynamic "pages" {
+    for_each = length(var.template) != 0 ? [var.template] : []
+
+    content {
+      source {
+        branch = lookup(pages.value, "branch", var.default_branch)
+        path   = lookup(pages.value, "path", null)
+      }
+    }
+  }
+
+  topics = var.topics
 
   dynamic "template" {
     for_each = length(var.template) != 0 ? [var.template] : []
