@@ -53,6 +53,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_merge_commit | Toggle to enable Merge Commits for the Repository | `bool` | `true` |
 | allow_rebase_merge | Toggle to enable Rebase Merges for the Repository | `bool` | `true` |
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
+| archive_on_destroy | Toggle to archive the Repository on destroy | `bool` | `false` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
 | branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this must be 6 or less<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
@@ -71,27 +72,32 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
 | name | Name of the Repository | `string` | `""` |
-| private | Toggle to create a Private Repository | `bool` | `true` |
+| pages | Configuration block for GitHub Pages | `map(any)` | `{}` |
 | projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
 | repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
 | team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
 | template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
 | topics | List of Topics of the Repository | `list(string)` | `[]` |
+| visibility | Toggle to create a Private Repository | `string` | `"private"` |
+| vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository | `bool` | `true` |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
 | files | Map of Repository File names and corresponding SHA blobs |
-| full_name | A string of the form "orgname/reponame" |
-| git_clone_url | URL to clone the repository via the git protocol |
-| html_url | URL to the repository on the web |
-| http_clone_url | URL to clone the repository via HTTPs |
-| project_ids | List of Repository Project IDs |
-| project_urls | List of Repository Project IDs |
+| full\_name | A string of the form "orgname/reponame" |
+| git\_clone\_url | URL to clone the repository via the git protocol |
+| html\_url | URL to the repository on the web |
+| http\_clone\_url | URL to clone the repository via HTTPs |
+| name | A string of the form "reponame" |
+| node\_id | Node ID of the Repository |
+| project\_ids | List of Repository Project IDs |
+| project\_urls | List of Repository Project IDs |
 | projects | Map of Repository Project IDs, and corresponding URLs |
-| ssh_clone_url | URL to the repository to clone via SSH |
-| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+| repo\_id | ID of the Repository |
+| ssh\_clone\_url | URL to the repository to clone via SSH |
+| svn\_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
 ## Notes
 
