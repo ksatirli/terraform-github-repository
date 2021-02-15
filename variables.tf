@@ -103,6 +103,12 @@ variable "archived" {
   default     = false
 }
 
+variable "archive_on_destroy" {
+  type        = bool
+  description = "Toggle to archive the Repository on destroy"
+  default     = false
+}
+
 variable "topics" {
   type        = list(string)
   description = "List of Topics of the Repository"
