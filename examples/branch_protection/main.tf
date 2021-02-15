@@ -1,6 +1,18 @@
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
+
+provider "github" {
+  owner = "a-demo-organization"
+}
+
 module "branch_protection_example" {
-  source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  source = "../../"
 
   name       = "oh-demo-branch-protection-example"
   visibility = "public"
@@ -18,14 +30,14 @@ module "branch_protection_example" {
 
       required_pull_request_reviews = {
         dismiss_stale_reviews           = true
-        dismissal_users                 = ["operatehappy-bot"]
+        dismissal_users                 = ["ksatirli"]
         dismissal_teams                 = []
         require_code_owner_reviews      = false,
         required_approving_review_count = null
       }
 
       restrictions = {
-        users = ["operatehappy-bot"]
+        users = ["ksatirli"]
         teams = []
       }
     }

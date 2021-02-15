@@ -20,8 +20,7 @@ A _deploy-keys_ configuration of the `terraform-github-repository` Module could 
 
 ```hcl
 module "deploy_keys_example" {
-  source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  source  = "../.."
 
   name    = "oh-demo-deploy-keys-example"
   private = false

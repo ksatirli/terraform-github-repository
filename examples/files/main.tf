@@ -1,17 +1,29 @@
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
+
+provider "github" {
+  owner = "a-demo-organization"
+}
+
 module "files_example" {
-  source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  source = "../.."
 
   name       = "oh-demo-files-example"
   visibility = "public"
 
   files = [
     {
-      file    = "Adds .gitignore",
-      content = file("file-templates/.gitignore")
+      file    = ".gitignore",
+      content = file("../../.gitignore")
       }, {
-      file    = "Adds .gitattributes",
-      content = file("file-templates/.gitattributes")
+      file    = "LICENSE",
+      content = file("../../LICENSE")
     }
   ]
 }

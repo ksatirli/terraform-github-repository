@@ -1,6 +1,18 @@
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
+
+provider "github" {
+  owner = "a-demo-organization"
+}
+
 module "issue_labels_example" {
-  source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  source = "../.."
 
   name       = "oh-demo-issue-labels-example"
   visibility = "public"

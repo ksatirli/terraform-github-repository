@@ -20,11 +20,10 @@ A _branch-protection_ configuration of the `terraform-github-repository` Module 
 
 ```hcl
 module "branch_protection_example" {
-  source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  source  = "../../"
 
-  name    = "oh-demo-branch-protection-example"
-  private = false
+  name       = "oh-demo-branch-protection-example"
+  visibility = "public"
 
   branch_protections = [
     {
