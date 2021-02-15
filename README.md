@@ -123,7 +123,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ### For `github_repository_file` resources
 
-- File resources require an (already existing) `main` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
+- File resources require an (already existing) `main` branch, or an explicitly defined branch for the `files.branch` variable to avoid errors
 
 - File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
 
