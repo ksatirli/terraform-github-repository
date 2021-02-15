@@ -39,6 +39,8 @@ resource "github_repository" "this" {
 }
 
 # TODO: add github_branch_default resource
+
+resource "github_branch_protection_v3" "this" {
   count = length(var.branch_protections)
 
   repository             = github_repository.this.name
