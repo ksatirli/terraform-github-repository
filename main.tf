@@ -2,7 +2,10 @@ resource "github_repository" "this" {
   name                   = var.name
   description            = var.description
   homepage_url           = var.homepage_url
+
+  # NOTE: `private` has been deprecated in favor of `visibility`
   visibility             = var.visibility
+
   has_issues             = var.has_issues
   has_projects           = var.has_projects
   has_wiki               = var.has_wiki
