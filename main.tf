@@ -49,7 +49,10 @@ resource "github_repository" "this" {
   vulnerability_alerts = var.vulnerability_alerts
 }
 
-# TODO: add github_branch_default resource
+resource "github_branch_default" "this" {
+  repository = github_repository.this.name
+  branch     = var.default_branch
+}
 
 resource "github_branch_protection_v3" "this" {
   count = length(var.branch_protections)
