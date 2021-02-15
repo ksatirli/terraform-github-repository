@@ -12,7 +12,7 @@ provider "github" {
 }
 
 module "project_example" {
-  source  = "../.."
+  source = "../.."
 
   name       = "oh-demo-project-example"
   visibility = "public"
