@@ -37,8 +37,8 @@ module "simple_example" {
   source  = "operatehappy/repository/github"
   version = "3.0.0"
 
-  name    = "oh-demo-simple-example"
-  private = false
+  name       = "oh-demo-simple-example"
+  visibility = false
 }
 ```
 
@@ -86,18 +86,18 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | Name | Description |
 |------|-------------|
 | files | Map of Repository File names and corresponding SHA blobs |
-| full\_name | A string of the form "orgname/reponame" |
-| git\_clone\_url | URL to clone the repository via the git protocol |
-| html\_url | URL to the repository on the web |
-| http\_clone\_url | URL to clone the repository via HTTPs |
+| full_name | A string of the form "orgname/reponame" |
+| git_clone_url | URL to clone the repository via the git protocol |
+| html_url | URL to the repository on the web |
+| http_clone_url | URL to clone the repository via HTTPs |
 | name | A string of the form "reponame" |
-| node\_id | Node ID of the Repository |
-| project\_ids | List of Repository Project IDs |
-| project\_urls | List of Repository Project IDs |
+| node_id | Node ID of the Repository |
+| project_ids | List of Repository Project IDs |
+| project_urls | List of Repository Project IDs |
 | projects | Map of Repository Project IDs, and corresponding URLs |
-| repo\_id | ID of the Repository |
-| ssh\_clone\_url | URL to the repository to clone via SSH |
-| svn\_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+| repo_id | ID of the Repository |
+| ssh_clone_url | URL to the repository to clone via SSH |
+| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
 ## Notes
 
