@@ -87,6 +87,7 @@ resource "github_repository_deploy_key" "this" {
   repository = github_repository.this.name
   key        = var.deploy_keys[count.index].key
   read_only  = var.deploy_keys[count.index].read_only
+  title      = var.deploy_keys[count.index].title
 }
 
 resource "github_repository_collaborator" "this" {
@@ -130,9 +131,10 @@ resource "github_repository_file" "this" {
   content    = var.files[count.index].content
   branch     = lookup(var.files[count.index], "branch", "main")
 
-  commit_author  = lookup(var.files[count.index], "author", null)
-  commit_email   = lookup(var.files[count.index], "email", null)
-  commit_message = lookup(var.files[count.index], "message", null)
+  commit_author       = lookup(var.files[count.index], "author", null)
+  commit_email        = lookup(var.files[count.index], "email", null)
+  commit_message      = lookup(var.files[count.index], "message", null)
+  overwrite_on_create = lookup(var.files[count.index], "overwrite_on_create", false)
 }
 
 ///TODO: add support for `github_actions_secret`
