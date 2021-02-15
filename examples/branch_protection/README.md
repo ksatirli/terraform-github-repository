@@ -1,10 +1,10 @@
-# Example: `branch-protection`
+# Example: `branch_protection`
 
 > This is an example of a _branch-protection_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `branch-protection`](#example-branch-protection)
+- [Example: `branch_protection`](#example-branch_protection)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -21,7 +21,7 @@ A _branch-protection_ configuration of the `terraform-github-repository` Module 
 ```hcl
 module "branch_protection_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name    = "oh-demo-branch-protection-example"
   private = false

@@ -2,7 +2,7 @@ module "branch_protection_example" {
   source  = "operatehappy/repository/github"
   version = "3.0.0"
 
-  name    = "oh-demo-branch-protection-example"
+  name       = "oh-demo-branch-protection-example"
   visibility = "public"
 
   branch_protections = [

@@ -21,7 +21,7 @@ A _project_ configuration of the `terraform-github-repository` Module could look
 ```hcl
 module "project_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name    = "oh-demo-project-example"
   private = false

@@ -21,7 +21,7 @@ A _simple_ configuration of the `terraform-github-repository` Module could look 
 ```hcl
 module "simple_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name    = "oh-demo-simple-example"
   private = false

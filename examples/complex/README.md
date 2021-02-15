@@ -21,7 +21,7 @@ A _complex_ configuration of the `terraform-github-repository` Module could look
 ```hcl
 module "complex_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name               = "oh-demo-complex-example"
   description        = "Complex Repository Example"
