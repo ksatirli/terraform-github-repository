@@ -33,6 +33,16 @@ output "svn_url" {
   description = "URL to check out the repository via GitHub's Subversion protocol emulation"
 }
 
+output "node_id" {
+  value       = github_repository.this.node_id
+  description = "Node ID of the Repository"
+}
+
+output "repo_id" {
+  value       = github_repository.this.name
+  description = "ID of the Repository"
+}
+
 // TOOD: define a good way to make this useful for consumption
 //output "repository_collaborator_invitation_id" {
 //  value       = github_repository_collaborator.this[*].invitation_id
