@@ -78,7 +78,7 @@ resource "github_branch_protection_v3" "this" {
   }
 }
 
-// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
+ TODO: add support for https:www.terraform.io/docs/providers/github/r/repository_webhook.html
 
 resource "github_repository_deploy_key" "this" {
   count = length(var.deploy_keys)
@@ -136,12 +136,3 @@ resource "github_repository_file" "this" {
   commit_message      = lookup(var.files[count.index], "message", null)
   overwrite_on_create = lookup(var.files[count.index], "overwrite_on_create", false)
 }
-
-///TODO: add support for `github_actions_secret`
-//resource "github_actions_secret" "this" {
-//  count = length(var.secrets)
-//
-//  repository       = github_repository.this.name
-//  secret_name      = var.secrets[count.index].name
-//  plaintext_value  = var.secrets[count.index].plaintext_value
-//}
