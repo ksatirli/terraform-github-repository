@@ -93,9 +93,10 @@ resource "github_repository_deploy_key" "this" {
 resource "github_repository_collaborator" "this" {
   count = length(var.repository_collaborators)
 
-  repository = github_repository.this.name
-  username   = var.repository_collaborators[count.index].username
-  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
+  repository                  = github_repository.this.name
+  username                    = var.repository_collaborators[count.index].username
+  permission                  = lookup(var.repository_collaborators[count.index], "permission", "push")
+  permission_diff_suppression = lookup(var.repository_collaborators[count.index], "permission_diff_suppression", false)
 }
 
 resource "github_team_repository" "this" {
