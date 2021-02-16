@@ -106,8 +106,6 @@ terraform import module.my_repository.github_branch_default.this "my_repository"
 
 Replace `module.my_repository` with the Module identifier in use and replace `"my_repository"` with the name of the repository the data is imported from.
 
-
-
 ### For `github_repository` resources
 
 - Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed
