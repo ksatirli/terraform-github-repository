@@ -94,11 +94,27 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ## Notes
 
+### Upgrading from `2.0.0` to `3.x.x`
+
+The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
+
+For a better upgrade experience, it is advised to manually import this resource, using the [import](https://www.terraform.io/docs/cli/import/index.html) command:
+
+```sh
+terraform import module.my_repository.github_branch_default.this "my_repository"
+```
+
+Replace `module.my_repository` with the Module identifier in use and replace `"my_repository"` with the name of the repository the data is imported from.
+
+
+
 ### For `github_repository` resources
 
 - Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed
 
 - Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this
+
+- Starting with `3.0.0` of this Module, the default branch option is no longer set through the `github_repository` resource
 
 ### For `github_repository_deploy_key` resources
 
