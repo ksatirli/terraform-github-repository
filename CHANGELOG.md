@@ -1,4 +1,8 @@
-# 2.0.0 (2020-07-08)
+# 3.0.0 (2021-02-17)
+
+* updates to new version of GitHub Provider (#20) ([340bc16](https://github.com/operatehappy/terraform-github-repository/commit/340bc16d66f4b0f808f5af16abfe614f11af4cb2))
+
+## 2.0.0 (2020-07-08)
 
 This is a major rewrite and introduces `HCL2` syntax. This version is only compatible with Terraform `0.12` and newer.
 
