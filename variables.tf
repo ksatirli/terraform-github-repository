@@ -16,10 +16,10 @@ variable "homepage_url" {
   default     = ""
 }
 
-variable "private" {
-  type        = bool
+variable "visibility" {
+  type        = string
   description = "Toggle to create a Private Repository"
-  default     = true
+  default     = "private"
 }
 
 variable "has_issues" {
@@ -103,6 +103,18 @@ variable "archived" {
   default     = false
 }
 
+variable "archive_on_destroy" {
+  type        = bool
+  description = "Toggle to archive the Repository on destroy"
+  default     = false
+}
+
+variable "pages" {
+  type        = map(any)
+  description = "Configuration block for GitHub Pages"
+  default     = {}
+}
+
 variable "topics" {
   type        = list(string)
   description = "List of Topics of the Repository"
@@ -113,6 +125,12 @@ variable "template" {
   type        = map(string)
   description = "Template Repository to use when creating the Repository"
   default     = {}
+}
+
+variable "vulnerability_alerts" {
+  type        = bool
+  description = "Toggle to enable Vulnerability Alerts for the Repository"
+  default     = true
 }
 
 variable "branch_protections" {

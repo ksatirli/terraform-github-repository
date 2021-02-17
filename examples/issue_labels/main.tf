@@ -1,9 +1,21 @@
-module "issue_labels_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
 
-  name    = "oh-demo-issue-labels-example"
-  private = false
+provider "github" {
+  owner = "a-demo-organization"
+}
+
+module "issue_labels_example" {
+  source = "../.."
+
+  name       = "oh-demo-issue-labels-example"
+  visibility = "public"
 
   issue_labels = [
     {

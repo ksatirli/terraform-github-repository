@@ -9,20 +9,13 @@
   - [Requirements](#requirements)
   - [Dependencies](#dependencies)
   - [Usage](#usage)
-    - [Inputs](#inputs)
-    - [Outputs](#outputs)
   - [Notes](#notes)
-    - [github_repository resources](#for-github-repository-resources)
-    - [github_repository_deploy_key resource](#for-github-repository-deploy-key-resources)
-    - [github_branch_protection resources](#for-github-branch-protection-resources)
-    - [github_repository_project resources](#for-github-repository-project-resources)
-    - [github_repository_file resources](#for-github-repository-file-resources)
   - [Author Information](#author-information)
   - [License](#license)
 
 ## Requirements
 
-This module requires Terraform version `0.12.x` or newer.
+This module requires Terraform version `0.14.0` or newer.
 
 ## Dependencies
 
@@ -35,10 +28,10 @@ Add the module to your Terraform resources like so:
 ```hcl
 module "simple_example" {
   source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  version = "3.0.0"
 
-  name    = "oh-demo-simple-example"
-  private = false
+  name       = "oh-demo-simple-example"
+  visibility = false
 }
 ```
 
@@ -53,6 +46,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | allow_merge_commit | Toggle to enable Merge Commits for the Repository | `bool` | `true` |
 | allow_rebase_merge | Toggle to enable Rebase Merges for the Repository | `bool` | `true` |
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
+| archive_on_destroy | Toggle to archive the Repository on destroy | `bool` | `false` |
 | archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
 | auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
 | branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this must be 6 or less<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
@@ -71,12 +65,14 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
 | name | Name of the Repository | `string` | `""` |
-| private | Toggle to create a Private Repository | `bool` | `true` |
+| pages | Configuration block for GitHub Pages | `map(any)` | `{}` |
 | projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
 | repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
 | team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
 | template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
 | topics | List of Topics of the Repository | `list(string)` | `[]` |
+| visibility | Toggle to create a Private Repository | `string` | `"private"` |
+| vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository | `bool` | `true` |
 
 ### Outputs
 
@@ -87,19 +83,36 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | git_clone_url | URL to clone the repository via the git protocol |
 | html_url | URL to the repository on the web |
 | http_clone_url | URL to clone the repository via HTTPs |
+| name | A string of the form "reponame" |
+| node_id | Node ID of the Repository |
 | project_ids | List of Repository Project IDs |
 | project_urls | List of Repository Project IDs |
 | projects | Map of Repository Project IDs, and corresponding URLs |
+| repo_id | ID of the Repository |
 | ssh_clone_url | URL to the repository to clone via SSH |
 | svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
 
 ## Notes
+
+### Upgrading from `2.0.0` to `3.x.x`
+
+The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
+
+For a better upgrade experience, it is advised to manually import this resource, using the [import](https://www.terraform.io/docs/cli/import/index.html) command:
+
+```sh
+terraform import module.my_repository.github_branch_default.this "my_repository"
+```
+
+Replace `module.my_repository` with the Module identifier in use and replace `"my_repository"` with the name of the repository the data is imported from.
 
 ### For `github_repository` resources
 
 - Resources that are created with the `template` option enabled will be re-created (that is: _destroyed_, then created again) when the `template` stub is removed
 
 - Resources that are archived using the `archive` option cannot be unarchived, as the GitHub API does not currently support this
+
+- Starting with `3.0.0` of this Module, the default branch option is no longer set through the `github_repository` resource
 
 ### For `github_repository_deploy_key` resources
 
@@ -117,7 +130,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ### For `github_repository_file` resources
 
-- File resources require an (already existing) `main` branch  or an explicitly defined branch for the `files.branch` variable to avoid errors
+- File resources require an (already existing) `main` branch, or an explicitly defined branch for the `files.branch` variable to avoid errors
 
 - File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
 

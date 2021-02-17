@@ -1,9 +1,23 @@
-module "project_column_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
 
-  name    = "oh-demo-project-example"
-  private = false
+provider "github" {
+  owner = "a-demo-organization"
+}
+
+module "project_column_example" {
+  source = "../.."
+
+  name       = "oh-demo-project-example"
+  visibility = "public"
+
+  has_projects = true
 
   projects = [
     {
@@ -17,22 +31,22 @@ module "project_column_example" {
 }
 
 resource "github_project_column" "todo" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "To Do"
 }
 
 resource "github_project_column" "in_progress" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "In Progress"
 }
 
 resource "github_project_column" "done" {
-  count = length(module.project-column-example.project_ids)
+  count = length(module.project_column_example.project_ids)
 
-  project_id = module.project-column-example.project_ids[count.index]
+  project_id = module.project_column_example.project_ids[count.index]
   name       = "Done"
 }

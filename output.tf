@@ -1,6 +1,11 @@
+output "name" {
+  value       = github_repository.this.name
+  description = "A string of the form \"reponame\""
+}
+
 output "full_name" {
   value       = github_repository.this.full_name
-  description = " A string of the form \"orgname/reponame\""
+  description = "A string of the form \"orgname/reponame\""
 }
 
 output "html_url" {
@@ -28,11 +33,21 @@ output "svn_url" {
   description = "URL to check out the repository via GitHub's Subversion protocol emulation"
 }
 
-// TOOD: define a good way to make this useful for consumption
-//output "repository_collaborator_invitation_id" {
-//  value       = github_repository_collaborator.this[*].invitation_id
-//  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
-//}
+output "node_id" {
+  value       = github_repository.this.node_id
+  description = "Node ID of the Repository"
+}
+
+output "repo_id" {
+  value       = github_repository.this.name
+  description = "ID of the Repository"
+}
+
+# TOOD: define a good way to make this useful for consumption
+#output "repository_collaborator_invitation_id" {
+#  value       = github_repository_collaborator.this[*].invitation_id
+#  description = "ID of the invitation to be used in `github_user_invitation_accepter`"
+#}
 
 output "project_ids" {
   value       = github_repository_project.this[*].id

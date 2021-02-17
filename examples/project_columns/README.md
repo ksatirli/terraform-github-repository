@@ -20,8 +20,7 @@ A _project-columns_ configuration of the `terraform-github-repository` Module co
 
 ```hcl
 module "project_column_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  source  = "../.."
 
   name    = "oh-demo-project-example"
   private = false

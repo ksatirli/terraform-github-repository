@@ -20,8 +20,7 @@ A _issue-labels_ configuration of the `terraform-github-repository` Module could
 
 ```hcl
 module "issue_labels_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  source  = "../.."
 
   name    = "oh-demo-issue-labels-example"
   private = false

@@ -1,8 +1,11 @@
 resource "github_repository" "this" {
-  name                   = var.name
-  description            = var.description
-  homepage_url           = var.homepage_url
-  private                = var.private
+  name         = var.name
+  description  = var.description
+  homepage_url = var.homepage_url
+
+  # NOTE: `private` has been deprecated in favor of `visibility`
+  visibility = var.visibility
+
   has_issues             = var.has_issues
   has_projects           = var.has_projects
   has_wiki               = var.has_wiki
@@ -15,9 +18,24 @@ resource "github_repository" "this" {
   auto_init              = var.auto_init
   gitignore_template     = var.gitignore_template
   license_template       = var.license_template
-  default_branch         = var.default_branch
-  archived               = var.archived
-  topics                 = var.topics
+
+  # NOTE: `default_branch` has been deprecated in favor of a `github_branch_default` resource
+
+  archived           = var.archived
+  archive_on_destroy = var.archive_on_destroy
+
+  dynamic "pages" {
+    for_each = length(var.template) != 0 ? [var.template] : []
+
+    content {
+      source {
+        branch = lookup(pages.value, "branch", var.default_branch)
+        path   = lookup(pages.value, "path", null)
+      }
+    }
+  }
+
+  topics = var.topics
 
   dynamic "template" {
     for_each = length(var.template) != 0 ? [var.template] : []
@@ -27,9 +45,16 @@ resource "github_repository" "this" {
       repository = lookup(template.value, "repository", null)
     }
   }
+
+  vulnerability_alerts = var.vulnerability_alerts
 }
 
-resource "github_branch_protection" "this" {
+resource "github_branch_default" "this" {
+  repository = github_repository.this.name
+  branch     = var.default_branch
+}
+
+resource "github_branch_protection_v3" "this" {
   count = length(var.branch_protections)
 
   repository             = github_repository.this.name
@@ -56,23 +81,22 @@ resource "github_branch_protection" "this" {
   }
 }
 
-// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
-
 resource "github_repository_deploy_key" "this" {
   count = length(var.deploy_keys)
 
-  title      = var.deploy_keys[count.index].title
-  repository = github_repository.this.name
   key        = var.deploy_keys[count.index].key
   read_only  = var.deploy_keys[count.index].read_only
+  repository = github_repository.this.name
+  title      = var.deploy_keys[count.index].title
 }
 
 resource "github_repository_collaborator" "this" {
   count = length(var.repository_collaborators)
 
-  repository = github_repository.this.name
-  username   = var.repository_collaborators[count.index].username
-  permission = lookup(var.repository_collaborators[count.index], "permission", "push")
+  repository                  = github_repository.this.name
+  username                    = var.repository_collaborators[count.index].username
+  permission                  = lookup(var.repository_collaborators[count.index], "permission", "push")
+  permission_diff_suppression = lookup(var.repository_collaborators[count.index], "permission_diff_suppression", false)
 }
 
 resource "github_team_repository" "this" {
@@ -108,16 +132,8 @@ resource "github_repository_file" "this" {
   content    = var.files[count.index].content
   branch     = lookup(var.files[count.index], "branch", "main")
 
-  commit_author  = lookup(var.files[count.index], "author", null)
-  commit_email   = lookup(var.files[count.index], "email", null)
-  commit_message = lookup(var.files[count.index], "message", null)
+  commit_author       = lookup(var.files[count.index], "author", null)
+  commit_email        = lookup(var.files[count.index], "email", null)
+  commit_message      = lookup(var.files[count.index], "message", null)
+  overwrite_on_create = lookup(var.files[count.index], "overwrite_on_create", false)
 }
-
-///TODO: add support for `github_actions_secret`
-//resource "github_actions_secret" "this" {
-//  count = length(var.secrets)
-//
-//  repository       = github_repository.this.name
-//  secret_name      = var.secrets[count.index].name
-//  plaintext_value  = var.secrets[count.index].plaintext_value
-//}

@@ -1,7 +1,19 @@
-module "simple_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "4.4.0"
+    }
+  }
+}
 
-  name    = "oh-demo-simple-example"
-  private = false
+provider "github" {
+  owner = "a-demo-organization"
+}
+
+module "simple_example" {
+  source = "../../"
+
+  name       = "oh-demo-simple-example"
+  visibility = "public"
 }

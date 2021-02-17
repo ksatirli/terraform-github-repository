@@ -20,8 +20,7 @@ A _files_ configuration of the `terraform-github-repository` Module could look l
 
 ```hcl
 module "files_example" {
-  source  = "operatehappy/repository/github"
-  version = "2.0.0"
+  source  = "../.."
 
   name    = "oh-demo-files-example"
   private = false
