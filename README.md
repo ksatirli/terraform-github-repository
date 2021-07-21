@@ -68,7 +68,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | pages | Configuration block for GitHub Pages | `map(any)` | `{}` |
 | projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
 | repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
-| team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
+| team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string,<br>    permission = string<br>  }))</pre> | `[]` |
 | template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
 | topics | List of Topics of the Repository | `list(string)` | `[]` |
 | visibility | Toggle to create a Private Repository | `string` | `"private"` |
