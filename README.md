@@ -19,7 +19,7 @@ This module requires Terraform version `0.14.0` or newer.
 
 ## Dependencies
 
-This module depends on a correctly configured [GitHub Provider](https://www.terraform.io/docs/providers/github/index.html) in your Terraform codebase.
+This module depends on a correctly configured [GitHub Provider](https://www.terraform.io/docs/providers/github/index.html) in your Terraform codebase with a minimum version of `4.4.0`.
 
 ## Usage
 
