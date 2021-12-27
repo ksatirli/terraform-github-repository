@@ -37,7 +37,7 @@ module "simple_example" {
 
 Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository/github) using `terraform get`.
 
-Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/main/examples).
+Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/master/examples).
 
 ### Inputs
 
