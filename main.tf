@@ -25,7 +25,7 @@ resource "github_repository" "this" {
   archive_on_destroy = var.archive_on_destroy
 
   dynamic "pages" {
-    for_each = length(var.template) != 0 ? [var.template] : []
+    for_each = length(var.pages) != 0 ? [var.pages] : []
 
     content {
       source {
