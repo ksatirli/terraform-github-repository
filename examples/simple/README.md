@@ -1,10 +1,10 @@
-# Example: `basic`
+# Example: `simple`
 
-> This is an example of a _basic_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
+> This is an example of a _simple_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `basic`](#example-basic)
+- [Example: `simple`](#example-simple)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,13 +16,13 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _basic_ configuration of the `terraform-github-repository` Module could look like this:
+A _simple_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "basic_example" {
+module "simple_example" {
   source  = "../.."
 
-  name    = "oh-demo-basic-example"
+  name    = "oh-demo-simple-example"
   private = false
 }
 ```
@@ -32,13 +32,3 @@ module "basic_example" {
 For a list of available variables and outputs, see the [Readme document](https://registry.terraform.io/modules/operatehappy/repository/github) on the Terraform Registry.
 
 A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/main/README.md#readme).
-
-<!-- BEGIN_TF_DOCS -->
-### Inputs
-
-No inputs.
-
-### Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->

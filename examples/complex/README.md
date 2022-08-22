@@ -45,13 +45,3 @@ module "complex_example" {
 For a list of available variables and outputs, see the [Readme document](https://registry.terraform.io/modules/operatehappy/repository/github) on the Terraform Registry.
 
 A copy of this document (as `README.md`) is also available on [GitHub](https://github.com/operatehappy/terraform-github-repository/blob/main/README.md#readme).
-
-<!-- BEGIN_TF_DOCS -->
-### Inputs
-
-No inputs.
-
-### Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->

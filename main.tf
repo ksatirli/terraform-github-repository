@@ -3,7 +3,7 @@ resource "github_repository" "this" {
   description  = var.description
   homepage_url = var.homepage_url
 
-  # `private` has been deprecated in favor of `visibility`
+  # NOTE: `private` has been deprecated in favor of `visibility`
   visibility = var.visibility
 
   has_issues             = var.has_issues
@@ -19,7 +19,7 @@ resource "github_repository" "this" {
   gitignore_template     = var.gitignore_template
   license_template       = var.license_template
 
-  # `default_branch` has been deprecated in favor of a `github_branch_default` resource
+  # NOTE: `default_branch` has been deprecated in favor of a `github_branch_default` resource
 
   archived           = var.archived
   archive_on_destroy = var.archive_on_destroy

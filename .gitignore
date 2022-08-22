@@ -1,2 +1,9 @@
-/examples/*/.envrc
-/examples/*/terraform.tfstate*
+### Terraform ###
+# Compiled files
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Module directory
+.terraform/

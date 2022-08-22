@@ -1,0 +1,33 @@
+---
+
+name: "Code Quality: Terraform"
+
+on:
+  pull_request:
+
+jobs:
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "0.14.6"
+
+      - name: Run `terraform fmt`
+        run: terraform fmt -diff -check -no-color -recursive
+
+      - name: Run `terraform init`
+        run: terraform init -backend=false -get=true -get-plugins=true
+
+      - name: Run `terraform validate`
+        run: terraform validate -no-color
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_REGION: xx-xxxx-0
