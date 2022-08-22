@@ -88,54 +88,94 @@ resource "github_branch_default" "main" {
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_deploy_key
 resource "github_repository_deploy_key" "main" {
   count = length(var.deploy_keys)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for key in var.deploy_keys :
+    key.key => key
+  }
 
-  key        = var.deploy_keys[count.index].key
-  read_only  = var.deploy_keys[count.index].read_only
+  key        = each.value.key
+  read_only  = each.value.read_only
   repository = github_repository.main.name
-  title      = var.deploy_keys[count.index].title
+  title      = each.value.title
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator
 resource "github_repository_collaborator" "main" {
-  count = length(var.repository_collaborators)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for collaborator in var.repository_collaborators :
+    collaborator.username => collaborator
+  }
 
   repository                  = github_repository.main.name
-  username                    = var.repository_collaborators[count.index].username
-  permission                  = lookup(var.repository_collaborators[count.index], "permission", "push")
-  permission_diff_suppression = lookup(var.repository_collaborators[count.index], "permission_diff_suppression", false)
+  username                    = each.value.username
+  permission                  = try(each.value.permission, "push")
+  permission_diff_suppression = try(each.value.permission_diff_suppression, false)
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository
 resource "github_team_repository" "main" {
-  count = length(var.team_repository_teams)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for team in var.team_repository_teams :
+    team.team_id => team
+  }
 
-  team_id    = var.team_repository_teams[count.index].team_id
+  team_id    = each.value.team_id
   repository = github_repository.main.name
-  permission = lookup(var.team_repository_teams[count.index], "permission", "push")
+  permission = try(each.value.permission, "push")
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_label
 resource "github_issue_label" "main" {
-  count = length(var.issue_labels)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for label in var.issue_labels :
+    label.name => label
+  }
 
   repository  = github_repository.main.name
-  name        = var.issue_labels[count.index].name
-  color       = var.issue_labels[count.index].color
-  description = lookup(var.issue_labels[count.index], "description", null)
+  name        = each.value.name
+  color       = each.value.color
+  description = try(each.value.description, "")
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_project
 resource "github_repository_project" "main" {
-  count = length(var.projects)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for project in var.projects :
+    project.name => project
+  }
 
-  name       = var.projects[count.index].name
+  name       = each.value.name
   repository = github_repository.main.name
-  body       = var.projects[count.index].body
+  body       = each.value.body
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file
 resource "github_repository_file" "main" {
-  count = length(var.files)
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for file in var.files :
+    file.file => file
+  }
+
+  repository = github_repository.main.name
+  file       = each.value.file
+  content    = each.value.content
+  branch     = try(each.value.branch, var.default_branch)
+
+  commit_author       = try(each.value.author, null)
+  commit_email        = try(each.value.email, null)
+  commit_message      = try(each.value.message, null)
+  overwrite_on_create = try(each.value.overwrite_on_create, null)
+
+  depends_on = [
+    github_repository.main
+  ]
+}
 
   repository = github_repository.main.name
   file       = var.files[count.index].file
@@ -146,4 +186,13 @@ resource "github_repository_file" "main" {
   commit_email        = lookup(var.files[count.index], "email", null)
   commit_message      = lookup(var.files[count.index], "message", null)
   overwrite_on_create = lookup(var.files[count.index], "overwrite_on_create", false)
+  active     = each.value.active
+  events     = each.value.events
+
+  configuration {
+    url          = each.value.configuration.url
+    content_type = each.value.configuration.content_type
+    secret       = try(each.value.message, null)
+    insecure_ssl = each.value.configuration.insecure_ssl
+  }
 }

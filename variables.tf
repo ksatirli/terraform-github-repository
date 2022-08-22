@@ -17,6 +17,12 @@ variable "visibility" {
   type        = string
   description = "Toggle to set the visibility of the Repository."
   default     = "private"
+
+  # see https://www.terraform.io/language/values/variables#custom-validation-rules
+  validation {
+    condition     = contains(["public", "private", "internal"], var.visibility)
+    error_message = "`visibility` must be one of `public`, `private`, or `internal` (GitHub Enterprise-only)."
+  }
 }
 
 variable "has_issues" {
@@ -154,7 +160,7 @@ variable "branch_protections" {
       dismissal_users                 = list(string),
       dismissal_teams                 = list(string),
       require_code_owner_reviews      = bool,
-      required_approving_review_count = number // NOTE: this must be 6 or less
+      required_approving_review_count = number
     })
 
     restrictions = object({
@@ -167,7 +173,6 @@ variable "branch_protections" {
   default     = []
 }
 
-// TODO: add support for https://www.terraform.io/docs/providers/github/r/repository_webhook.html
 
 variable "deploy_keys" {
   type = list(object({
@@ -222,12 +227,12 @@ variable "projects" {
 }
 
 variable "files" {
-  // `files.{branch,commit_author,commit_email,commit_message}` are optional and ommitted when not set
+  // `files.{branch,commit_author,commit_email,commit_message}` are optional and omitted when not set
   type = list(object({
     file    = string,
     content = string
   }))
 
   description = "List of File Objects."
-  default     = []
+  default     = null
 }

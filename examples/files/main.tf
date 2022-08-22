@@ -6,6 +6,7 @@ module "files_example" {
   source = "../.."
 
   name       = "oh-demo-files-example"
+  auto_init  = true
   visibility = "public"
 
   files = [

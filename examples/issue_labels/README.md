@@ -16,7 +16,7 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _issue-labels_ configuration of the `terraform-github-repository` Module could look like this:
+An _issue-labels_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
 module "issue_labels_example" {
