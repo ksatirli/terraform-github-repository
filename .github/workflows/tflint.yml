@@ -22,7 +22,7 @@ jobs:
           - "./examples/pages"
           - "./examples/project"
           - "./examples/project_columns"
-          - "./examples/templates"
+          - "./examples/template"
 
     steps:
       - name: Checkout Repository
