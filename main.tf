@@ -24,7 +24,7 @@ resource "github_repository" "main" {
 
     content {
       source {
-        branch = lookup(pages.value, "branch", var.default_branch)
+        branch = lookup(pages.value, "branch", var.pages_branch)
         path   = lookup(pages.value, "path", null)
       }
     }

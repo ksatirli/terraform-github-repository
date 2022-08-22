@@ -32,13 +32,13 @@ variable "has_projects" {
 }
 
 variable "has_wiki" {
-  type = bool
+  type        = bool
   description = "Toggle to enable GitHub Wiki for the Repository."
   default     = true
 }
 
 variable "is_template" {
-  type = bool
+  type        = bool
   description = "Toggle to enable Template use for the Repository."
   default     = false
 }
@@ -62,7 +62,7 @@ variable "allow_rebase_merge" {
 }
 
 variable "delete_branch_on_merge" {
-  type = bool
+  type        = bool
   description = "Toggle to automatically delete merged Branches for the Repository."
   default     = false
 }
@@ -97,6 +97,12 @@ variable "default_branch" {
   default     = "main"
 }
 
+variable "pages_branch" {
+  type        = string
+  description = "Name of the GitHub Pages Branch of the Repository."
+  default     = "gh-pages"
+}
+
 variable "archived" {
   type        = bool
   description = "Toggle to archive the Repository (see notes in `README.md`)."
@@ -118,7 +124,7 @@ variable "pages" {
 variable "topics" {
   type        = list(string)
   description = "List of Topics of the Repository."
-  default     = []
+  default     = null
 }
 
 variable "template" {

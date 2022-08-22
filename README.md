@@ -67,11 +67,12 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | issue_labels | List of Issue Label Objects. | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` | no |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository. | `string` | `null` | no |
 | pages | Configuration block for GitHub Pages. | `map(any)` | `{}` | no |
+| pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
 | projects | List of Project Objects. | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` | no |
 | repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
 | team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` | no |
 | template | Template Repository to use when creating the Repository. | `map(string)` | `{}` | no |
-| topics | List of Topics of the Repository. | `list(string)` | `[]` | no |
+| topics | List of Topics of the Repository. | `list(string)` | `null` | no |
 | visibility | Toggle to set the visibility of the Repository. | `string` | `"private"` | no |
 | vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository. | `bool` | `true` | no |
 
@@ -97,6 +98,12 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 As part of the updates and upgrades that were made for the `4.x.x` release, all Terraform resource identifiers were renamed from `this` to `main`.
 See [`./moved.tf`](https://github.com/operatehappy/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://www.terraform.io/language/modules/develop/refactoring#moved-block-syntax) for more information.
+
+#### Branch for GitHub Pages
+
+Prior to `4.0.0`, the branch for the GitHub Pages feature was sourced from the `default_branch` variable.
+
+From `4.0.0` onwards, the branch for GitHub Pages can be set through the `pages_branch` variable. The default is `gh-pages`.
 
 ### Upgrading from `2.0.0` to `3.x.x`
 
