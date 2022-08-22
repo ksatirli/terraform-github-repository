@@ -31,11 +31,6 @@ module "pages_example" {
     branch = "main",
     path   = "/"
   }
-
-  template = {
-    owner      = "TheYorkshireDev",
-    repository = "bootstrap-4-github-pages"
-  }
 }
 ```
 

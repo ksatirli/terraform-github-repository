@@ -3,21 +3,23 @@ output "github_repository" {
   value       = github_repository.main
 }
 
-output "github_branch" {
-  description = "Exported Attributes for `github_branch`."
-  value       = github_branch.main
-}
+# TODO: enable when resource is enabled
+#output "github_branch" {
+#  description = "Exported Attributes for `github_branch`."
+#  value       = github_branch.main
+#}
 
-output "github_branch_default" {
-  description = "Exported Attributes for `github_branch_default`."
-  value       = github_branch_default.main
-}
+# TODO: enable when resource is enabled
+#output "github_branch_default" {
+#  description = "Exported Attributes for `github_branch_default`."
+#  value       = github_branch_default.main
+#}
 
-output "github_branch_protection_v3" {
-
-  description = "Exported Attributes for `github_branch_protection_v3`."
-  value       = github_branch_protection_v3.main
-}
+# TODO: enable when resource is enabled
+#output "github_branch_protection" {
+#  description = "Exported Attributes for `github_branch_protection`."
+#  value       = github_branch_protection.main
+#}
 
 output "github_repository_deploy_key" {
   description = "Exported Attributes for `github_repository_deploy_key`."
@@ -49,9 +51,7 @@ output "github_repository_file" {
   value       = github_repository_file.main
 }
 
-# TOOD: define a good way to make this useful for consumption
-output "repository_collaborator_invitation_ids" {
-  description = "ID of the invitation to be used in `github_user_invitation_accepter`."
-  value       = github_repository_collaborator.main[*].invitation_id
+output "github_repository_webhook" {
+  description = "Exported Attributes for `github_repository_webhook`."
+  value       = github_repository_webhook.main
 }
-

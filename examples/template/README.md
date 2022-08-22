@@ -26,8 +26,8 @@ module "template_example" {
   visibility = "public"
 
   template = {
-    owner      = "TheYorkshireDev",
-    repository = "application-template"
+    owner      = "a-demo-organization",
+    repository = "template-source"
   }
 }
 ```

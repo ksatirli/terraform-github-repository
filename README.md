@@ -88,6 +88,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | github_repository_deploy_key | Exported Attributes for `github_repository_deploy_key`. |
 | github_repository_file | Exported Attributes for `github_repository_file`. |
 | github_repository_project | Exported Attributes for `github_repository_project`. |
+| github_repository_webhook | Exported Attributes for `github_repository_webhook`. |
 | github_team_repository | Exported Attributes for `github_team_repository`. |
 <!-- END_TF_DOCS -->
 
