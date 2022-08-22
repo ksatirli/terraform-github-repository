@@ -20,8 +20,10 @@ jobs:
           - "./examples/deploy_keys"
           - "./examples/files"
           - "./examples/issue_labels"
+          - "./examples/pages"
           - "./examples/project"
           - "./examples/project_columns"
+          - "./examples/templates"
 
     steps:
       - name: Checkout Repository
