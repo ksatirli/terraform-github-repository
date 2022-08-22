@@ -2,9 +2,9 @@ provider "github" {
   owner = "a-demo-organization"
 }
 
-module "simple_example" {
+module "basic_example" {
   source = "../../"
 
-  name       = "oh-demo-simple-example"
+  name       = "oh-demo-basic-example"
   visibility = "public"
 }

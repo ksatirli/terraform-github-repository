@@ -254,5 +254,5 @@ variable "files" {
   }))
 
   description = "List of File Objects."
-  default     = null
+  default     = []
 }
