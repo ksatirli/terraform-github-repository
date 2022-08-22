@@ -174,6 +174,22 @@ variable "branch_protections" {
   description = "List of Branch Protection Objects."
   default     = null
 }
+
+variable "repository_webhooks" {
+  type = list(object({
+    name   = string
+    active = bool
+    events = list(string)
+
+    configuration = object({
+      url          = string
+      content_type = string
+      secret       = string
+      insecure_ssl = bool
+    })
+  }))
+
+  description = "A list of events which should trigger the webhook."
   default     = []
 }
 

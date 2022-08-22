@@ -176,15 +176,16 @@ resource "github_repository_file" "main" {
   ]
 }
 
-  repository = github_repository.main.name
-  file       = var.files[count.index].file
-  content    = var.files[count.index].content
-  branch     = lookup(var.files[count.index], "branch", "main")
+# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook
+resource "github_repository_webhook" "main" {
+  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  for_each = {
+    for hook in var.repository_webhooks :
+    hook.name => hook
+  }
 
-  commit_author       = lookup(var.files[count.index], "author", null)
-  commit_email        = lookup(var.files[count.index], "email", null)
-  commit_message      = lookup(var.files[count.index], "message", null)
-  overwrite_on_create = lookup(var.files[count.index], "overwrite_on_create", false)
+  name       = each.value.name
+  repository = github_repository.main.name
   active     = each.value.active
   events     = each.value.events
 
