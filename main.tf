@@ -44,17 +44,21 @@ resource "github_repository" "main" {
   vulnerability_alerts = var.vulnerability_alerts
 }
 
+# TODO: make this work in a sensible way
+# GitHub Branches can only be created on non-empty repositories.
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch
-resource "github_branch" "main" {
-  repository = github_repository.main.name
-  branch     = var.default_branch
-}
-
-# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
-resource "github_branch_default" "main" {
-  repository = github_repository.main.name
-  branch     = github_branch.main.branch
-}
+#resource "github_branch" "main" {
+#  count = length(var.files) > 0 ? 1 : 0
+#
+#  repository = github_repository.main.name
+#  branch     = var.default_branch
+#}
+#
+## see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
+#resource "github_branch_default" "main" {
+#  repository = github_repository.main.name
+#  branch     = github_branch.main.branch
+#}
 
 # TODO
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
@@ -151,6 +155,10 @@ resource "github_repository_project" "main" {
   name       = each.value.name
   repository = github_repository.main.name
   body       = each.value.body
+
+  depends_on = [
+    github_repository.main
+  ]
 }
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file
