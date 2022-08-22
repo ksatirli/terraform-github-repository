@@ -1,10 +1,10 @@
-# Example: `simple`
+# Example: `basic`
 
-> This is an example of a _simple_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
+> This is an example of a _basic_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `simple`](#example-simple)
+- [Example: `basic`](#example-basic)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,13 +16,13 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _simple_ configuration of the `terraform-github-repository` Module could look like this:
+A _basic_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "simple_example" {
+module "basic_example" {
   source  = "../.."
 
-  name    = "oh-demo-simple-example"
+  name    = "oh-demo-basic-example"
   private = false
 }
 ```
