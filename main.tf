@@ -1,9 +1,9 @@
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository
 resource "github_repository" "main" {
-  name         = var.name
-  description  = var.description
-  homepage_url = var.homepage_url
-  visibility = var.visibility
+  name                   = var.name
+  description            = var.description
+  homepage_url           = var.homepage_url
+  visibility             = var.visibility
   has_issues             = var.has_issues
   has_projects           = var.has_projects
   has_wiki               = var.has_wiki
@@ -16,8 +16,8 @@ resource "github_repository" "main" {
   auto_init              = var.auto_init
   gitignore_template     = var.gitignore_template
   license_template       = var.license_template
-  archived           = var.archived
-  archive_on_destroy = var.archive_on_destroy
+  archived               = var.archived
+  archive_on_destroy     = var.archive_on_destroy
 
   dynamic "pages" {
     for_each = length(var.pages) != 0 ? [var.pages] : []
