@@ -6,11 +6,13 @@ variable "name" {
 variable "description" {
   type        = string
   description = "Description of the Repository."
+  default     = null
 }
 
 variable "homepage_url" {
   type        = string
   description = "URL of a page describing the Repository."
+  default     = null
 }
 
 variable "visibility" {
@@ -170,6 +172,8 @@ variable "branch_protections" {
   }))
 
   description = "List of Branch Protection Objects."
+  default     = null
+}
   default     = []
 }
 

@@ -87,7 +87,6 @@ resource "github_branch_default" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_deploy_key
 resource "github_repository_deploy_key" "main" {
-  count = length(var.deploy_keys)
   # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
   for_each = {
     for key in var.deploy_keys :
