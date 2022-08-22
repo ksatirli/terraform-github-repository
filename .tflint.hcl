@@ -4,12 +4,6 @@ config {
   force  = false
 }
 
-plugin "aws" {
-  enabled = true
-  version = "0.14.0"
-  source  = "github.com/terraform-linters/tflint-ruleset-aws"
-}
-
 # required providers MUST be set in the root module, not in (this) child module
 rule "terraform_required_providers" {
   enabled = false
