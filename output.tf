@@ -3,6 +3,11 @@ output "github_repository" {
   value       = github_repository.main
 }
 
+output "github_branch" {
+  description = "Exported Attributes for `github_branch`."
+  value       = github_branch.main
+}
+
 output "github_branch_default" {
   description = "Exported Attributes for `github_branch_default`."
   value       = github_branch_default.main

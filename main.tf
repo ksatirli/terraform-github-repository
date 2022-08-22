@@ -44,10 +44,16 @@ resource "github_repository" "main" {
   vulnerability_alerts = var.vulnerability_alerts
 }
 
+# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch
+resource "github_branch" "main" {
+  repository = github_repository.main.name
+  branch     = var.default_branch
+}
+
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
 resource "github_branch_default" "main" {
   repository = github_repository.main.name
-  branch     = var.default_branch
+  branch     = github_branch.main.branch
 }
 
 # TODO
