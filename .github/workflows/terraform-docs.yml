@@ -13,14 +13,14 @@ jobs:
       fail-fast: false
       matrix:
         examples:
-          - "./example/basic"
-          - "./example/branch_protection"
-          - "./example/complex"
-          - "./example/deploy_keys"
-          - "./example/files"
-          - "./example/issue_labels"
-          - "./example/project"
-          - "./example/project_columns"
+          - "./examples/basic"
+          - "./examples/branch_protection"
+          - "./examples/complex"
+          - "./examples/deploy_keys"
+          - "./examples/files"
+          - "./examples/issue_labels"
+          - "./examples/project"
+          - "./examples/project_columns"
 
     steps:
       - uses: actions/checkout@v3
