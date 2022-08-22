@@ -93,6 +93,11 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ## Notes
 
+### Upgrades from `3.0.0` to `4.x.x`
+
+As part of the updates and upgrades that were made for the `4.x.x` release, all Terraform resource identifiers were renamed from `this` to `main`.
+See [`./moved.tf`](https://github.com/operatehappy/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://www.terraform.io/language/modules/develop/refactoring#moved-block-syntax) for more information.
+
 ### Upgrading from `2.0.0` to `3.x.x`
 
 The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
