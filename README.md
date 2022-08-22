@@ -45,8 +45,6 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| description | Description of the Repository. | `string` | n/a | yes |
-| homepage_url | URL of a page describing the Repository. | `string` | n/a | yes |
 | name | Name of the Repository. | `string` | n/a | yes |
 | allow_merge_commit | Toggle to enable Merge Commits for the Repository. | `bool` | `true` | no |
 | allow_rebase_merge | Toggle to enable Rebase Merges for the Repository. | `bool` | `true` | no |
@@ -54,16 +52,18 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | archive_on_destroy | Toggle to archive the Repository on destroy. | `bool` | `false` | no |
 | archived | Toggle to archive the Repository (see notes in `README.md`). | `bool` | `false` | no |
 | auto_init | Toggle to create an initial commit in the Repository. | `bool` | `false` | no |
-| branch_protections | List of Branch Protection Objects. | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this must be 6 or less<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` | no |
+| branch_protections | List of Branch Protection Objects. | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `null` | no |
 | default_branch | Name of the Default Branch of the Repository. | `string` | `"main"` | no |
 | delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository. | `bool` | `false` | no |
 | deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` | no |
+| description | Description of the Repository. | `string` | `null` | no |
 | files | List of File Objects. | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
 | gitignore_template | Template to use for initial `.gitignore` file for the Repository. | `string` | `null` | no |
 | has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository. | `bool` | `false` | no |
 | has_issues | Toggle to enable GitHub Issues for the Repository. | `bool` | `true` | no |
 | has_projects | Toggle to enable GitHub Projects for the Repository. | `bool` | `false` | no |
 | has_wiki | Toggle to enable GitHub Wiki for the Repository. | `bool` | `true` | no |
+| homepage_url | URL of a page describing the Repository. | `string` | `null` | no |
 | is_template | Toggle to enable Template use for the Repository. | `bool` | `false` | no |
 | issue_labels | List of Issue Label Objects. | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` | no |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository. | `string` | `null` | no |
@@ -71,6 +71,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
 | projects | List of Project Objects. | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` | no |
 | repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
+| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    name   = string<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
 | team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` | no |
 | template | Template Repository to use when creating the Repository. | `map(string)` | `{}` | no |
 | topics | List of Topics of the Repository. | `list(string)` | `null` | no |
@@ -81,8 +82,6 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 | Name | Description |
 |------|-------------|
-| github_branch | Exported Attributes for `github_branch`. |
-| github_branch_default | Exported Attributes for `github_branch_default`. |
 | github_issue_label | Exported Attributes for `github_issue_label`. |
 | github_repository | Exported Attributes for `github_repository`. |
 | github_repository_collaborator | Exported Attributes for `github_repository_collaborator`. |
@@ -90,7 +89,6 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | github_repository_file | Exported Attributes for `github_repository_file`. |
 | github_repository_project | Exported Attributes for `github_repository_project`. |
 | github_team_repository | Exported Attributes for `github_team_repository`. |
-| repository_collaborator_invitation_ids | ID of the invitation to be used in `github_user_invitation_accepter`. |
 <!-- END_TF_DOCS -->
 
 ## Notes
