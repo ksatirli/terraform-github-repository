@@ -23,6 +23,7 @@ jobs:
           - "./examples/project"
           - "./examples/project_columns"
           - "./examples/template"
+          - "./examples/webhook"
 
     steps:
       - name: Checkout Repository

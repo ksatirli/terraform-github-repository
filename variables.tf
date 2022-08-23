@@ -177,7 +177,6 @@ variable "branch_protections" {
 
 variable "repository_webhooks" {
   type = list(object({
-    name   = string
     active = bool
     events = list(string)
 

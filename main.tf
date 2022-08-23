@@ -189,10 +189,9 @@ resource "github_repository_webhook" "main" {
   # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
   for_each = {
     for hook in var.repository_webhooks :
-    hook.name => hook
+    hook.configuration.url => hook
   }
 
-  name       = each.value.name
   repository = github_repository.main.name
   active     = each.value.active
   events     = each.value.events

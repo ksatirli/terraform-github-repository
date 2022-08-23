@@ -71,7 +71,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
 | projects | List of Project Objects. | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` | no |
 | repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
-| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    name   = string<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
+| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
 | team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` | no |
 | template | Template Repository to use when creating the Repository. | `map(string)` | `{}` | no |
 | topics | List of Topics of the Repository. | `list(string)` | `null` | no |
