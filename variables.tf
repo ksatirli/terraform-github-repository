@@ -42,7 +42,7 @@ variable "has_projects" {
 variable "has_wiki" {
   type        = bool
   description = "Toggle to enable GitHub Wiki for the Repository."
-  default     = true
+  default     = false
 }
 
 variable "is_template" {
