@@ -46,6 +46,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | name | Name of the Repository. | `string` | n/a | yes |
+| allow_auto_merge | Toggle to enable auto-merging pull requests on the repository. | `bool` | `false` | no |
 | allow_merge_commit | Toggle to enable Merge Commits for the Repository. | `bool` | `true` | no |
 | allow_rebase_merge | Toggle to enable Rebase Merges for the Repository. | `bool` | `true` | no |
 | allow_squash_merge | Toggle to enable Squash Merges for the Repository. | `bool` | `true` | no |
@@ -62,7 +63,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository. | `bool` | `false` | no |
 | has_issues | Toggle to enable GitHub Issues for the Repository. | `bool` | `true` | no |
 | has_projects | Toggle to enable GitHub Projects for the Repository. | `bool` | `false` | no |
-| has_wiki | Toggle to enable GitHub Wiki for the Repository. | `bool` | `true` | no |
+| has_wiki | Toggle to enable GitHub Wiki for the Repository. | `bool` | `false` | no |
 | homepage_url | URL of a page describing the Repository. | `string` | `null` | no |
 | is_template | Toggle to enable Template use for the Repository. | `bool` | `false` | no |
 | issue_labels | List of Issue Label Objects. | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` | no |

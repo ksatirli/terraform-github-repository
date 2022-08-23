@@ -69,6 +69,12 @@ variable "allow_rebase_merge" {
   default     = true
 }
 
+variable "allow_auto_merge" {
+  type        = bool
+  description = "Toggle to enable auto-merging pull requests on the repository."
+  default     = false
+}
+
 variable "delete_branch_on_merge" {
   type        = bool
   description = "Toggle to automatically delete merged Branches for the Repository."
