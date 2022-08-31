@@ -1,2 +1,0 @@
-# GitHub access credentials; these may also be set on the GitHub Provider directly
-export GITHUB_TOKEN="..."
