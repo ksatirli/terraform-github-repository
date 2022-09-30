@@ -1,10 +1,10 @@
-# Example: `files`
+# Example: `pages`
 
-> This is an example of a _files_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
+> This is an example of a _pages_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `files`](#example-files)
+- [Example: `pages`](#example-pages)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,24 +16,21 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _files_ configuration of the `terraform-github-repository` Module could look like this:
+A _pages_ configuration of the `terraform-github-repository` Module could look like this:
+
+**NOTE:** A template has been used to create the repository which contains content to show simple GitHub Pages website at `https://<Your Username>.github.io/oh-demo-pages-example/`
 
 ```hcl
-module "files_example" {
-  source  = "../.."
+module "pages_example" {
+  source = "../.."
 
-  name    = "oh-demo-files-example"
-  private = false
+  name       = "oh-demo-pages-example"
+  visibility = "public"
 
-  files = [
-    {
-      file    = "Adds .gitignore",
-      content = file("file-templates/.gitignore")
-      }, {
-      file    = "Adds .gitattributes",
-      content = file("file-templates/.gitattributes")
-    }
-  ]
+  pages = {
+    branch = "main",
+    path   = "/"
+  }
 }
 ```
 

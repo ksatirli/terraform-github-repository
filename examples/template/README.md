@@ -1,10 +1,10 @@
-# Example: `files`
+# Example: `template`
 
-> This is an example of a _files_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
+> This is an example of a _template_ configuration of the [terraform-github-repository Module](https://registry.terraform.io/modules/operatehappy/repository/github)
 
 ## Table of Contents
 
-- [Example: `files`](#example-files)
+- [Example: `template`](#example-template)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,24 +16,19 @@ For a list of installation instructions, see the [Readme document](https://regis
 
 ## Usage
 
-A _files_ configuration of the `terraform-github-repository` Module could look like this:
+A _template_ configuration of the `terraform-github-repository` Module could look like this:
 
 ```hcl
-module "files_example" {
-  source  = "../.."
+module "template_example" {
+  source = "../.."
 
-  name    = "oh-demo-files-example"
-  private = false
+  name       = "oh-demo-template-example"
+  visibility = "public"
 
-  files = [
-    {
-      file    = "Adds .gitignore",
-      content = file("file-templates/.gitignore")
-      }, {
-      file    = "Adds .gitattributes",
-      content = file("file-templates/.gitattributes")
-    }
-  ]
+  template = {
+    owner      = "a-demo-organization",
+    repository = "template-source"
+  }
 }
 ```
 

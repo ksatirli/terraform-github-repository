@@ -1,13 +1,13 @@
-# Terraform Module: GitHub Repository
+# GitHub Repository
 
-> Terraform Module for managing GitHub [Repositories](https://developer.github.com/v3/repos/) and associated resources.
+> This Terraform Module manages the lifecycle of GitHub Repositories and associated resources.
 
 > **Warning**
 > This module has reached _End-of-Life_ status. A re-built version will be available via [ksatirli/terraform-github-repository](https://github.com/ksatirli/terraform-github-repository).
 
 ## Table of Contents
 
-- [Terraform Module: GitHub Repository](#terraform-module-github-repository)
+- [GitHub Repository](#github-repository)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Dependencies](#dependencies)
@@ -18,7 +18,8 @@
 
 ## Requirements
 
-This module requires Terraform version `0.14.0` or newer.
+* GitHub [Account](https://github.com/join)
+* Terraform `1.0.x` or newer.
 
 ## Dependencies
 
@@ -31,7 +32,7 @@ Add the module to your Terraform resources like so:
 ```hcl
 module "simple_example" {
   source  = "operatehappy/repository/github"
-  version = "3.0.0"
+  version = "4.0.0"
 
   name       = "oh-demo-simple-example"
   visibility = false
@@ -42,60 +43,71 @@ Then, fetch the module from the [Terraform Registry](https://registry.terraform.
 
 Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/main/examples).
 
+<!-- BEGIN_TF_DOCS -->
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| allow_merge_commit | Toggle to enable Merge Commits for the Repository | `bool` | `true` |
-| allow_rebase_merge | Toggle to enable Rebase Merges for the Repository | `bool` | `true` |
-| allow_squash_merge | Toggle to enable Squash Merges for the Repository | `bool` | `true` |
-| archive_on_destroy | Toggle to archive the Repository on destroy | `bool` | `false` |
-| archived | Toggle to archive the Repository (see notes in `README.md`) | `bool` | `false` |
-| auto_init | Toggle to create an initial commit in the Repository | `bool` | `false` |
-| branch_protections | List of Branch Protection Objects | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number // NOTE: this must be 6 or less<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `[]` |
-| default_branch | Name of the Default Branch of the Repository | `string` | `"main"` |
-| delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository | `bool` | `false` |
-| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` |
-| description | Description of the Repository | `string` | `""` |
-| files | List of File Objecs | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` |
-| gitignore_template | Template to use for initial `.gitignore` file for the Repository | `string` | `""` |
-| has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository | `bool` | `false` |
-| has_issues | Toggle to enable GitHub Issues for the Repository | `bool` | `true` |
-| has_projects | Toggle to enable GitHub Projects for the Repository | `bool` | `false` |
-| has_wiki | Toggle to enable GitHub Wiki for the Repository | `bool` | `true` |
-| homepage_url | URL of a page describing the Repository | `string` | `""` |
-| is_template | Toggle to enable Template use for the Repository | `bool` | `false` |
-| issue_labels | List of Issue Label Objects | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` |
-| license_template | Identifier to use for initial `LICENSE` file for the Repository | `string` | `""` |
-| name | Name of the Repository | `string` | `""` |
-| pages | Configuration block for GitHub Pages | `map(any)` | `{}` |
-| projects | List of Project Objecs | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` |
-| repository_collaborators | List of Collaborator Objects | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` |
-| team_repository_teams | List of Team Repository Team Objects | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` |
-| template | Template Repository to use when creating the Repository | `map(string)` | `{}` |
-| topics | List of Topics of the Repository | `list(string)` | `[]` |
-| visibility | Toggle to create a Private Repository | `string` | `"private"` |
-| vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository | `bool` | `true` |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| name | Name of the Repository. | `string` | n/a | yes |
+| allow_auto_merge | Toggle to enable auto-merging pull requests on the repository. | `bool` | `false` | no |
+| allow_merge_commit | Toggle to enable Merge Commits for the Repository. | `bool` | `true` | no |
+| allow_rebase_merge | Toggle to enable Rebase Merges for the Repository. | `bool` | `true` | no |
+| allow_squash_merge | Toggle to enable Squash Merges for the Repository. | `bool` | `true` | no |
+| archive_on_destroy | Toggle to archive the Repository on destroy. | `bool` | `false` | no |
+| archived | Toggle to archive the Repository (see notes in `README.md`). | `bool` | `false` | no |
+| auto_init | Toggle to create an initial commit in the Repository. | `bool` | `false` | no |
+| branch_protections | List of Branch Protection Objects. | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `null` | no |
+| default_branch | Name of the Default Branch of the Repository. | `string` | `"main"` | no |
+| delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository. | `bool` | `false` | no |
+| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` | no |
+| description | Description of the Repository. | `string` | `null` | no |
+| files | List of File Objects. | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
+| gitignore_template | Template to use for initial `.gitignore` file for the Repository. | `string` | `null` | no |
+| has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository. | `bool` | `false` | no |
+| has_issues | Toggle to enable GitHub Issues for the Repository. | `bool` | `true` | no |
+| has_projects | Toggle to enable GitHub Projects for the Repository. | `bool` | `false` | no |
+| has_wiki | Toggle to enable GitHub Wiki for the Repository. | `bool` | `false` | no |
+| homepage_url | URL of a page describing the Repository. | `string` | `null` | no |
+| is_template | Toggle to enable Template use for the Repository. | `bool` | `false` | no |
+| issue_labels | List of Issue Label Objects. | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` | no |
+| license_template | Identifier to use for initial `LICENSE` file for the Repository. | `string` | `null` | no |
+| pages | Configuration block for GitHub Pages. | `map(any)` | `{}` | no |
+| pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
+| projects | List of Project Objects. | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` | no |
+| repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
+| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
+| team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id = string<br>  }))</pre> | `[]` | no |
+| template | Template Repository to use when creating the Repository. | `map(string)` | `{}` | no |
+| topics | List of Topics of the Repository. | `list(string)` | `null` | no |
+| visibility | Toggle to set the visibility of the Repository. | `string` | `"private"` | no |
+| vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository. | `bool` | `true` | no |
 
 ### Outputs
 
 | Name | Description |
 |------|-------------|
-| files | Map of Repository File names and corresponding SHA blobs |
-| full_name | A string of the form "orgname/reponame" |
-| git_clone_url | URL to clone the repository via the git protocol |
-| html_url | URL to the repository on the web |
-| http_clone_url | URL to clone the repository via HTTPs |
-| name | A string of the form "reponame" |
-| node_id | Node ID of the Repository |
-| project_ids | List of Repository Project IDs |
-| project_urls | List of Repository Project IDs |
-| projects | Map of Repository Project IDs, and corresponding URLs |
-| repo_id | ID of the Repository |
-| ssh_clone_url | URL to the repository to clone via SSH |
-| svn_url | URL to check out the repository via GitHub's Subversion protocol emulation |
+| github_issue_label | Exported Attributes for `github_issue_label`. |
+| github_repository | Exported Attributes for `github_repository`. |
+| github_repository_collaborator | Exported Attributes for `github_repository_collaborator`. |
+| github_repository_deploy_key | Exported Attributes for `github_repository_deploy_key`. |
+| github_repository_file | Exported Attributes for `github_repository_file`. |
+| github_repository_project | Exported Attributes for `github_repository_project`. |
+| github_repository_webhook | Exported Attributes for `github_repository_webhook`. |
+| github_team_repository | Exported Attributes for `github_team_repository`. |
+<!-- END_TF_DOCS -->
 
 ## Notes
+
+### Upgrades from `3.0.0` to `4.x.x`
+
+As part of the updates and upgrades that were made for the `4.x.x` release, all Terraform resource identifiers were renamed from `this` to `main`.
+See [`./moved.tf`](https://github.com/operatehappy/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://www.terraform.io/language/modules/develop/refactoring#moved-block-syntax) for more information.
+
+#### Branch for GitHub Pages
+
+Prior to `4.0.0`, the branch for the GitHub Pages feature was sourced from the `default_branch` variable.
+
+From `4.0.0` onwards, the branch for GitHub Pages can be set through the `pages_branch` variable. The default is `gh-pages`.
 
 ### Upgrading from `2.0.0` to `3.x.x`
 

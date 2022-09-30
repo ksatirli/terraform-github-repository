@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "4.4.0"
-    }
-  }
-}
-
 provider "github" {
   owner = "a-demo-organization"
 }
@@ -15,6 +6,7 @@ module "files_example" {
   source = "../.."
 
   name       = "oh-demo-files-example"
+  auto_init  = true
   visibility = "public"
 
   files = [

@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "4.4.0"
-    }
-  }
-}
-
 provider "github" {
   owner = "a-demo-organization"
 }
@@ -16,6 +7,7 @@ module "branch_protection_example" {
 
   name       = "oh-demo-branch-protection-example"
   visibility = "public"
+  auto_init  = true
 
   branch_protections = [
     {

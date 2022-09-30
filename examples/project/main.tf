@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "4.4.0"
-    }
-  }
-}
-
 provider "github" {
   owner = "a-demo-organization"
 }
@@ -14,8 +5,9 @@ provider "github" {
 module "project_example" {
   source = "../.."
 
-  name       = "oh-demo-project-example"
-  visibility = "public"
+  name         = "oh-demo-project-example"
+  visibility   = "public"
+  has_projects = true
 
   projects = [
     {
