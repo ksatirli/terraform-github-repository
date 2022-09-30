@@ -2,6 +2,9 @@
 
 > Terraform Module for managing GitHub [Repositories](https://developer.github.com/v3/repos/) and associated resources.
 
+> **Warning**
+> This module has reached _End-of-Life_ status. A re-built version will be available via [ksatirli/terraform-github-repository](https://github.com/ksatirli/terraform-github-repository).
+
 ## Table of Contents
 
 - [Terraform Module: GitHub Repository](#terraform-module-github-repository)
