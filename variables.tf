@@ -211,7 +211,7 @@ variable "deploy_keys" {
 }
 
 variable "repository_collaborators" {
-  // `repository_collaborators.permission` is optional and defaults to `push`
+  # `repository_collaborators.permission` is optional and defaults to `push`
   type = list(object({
     username = string
   }))
@@ -221,7 +221,7 @@ variable "repository_collaborators" {
 }
 
 variable "team_repository_teams" {
-  // `team_repository_teams.permission` is optional and defaults to `push`
+  # `team_repository_teams.permission` is optional and defaults to `push`
   type = list(object({
     team_id = string
   }))
@@ -231,7 +231,7 @@ variable "team_repository_teams" {
 }
 
 variable "issue_labels" {
-  // `issue_labels.description` is optional and defaults to `""`
+  # `issue_labels.description` is optional and defaults to `""`
   type = list(object({
     name  = string,
     color = string
@@ -252,7 +252,7 @@ variable "projects" {
 }
 
 variable "files" {
-  // `files.{branch,commit_author,commit_email,commit_message}` are optional and omitted when not set
+  # `files.{branch,commit_author,commit_email,commit_message}` are optional and omitted when not set
   type = list(object({
     file    = string,
     content = string
