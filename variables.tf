@@ -223,7 +223,8 @@ variable "repository_collaborators" {
 variable "team_repository_teams" {
   # `team_repository_teams.permission` is optional and defaults to `push`
   type = list(object({
-    team_id = string
+    team_id    = string
+    permission = string
   }))
 
   description = "List of Team Repository Team Objects."
