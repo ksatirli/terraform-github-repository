@@ -2,9 +2,6 @@
 
 > This Terraform Module manages the lifecycle of GitHub Repositories and associated resources.
 
-> **Warning**
-> This module has reached _End-of-Life_ status. A re-built version will be available via [ksatirli/terraform-github-repository](https://github.com/ksatirli/terraform-github-repository).
-
 ## Table of Contents
 
 - [GitHub Repository](#github-repository)
