@@ -16,7 +16,7 @@ module "branch_protection_example" {
       require_signed_commits = true
 
       required_status_checks = {
-        strict   = false
+        strict = false
 
         contexts = [
           "ci/sentinel"
@@ -24,13 +24,13 @@ module "branch_protection_example" {
       }
 
       required_pull_request_reviews = {
-        dismiss_stale_reviews           = true
+        dismiss_stale_reviews = true
 
-        dismissal_users                 = [
+        dismissal_users = [
           "ksatirli"
         ]
 
-        dismissal_teams                 = []
+        dismissal_teams = []
 
         require_code_owner_reviews      = false,
         required_approving_review_count = null

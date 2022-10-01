@@ -20,7 +20,7 @@ module "complex_example" {
   default_branch     = "main"
   archived           = false
 
-  topics             = [
+  topics = [
     "topic-1",
     "topic-2"
   ]
