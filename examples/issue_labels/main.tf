@@ -5,7 +5,7 @@ provider "github" {
 module "issue_labels_example" {
   source = "../.."
 
-  name       = "oh-demo-issue-labels-example"
+  name       = "issue-labels-example"
   visibility = "public"
 
   issue_labels = [

@@ -5,7 +5,7 @@ provider "github" {
 module "pages_example" {
   source = "../.."
 
-  name       = "oh-demo-pages-example"
+  name       = "pages-example"
   auto_init  = true
   visibility = "public"
 

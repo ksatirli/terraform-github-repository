@@ -5,7 +5,7 @@ provider "github" {
 module "project_column_example" {
   source = "../.."
 
-  name         = "oh-demo-project-example"
+  name         = "project-example"
   visibility   = "public"
   has_projects = true
 

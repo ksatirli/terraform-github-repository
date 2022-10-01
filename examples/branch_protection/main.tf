@@ -5,7 +5,7 @@ provider "github" {
 module "branch_protection_example" {
   source = "../../"
 
-  name       = "oh-demo-branch-protection-example"
+  name       = "branch-protection-example"
   visibility = "public"
   auto_init  = true
 
@@ -17,19 +17,30 @@ module "branch_protection_example" {
 
       required_status_checks = {
         strict   = false
-        contexts = ["ci/sentinel"]
+
+        contexts = [
+          "ci/sentinel"
+        ]
       }
 
       required_pull_request_reviews = {
         dismiss_stale_reviews           = true
-        dismissal_users                 = ["ksatirli"]
+
+        dismissal_users                 = [
+          "ksatirli"
+        ]
+
         dismissal_teams                 = []
+
         require_code_owner_reviews      = false,
         required_approving_review_count = null
       }
 
       restrictions = {
-        users = ["ksatirli"]
+        users = [
+          "ksatirli"
+        ]
+
         teams = []
       }
     }

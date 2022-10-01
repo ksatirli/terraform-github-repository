@@ -5,11 +5,12 @@ provider "github" {
 module "webhook_example" {
   source = "../.."
 
-  name       = "oh-demo-webhook-example"
+  name       = "webhook-example"
   visibility = "public"
 
   repository_webhooks = [{
     active = true
+
     events = [
       "issues"
     ]

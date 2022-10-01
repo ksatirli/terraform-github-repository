@@ -5,6 +5,6 @@ provider "github" {
 module "basic_example" {
   source = "../../"
 
-  name       = "oh-demo-basic-example"
+  name       = "basic-example"
   visibility = "public"
 }
