@@ -4,14 +4,18 @@
 
 ## Table of Contents
 
-- [GitHub Repository](#github-repository)
-  - [Table of Contents](#table-of-contents)
-  - [Requirements](#requirements)
-  - [Dependencies](#dependencies)
-  - [Usage](#usage)
-  - [Notes](#notes)
-  - [Author Information](#author-information)
-  - [License](#license)
+<!-- TOC -->
+* [GitHub Repository](#github-repository)
+  * [Table of Contents](#table-of-contents)
+  * [Requirements](#requirements)
+  * [Dependencies](#dependencies)
+  * [Usage](#usage)
+    * [Inputs](#inputs)
+    * [Outputs](#outputs)
+  * [Notes](#notes)
+  * [Author Information](#author-information)
+  * [License](#license)
+<!-- TOC -->
 
 ## Requirements
 
@@ -28,17 +32,17 @@ Add the module to your Terraform resources like so:
 
 ```hcl
 module "simple_example" {
-  source  = "operatehappy/repository/github"
+  source  = "ksatirli/repository/github"
   version = "4.0.0"
 
-  name       = "oh-demo-simple-example"
+  name       = "simple-example"
   visibility = false
 }
 ```
 
-Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/operatehappy/repository/github) using `terraform get`.
+Then, fetch the module from the [Terraform Registry](https://registry.terraform.io/modules/ksatirli/repository/github) using `terraform get`.
 
-Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/operatehappy/terraform-github-repository/tree/main/examples).
+Additional usage examples are available in the `examples` directory via [GitHub](https://github.com/ksatirli/terraform-github-repository/tree/main/examples).
 
 <!-- BEGIN_TF_DOCS -->
 ### Inputs
@@ -98,7 +102,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 ### Upgrades from `3.0.0` to `4.x.x`
 
 As part of the updates and upgrades that were made for the `4.x.x` release, all Terraform resource identifiers were renamed from `this` to `main`.
-See [`./moved.tf`](https://github.com/operatehappy/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://www.terraform.io/language/modules/develop/refactoring#moved-block-syntax) for more information.
+See [`./moved.tf`](https://github.com/ksatirli/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring#moved-block-syntax) for more information.
 
 #### Branch for GitHub Pages
 
@@ -150,9 +154,7 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 ## Author Information
 
-This module is maintained by the contributors listed on [GitHub](https://github.com/operatehappy/terraform-github-repository/graphs/contributors).
-
-Development of this module was sponsored by [Operate Happy](https://github.com/operatehappy).
+This module is maintained by the contributors listed on [GitHub](https://github.com/ksatirli/terraform-github-repository/graphs/contributors).
 
 ## License
 

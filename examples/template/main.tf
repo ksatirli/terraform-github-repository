@@ -5,7 +5,7 @@ provider "github" {
 module "template_example" {
   source = "../.."
 
-  name       = "oh-demo-template-example"
+  name       = "template-example"
   visibility = "public"
 
   template = {

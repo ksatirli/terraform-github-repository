@@ -5,9 +5,9 @@ provider "github" {
 module "complex_example" {
   source = "../.."
 
-  name               = "oh-demo-complex-example"
+  name               = "complex-example"
   description        = "Complex Repository Example"
-  homepage_url       = "https://operatehappy.com/"
+  homepage_url       = "https://github.com/ksatirli"
   visibility         = "private"
   has_issues         = true
   has_projects       = true
@@ -19,5 +19,9 @@ module "complex_example" {
   auto_init          = false
   default_branch     = "main"
   archived           = false
-  topics             = ["topic-1", "topic-2"]
+
+  topics = [
+    "topic-1",
+    "topic-2"
+  ]
 }

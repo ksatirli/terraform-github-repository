@@ -5,7 +5,7 @@ provider "github" {
 module "deploy_keys_example" {
   source = "../.."
 
-  name       = "oh-demo-deploy-keys-example"
+  name       = "deploy-keys-example"
   visibility = "public"
 
   deploy_keys = [
