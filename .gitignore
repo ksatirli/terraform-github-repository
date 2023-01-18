@@ -1,2 +1,3 @@
 /examples/*/.envrc
 /examples/*/terraform.tfstate*
+/examples/*/.terraform.tfstate.lock.info
