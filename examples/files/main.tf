@@ -11,11 +11,13 @@ module "files_example" {
 
   files = [
     {
-      file    = ".gitignore",
-      content = file("../../.gitignore")
+      file                = ".gitignore",
+      content             = file("../../.gitignore")
+      overwrite_on_create = true
       }, {
-      file    = "LICENSE",
-      content = file("../../LICENSE")
+      file                = "LICENSE",
+      content             = file("../../LICENSE")
+      overwrite_on_create = true
     }
   ]
 }

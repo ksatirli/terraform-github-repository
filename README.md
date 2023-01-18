@@ -62,7 +62,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository. | `bool` | `false` | no |
 | deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` | no |
 | description | Description of the Repository. | `string` | `null` | no |
-| files | List of File Objects. | <pre>list(object({<br>    file    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
+| files | List of File Objects. | <pre>list(object({<br>    file                = string,<br>    content             = string,<br>    overwrite_on_create = string<br>  }))</pre> | `[]` | no |
 | gitignore_template | Template to use for initial `.gitignore` file for the Repository. | `string` | `null` | no |
 | has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository. | `bool` | `false` | no |
 | has_issues | Toggle to enable GitHub Issues for the Repository. | `bool` | `true` | no |
