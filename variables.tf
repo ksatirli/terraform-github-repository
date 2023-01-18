@@ -198,7 +198,6 @@ variable "repository_webhooks" {
   default     = []
 }
 
-
 variable "deploy_keys" {
   type = list(object({
     title     = string,
@@ -255,8 +254,9 @@ variable "projects" {
 variable "files" {
   # `files.{branch,commit_author,commit_email,commit_message}` are optional and omitted when not set
   type = list(object({
-    file    = string,
-    content = string
+    file                = string,
+    content             = string,
+    overwrite_on_create = string
   }))
 
   description = "List of File Objects."
