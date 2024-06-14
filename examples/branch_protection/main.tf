@@ -23,7 +23,8 @@ module "branch_protection_example" {
         dismiss_stale_reviews = true
 
         dismissal_users = [
-          "ksatirli"
+          "ksatirli",
+          "a-demo-user",
         ]
 
         dismissal_teams = []
