@@ -20,7 +20,7 @@
 ## Requirements
 
 * GitHub [Account](https://github.com/join)
-* Terraform `1.0.x` or newer.
+* Terraform `1.3.x` or newer.
 
 ## Dependencies
 
