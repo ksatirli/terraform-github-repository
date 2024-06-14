@@ -11,7 +11,7 @@ jobs:
 
     env:
       # token for `a-demo-user` with access to `a-demo-organization`
-      GITHUB_TOKEN: "${{ secrets.ORG_GITHUB_TOKEN }}"
+      GITHUB_TOKEN: "${{ secrets.TESTING_GITHUB_TOKEN }}"
 
     strategy:
       # see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategyfail-fast
