@@ -13,6 +13,9 @@
     * [Inputs](#inputs)
     * [Outputs](#outputs)
   * [Notes](#notes)
+    * [Upgrading from `4.x.x` to `5.x.x`](#upgrading-from-4xx-to-5xx)
+    * [Upgrading from `3.x.x` to `4.x.x`](#upgrading-from-3xx-to-4xx)
+    * [Upgrading from `2.x.x` to `3.x.x`](#upgrading-from-2xx-to-3xx)
   * [Author Information](#author-information)
   * [License](#license)
 <!-- TOC -->
@@ -74,7 +77,6 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | license_template | Identifier to use for initial `LICENSE` file for the Repository. | `string` | `null` | no |
 | pages | Configuration block for GitHub Pages. | `map(any)` | `{}` | no |
 | pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
-| projects | List of Project Objects. | <pre>list(object({<br>    name = string,<br>    body = string<br>  }))</pre> | `[]` | no |
 | repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
 | repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
 | team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id    = string<br>    permission = string<br>  }))</pre> | `[]` | no |
@@ -92,14 +94,27 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | github_repository_collaborator | Exported Attributes for `github_repository_collaborator`. |
 | github_repository_deploy_key | Exported Attributes for `github_repository_deploy_key`. |
 | github_repository_file | Exported Attributes for `github_repository_file`. |
-| github_repository_project | Exported Attributes for `github_repository_project`. |
 | github_repository_webhook | Exported Attributes for `github_repository_webhook`. |
 | github_team_repository | Exported Attributes for `github_team_repository`. |
 <!-- END_TF_DOCS -->
 
 ## Notes
 
-### Upgrades from `3.0.0` to `4.x.x`
+### Upgrading from `4.x.x` to `5.x.x`
+
+As part of the updates and upgrades that were made for the `5.x.x` release, the following changes were made:
+
+#### Managing default branch through `github_branch_default` instead of `github_repository`
+
+From `5.0.0` onwards, the default branch for a repository is now managed through the [`github_branch_default`](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, instead of the `default_branch` attribute on the [`github_repository`](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) resource.
+
+#### Removing `github_repository_project`
+
+From `5.0.0` onwards, the [`github_repository_project`](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_project) was removed.
+
+To account for this change, the `projects` variable was removed from the module.
+
+### Upgrading from `3.x.x` to `4.x.x`
 
 As part of the updates and upgrades that were made for the `4.x.x` release, all Terraform resource identifiers were renamed from `this` to `main`.
 See [`./moved.tf`](https://github.com/ksatirli/terraform-github-repository/blob/main/moved.tf) and the [Terraform documentation](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring#moved-block-syntax) for more information.
@@ -110,7 +125,7 @@ Prior to `4.0.0`, the branch for the GitHub Pages feature was sourced from the `
 
 From `4.0.0` onwards, the branch for GitHub Pages can be set through the `pages_branch` variable. The default is `gh-pages`.
 
-### Upgrading from `2.0.0` to `3.x.x`
+### Upgrading from `2.x.x` to `3.x.x`
 
 The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
 

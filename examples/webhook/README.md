@@ -5,7 +5,7 @@
 ## Table of Contents
 
 <!-- TOC -->
-* [Example: `webhook`](#example--webhook)
+* [Example: `webhook`](#example-webhook)
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [Module Variables and Outputs](#module-variables-and-outputs)

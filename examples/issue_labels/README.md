@@ -5,7 +5,7 @@
 ## Table of Contents
 
 <!-- TOC -->
-* [Example: `issue-labels`](#example--issue-labels)
+* [Example: `issue-labels`](#example-issue-labels)
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [Module Variables and Outputs](#module-variables-and-outputs)

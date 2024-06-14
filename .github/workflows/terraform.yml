@@ -25,9 +25,7 @@ jobs:
           - "./examples/files"
           - "./examples/issue_labels"
           - "./examples/pages"
-          - "./examples/project"
-#          - "./examples/project_columns"
-#          - "./examples/template"
+          - "./examples/template"
           - "./examples/webhook"
 
     steps:

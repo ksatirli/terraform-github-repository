@@ -41,11 +41,6 @@ output "github_issue_label" {
   value       = github_issue_label.main
 }
 
-output "github_repository_project" {
-  description = "Exported Attributes for `github_repository_project`."
-  value       = github_repository_project.main
-}
-
 output "github_repository_file" {
   description = "Exported Attributes for `github_repository_file`."
   value       = github_repository_file.main

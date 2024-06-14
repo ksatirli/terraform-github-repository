@@ -241,16 +241,6 @@ variable "issue_labels" {
   default     = []
 }
 
-variable "projects" {
-  type = list(object({
-    name = string,
-    body = string
-  }))
-
-  description = "List of Project Objects."
-  default     = []
-}
-
 variable "files" {
   # `files.{branch,commit_author,commit_email,commit_message}` are optional and omitted when not set
   type = list(object({

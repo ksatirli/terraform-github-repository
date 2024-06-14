@@ -45,21 +45,11 @@ resource "github_repository" "main" {
   vulnerability_alerts = var.vulnerability_alerts
 }
 
-# TODO: make this work in a sensible way
-# GitHub Branches can only be created on non-empty repositories.
-# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch
-#resource "github_branch" "main" {
-#  count = length(var.files) > 0 ? 1 : 0
-#
-#  repository = github_repository.main.name
-#  branch     = var.default_branch
-#}
-#
-## see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
-#resource "github_branch_default" "main" {
-#  repository = github_repository.main.name
-#  branch     = github_branch.main.branch
-#}
+# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
+resource "github_branch_default" "main" {
+ repository = github_repository.main.name
+ branch     = var.default_branch
+}
 
 # TODO
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
@@ -92,7 +82,7 @@ resource "github_repository" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_deploy_key
 resource "github_repository_deploy_key" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for key in var.deploy_keys :
     key.key => key
@@ -106,7 +96,7 @@ resource "github_repository_deploy_key" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator
 resource "github_repository_collaborator" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for collaborator in var.repository_collaborators :
     collaborator.username => collaborator
@@ -120,7 +110,7 @@ resource "github_repository_collaborator" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository
 resource "github_team_repository" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for team in var.team_repository_teams :
     team.team_id => team
@@ -133,7 +123,7 @@ resource "github_team_repository" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_label
 resource "github_issue_label" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for label in var.issue_labels :
     label.name => label
@@ -145,26 +135,9 @@ resource "github_issue_label" "main" {
   description = try(each.value.description, "")
 }
 
-# see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_project
-resource "github_repository_project" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
-  for_each = {
-    for project in var.projects :
-    project.name => project
-  }
-
-  name       = each.value.name
-  repository = github_repository.main.name
-  body       = each.value.body
-
-  depends_on = [
-    github_repository.main
-  ]
-}
-
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file
 resource "github_repository_file" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for file in var.files :
     file.file => file
@@ -187,7 +160,7 @@ resource "github_repository_file" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook
 resource "github_repository_webhook" "main" {
-  # see https://www.terraform.io/docs/language/meta-arguments/for_each.html
+  # see https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = {
     for hook in var.repository_webhooks :
     hook.configuration.url => hook
