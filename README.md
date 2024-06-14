@@ -33,7 +33,7 @@ Add the module to your Terraform resources like so:
 ```hcl
 module "simple_example" {
   source  = "ksatirli/repository/github"
-  version = "4.0.0"
+  version = "5.0.0"
 
   name       = "simple-example"
   visibility = false

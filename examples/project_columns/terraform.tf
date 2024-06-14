@@ -1,10 +1,10 @@
 terraform {
   # see https://www.terraform.io/docs/language/settings/index.html#specifying-provider-requirements
   required_providers {
-    # see https://registry.terraform.io/providers/integrations/github/5.15.0
+    # see https://registry.terraform.io/providers/integrations/github/6.2.1
     github = {
       source  = "integrations/github"
-      version = ">= 5.15.0, < 6.0.0"
+      version = ">= 6.2.1, < 7.0.0"
     }
   }
 
