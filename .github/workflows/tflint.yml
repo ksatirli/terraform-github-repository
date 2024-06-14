@@ -27,12 +27,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
+      # see https://github.com/terraform-linters/setup-tflint/releases
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v2.0.0
+        uses: terraform-linters/setup-tflint@v4.0.0
         with:
           tflint_version: latest
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +41,7 @@ jobs:
           working-dir: "${{ matrix.examples }}"
 
       - name: Initialize TFLint
-        run: tflint --init "${{ matrix.examples }}"
+        run: tflint --init --chdir "./${{ matrix.examples }}"
 
       - name: Run TFLint
-        run: tflint --format=compact "${{ matrix.examples }}"
+        run: tflint --format=compact --chdir "./${{ matrix.examples }}"

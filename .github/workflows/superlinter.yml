@@ -10,18 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
       - name: Lint Code with Super-Linter
-        uses: github/super-linter@v4
+        uses: super-linter/super-linter/slim@v6
         env:
-          VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: "main"
           DISABLE_ERRORS: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TERRAFORM_TFLINT_CONFIG_FILE: ".tflint.hcl"
+          VALIDATE_ALL_CODEBASE: true
           VALIDATE_BASH: true
           VALIDATE_JSON: true
           VALIDATE_MD: true
