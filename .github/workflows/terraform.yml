@@ -23,12 +23,12 @@ jobs:
           - "./examples/complex"
           - "./examples/deploy_keys"
           - "./examples/files"
-#          - "./examples/issue_labels"
+          - "./examples/issue_labels"
 #          - "./examples/pages"
 #          - "./examples/project"
 #          - "./examples/project_columns"
 #          - "./examples/template"
-#          - "./examples/webhook"
+          - "./examples/webhook"
 
     steps:
       - name: Checkout Repository
