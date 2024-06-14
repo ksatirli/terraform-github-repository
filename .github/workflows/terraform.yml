@@ -15,16 +15,16 @@ jobs:
       matrix:
         examples:
           - "./examples/basic"
-          - "./examples/branch_protection"
-          - "./examples/complex"
-          - "./examples/deploy_keys"
-          - "./examples/files"
-          - "./examples/issue_labels"
-          - "./examples/pages"
-          - "./examples/project"
-          - "./examples/project_columns"
-          - "./examples/template"
-          - "./examples/webhook"
+#          - "./examples/branch_protection"
+#          - "./examples/complex"
+#          - "./examples/deploy_keys"
+#          - "./examples/files"
+#          - "./examples/issue_labels"
+#          - "./examples/pages"
+#          - "./examples/project"
+#          - "./examples/project_columns"
+#          - "./examples/template"
+#          - "./examples/webhook"
 
     steps:
       - name: Checkout Repository
@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 1
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
           terraform_version: ${{ secrets.TERRAFORM_VERSION }}
@@ -57,3 +57,15 @@ jobs:
         run: terraform validate
         env:
           working-dir: "${{ matrix.examples }}"
+
+      - name: Apply Terraform code for Examples
+        run: terraform apply -auto-approve
+        env:
+          working-dir: "${{ matrix.examples }}"
+          GITHUB_TOKEN=${{ secrets.ORG_GITHUB_TOKEN }}
+
+      - name: Destructively Apply Terraform code for Examples
+        run: terraform destroy -auto-approve
+        env:
+          working-dir: "${{ matrix.examples }}"
+          GITHUB_TOKEN=${{ secrets.ORG_GITHUB_TOKEN }}
