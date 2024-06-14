@@ -38,23 +38,23 @@ jobs:
           terraform_wrapper: false
           terraform_version: ${{ secrets.TERRAFORM_VERSION }}
 
-      - name: Format Terraform code for Module
-        run: terraform fmt -check -recursive
-        env:
-          working-dir: "./"
-
       - name: Initialize Terraform for Examples
-        run: terraform init
+        run: terraform -chdir="${{ matrix.examples }}" init
         env:
           working-dir: "${{ matrix.examples }}"
 
+      - name: Format Terraform code for Module
+        run: terraform -chdir="${{ matrix.examples }}" fmt -check -recursive
+        env:
+          working-dir: "./"
+
       - name: Format Terraform code for Examples
-        run: terraform fmt -check -recursive
+        run: terraform -chdir="${{ matrix.examples }}" fmt -check -recursive
         env:
           working-dir: "${{ matrix.examples }}"
 
       - name: Validate Terraform code for Examples
-        run: terraform validate
+        run: terraform -chdir="${{ matrix.examples }}" validate
         env:
           working-dir: "${{ matrix.examples }}"
 
