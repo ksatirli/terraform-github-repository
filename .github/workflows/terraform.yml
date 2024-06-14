@@ -9,6 +9,10 @@ jobs:
     name: Terraform
     runs-on: ubuntu-latest
 
+    env:
+      # token for `a-demo-user` with access to `a-demo-organization`
+      GITHUB_TOKEN: "${{ secrets.ORG_GITHUB_TOKEN }}"
+
     strategy:
       # see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategyfail-fast
       fail-fast: false
@@ -62,10 +66,8 @@ jobs:
         run: terraform -chdir="${{ matrix.examples }}" apply -auto-approve
         env:
           working-dir: "${{ matrix.examples }}"
-          GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
 
       - name: Destructively Apply Terraform code for Examples
         run: terraform -chdir="${{ matrix.examples }}" destroy -auto-approve
         env:
           working-dir: "${{ matrix.examples }}"
-          GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
