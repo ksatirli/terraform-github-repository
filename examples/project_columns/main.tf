@@ -1,7 +1,3 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "project_column_example" {
   source = "../.."
 

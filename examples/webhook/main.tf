@@ -1,7 +1,3 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "webhook_example" {
   source = "../.."
 

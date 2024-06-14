@@ -1,7 +1,3 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "deploy_keys_example" {
   source = "../.."
 
