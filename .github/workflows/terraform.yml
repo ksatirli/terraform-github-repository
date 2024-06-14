@@ -59,13 +59,13 @@ jobs:
           working-dir: "${{ matrix.examples }}"
 
       - name: Apply Terraform code for Examples
-        run: terraform apply -auto-approve -chdir="${{ matrix.examples }}"
+        run: terraform -chdir="${{ matrix.examples }}" apply -auto-approve
         env:
           working-dir: "${{ matrix.examples }}"
           GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
 
       - name: Destructively Apply Terraform code for Examples
-        run: terraform destroy -auto-approve -chdir="${{ matrix.examples }}"
+        run: terraform -chdir="${{ matrix.examples }}" destroy -auto-approve
         env:
           working-dir: "${{ matrix.examples }}"
           GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
