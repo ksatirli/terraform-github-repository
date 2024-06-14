@@ -19,10 +19,10 @@ jobs:
       matrix:
         examples:
           - "./examples/basic"
-#          - "./examples/branch_protection"
-#          - "./examples/complex"
-#          - "./examples/deploy_keys"
-#          - "./examples/files"
+          - "./examples/branch_protection"
+          - "./examples/complex"
+          - "./examples/deploy_keys"
+          - "./examples/files"
 #          - "./examples/issue_labels"
 #          - "./examples/pages"
 #          - "./examples/project"
