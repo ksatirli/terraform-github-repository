@@ -27,7 +27,7 @@
 
 ## Dependencies
 
-This module depends on a correctly configured [GitHub Provider](https://www.terraform.io/docs/providers/github/index.html) in your Terraform codebase.
+This module depends on a correctly configured [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) in your Terraform codebase.
 
 ## Usage
 

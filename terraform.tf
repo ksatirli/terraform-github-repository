@@ -1,5 +1,5 @@
 terraform {
-  # see https://www.terraform.io/docs/language/settings/index.html#specifying-provider-requirements
+  # see https://developer.hashicorp.com/terraform/language/terraform#terraform-required_providers
   required_providers {
     # see https://registry.terraform.io/providers/integrations/github/6.2.1
     github = {
@@ -8,6 +8,6 @@ terraform {
     }
   }
 
-  # see https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version
+  # see https://developer.hashicorp.com/terraform/language/terraform#terraform-required_providers
   required_version = ">= 1.3.0"
 }
