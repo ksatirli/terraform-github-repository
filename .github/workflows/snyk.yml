@@ -1,0 +1,68 @@
+---
+name: "Security Scan: Snyk IaC"
+
+on:
+  push:
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategyfail-fast
+      fail-fast: false
+      matrix:
+        # The Snyk IaC GitHub Action currently only supports single files (via the `file` attribute in `with`).
+        # To work around this, a GitHub Actions Strategy is used to provide the files that should be tested.
+        terraform_files:
+          - "./examples/basic/main.tf"
+          - "./examples/basic/providers.tf"
+          - "./examples/basic/terraform.tf"
+          - "./examples/branch_protection/main.tf"
+          - "./examples/branch_protection/providers.tf"
+          - "./examples/branch_protection/terraform.tf"
+          - "./examples/complex/main.tf"
+          - "./examples/complex/providers.tf"
+          - "./examples/complex/terraform.tf"
+          - "./examples/deploy_keys/main.tf"
+          - "./examples/deploy_keys/providers.tf"
+          - "./examples/deploy_keys/terraform.tf"
+          - "./examples/files/main.tf"
+          - "./examples/files/providers.tf"
+          - "./examples/files/terraform.tf"
+          - "./examples/issue_labels/main.tf"
+          - "./examples/issue_labels/providers.tf"
+          - "./examples/issue_labels/terraform.tf"
+          - "./examples/pages/main.tf"
+          - "./examples/pages/providers.tf"
+          - "./examples/pages/terraform.tf"
+          - "./examples/template/main.tf"
+          - "./examples/template/providers.tf"
+          - "./examples/template/terraform.tf"
+          - "./examples/webhook/main.tf"
+          - "./examples/webhook/providers.tf"
+          - "./examples/webhook/terraform.tf"
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # see https://github.com/snyk/actions/tree/master/iac
+      - name: Lint Code with Snyk
+        uses: snyk/actions/iac@master
+        env:
+          # see https://github.com/snyk/actions#getting-your-snyk-token
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file: ${{ matrix.terraform_files }}
+          # see https://docs.snyk.io/products/snyk-infrastructure-as-code/snyk-cli-for-infrastructure-as-code/iac-ignores-using-the-.snyk-policy-file#policy-flags-and-policy-file-notes
+          args: --policy-path=.snyk --org=${{ secrets.SNYK_ORG }}
+          sarif: true
+
+#      # see https://github.com/github/codeql-action/tree/main/upload-sarif
+#      - name: Upload Snyk IaC results to GitHub Code Scanning
+#        uses: github/codeql-action/upload-sarif@v2
+#        with:
+#          sarif_file: snyk.sarif

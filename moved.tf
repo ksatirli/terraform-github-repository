@@ -1,5 +1,5 @@
 # As part of the `4.0.0` rewrite of this module, all resource identifiers have been renamed from `this` to `main.`
-# See https://www.terraform.io/language/modules/develop/refactoring#moved-block-syntax for more information.
+# See https://developer.hashicorp.com/terraform/language/modules/develop/refactoring#moved-block-syntax for more information.
 
 moved {
   from = github_repository.this
@@ -32,13 +32,6 @@ moved {
 }
 
 moved {
-  from = github_repository_project.this
-  to   = github_repository_project.main
-}
-
-moved {
   from = github_repository_file.this
   to   = github_repository_file.main
 }
-
-

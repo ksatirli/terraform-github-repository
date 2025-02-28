@@ -5,7 +5,7 @@
 ## Table of Contents
 
 <!-- TOC -->
-* [Example: `pages`](#example--pages)
+* [Example: `pages`](#example-pages)
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [Module Variables and Outputs](#module-variables-and-outputs)

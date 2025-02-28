@@ -1,11 +1,8 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "issue_labels_example" {
   source = "../.."
 
   name       = "issue-labels-example"
+  auto_init  = true
   visibility = "public"
 
   issue_labels = [

@@ -1,11 +1,8 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "webhook_example" {
   source = "../.."
 
   name       = "webhook-example"
+  auto_init  = true
   visibility = "public"
 
   repository_webhooks = [{

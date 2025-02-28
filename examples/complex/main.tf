@@ -1,7 +1,3 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "complex_example" {
   source = "../.."
 
@@ -16,7 +12,7 @@ module "complex_example" {
   allow_squash_merge = true
   allow_rebase_merge = false
   has_downloads      = false
-  auto_init          = false
+  auto_init          = true
   default_branch     = "main"
   archived           = false
 

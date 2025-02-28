@@ -5,7 +5,7 @@
 ## Table of Contents
 
 <!-- TOC -->
-* [Example: `deploy-keys`](#example--deploy-keys)
+* [Example: `deploy-keys`](#example-deploy-keys)
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [Module Variables and Outputs](#module-variables-and-outputs)

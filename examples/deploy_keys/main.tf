@@ -1,11 +1,8 @@
-provider "github" {
-  owner = "a-demo-organization"
-}
-
 module "deploy_keys_example" {
   source = "../.."
 
   name       = "deploy-keys-example"
+  auto_init  = true
   visibility = "public"
 
   deploy_keys = [

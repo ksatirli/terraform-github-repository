@@ -20,18 +20,16 @@ jobs:
           - "./examples/files"
           - "./examples/issue_labels"
           - "./examples/pages"
-          - "./examples/project"
-          - "./examples/project_columns"
           - "./examples/template"
           - "./examples/webhook"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render documentation for Module and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.2.0
         with:
           config-file: ".terraform-docs.yml"
           output-file: "README.md"
@@ -40,7 +38,7 @@ jobs:
           working-dir: "./"
 
       - name: Render documentation for Examples and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.2.0
         with:
           config-file: "../../.terraform-docs.yml"
           output-file: "README.md"
