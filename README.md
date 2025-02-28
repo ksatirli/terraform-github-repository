@@ -129,7 +129,7 @@ From `4.0.0` onwards, the branch for GitHub Pages can be set through the `pages_
 
 The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
 
-For a better upgrade experience, it is advised to manually import this resource, using the [import](https://www.terraform.io/docs/cli/import/index.html) command:
+For a better upgrade experience, it is advised to manually import this resource, using the [import](https://developer.hashicorp.com/terraform/cli/import) command:
 
 ```sh
 terraform import module.my_repository.github_branch_default.this "my_repository"
@@ -147,13 +147,13 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 ### For `github_repository_deploy_key` resources
 
-- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
+- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file]https://developer.hashicorp.com/terraform/language/functions/file) function if key material is not available as a Terraform-variable already
 
 - For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
 
 ### For `github_branch_protection` resources
 
-- Branch Protection resources that set the [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
+- Branch Protection resources that set the [required_approving_review_count](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
 
 ### For `github_repository_project` resources
 
@@ -163,7 +163,7 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 - File resources require an (already existing) `main` branch, or an explicitly defined branch for the `files.branch` variable to avoid errors
 
-- File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
+- File resources expect a string for the `files.content` variable. Use the [file](https://developer.hashicorp.com/terraform/language/functions/file) function if file data is not available as a Terraform-variable already
 
 - File resources that are removed from Terraform will _also_ be removed from the Repository. This is visible in the Repository History
 
