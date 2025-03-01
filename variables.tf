@@ -252,3 +252,9 @@ variable "files" {
   description = "List of File Objects."
   default     = []
 }
+
+variable "web_commit_signoff_required" {
+  type        = bool
+  description = "Toggle to require contributors to sign off on web-based commits."
+  default     = false
+}

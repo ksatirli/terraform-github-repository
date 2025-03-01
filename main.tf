@@ -1,24 +1,25 @@
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository
 resource "github_repository" "main" {
-  name                   = var.name
-  description            = var.description
-  homepage_url           = var.homepage_url
-  visibility             = var.visibility
-  has_issues             = var.has_issues
-  has_projects           = var.has_projects
-  has_wiki               = var.has_wiki
-  is_template            = var.is_template
-  allow_merge_commit     = var.allow_merge_commit
-  allow_squash_merge     = var.allow_squash_merge
-  allow_rebase_merge     = var.allow_rebase_merge
-  allow_auto_merge       = var.allow_auto_merge
-  delete_branch_on_merge = var.delete_branch_on_merge
-  has_downloads          = var.has_downloads
-  auto_init              = var.auto_init
-  gitignore_template     = var.gitignore_template
-  license_template       = var.license_template
-  archived               = var.archived
-  archive_on_destroy     = var.archive_on_destroy
+  name                        = var.name
+  description                 = var.description
+  homepage_url                = var.homepage_url
+  visibility                  = var.visibility
+  has_issues                  = var.has_issues
+  has_projects                = var.has_projects
+  has_wiki                    = var.has_wiki
+  is_template                 = var.is_template
+  allow_merge_commit          = var.allow_merge_commit
+  allow_squash_merge          = var.allow_squash_merge
+  allow_rebase_merge          = var.allow_rebase_merge
+  allow_auto_merge            = var.allow_auto_merge
+  delete_branch_on_merge      = var.delete_branch_on_merge
+  has_downloads               = var.has_downloads
+  auto_init                   = var.auto_init
+  gitignore_template          = var.gitignore_template
+  license_template            = var.license_template
+  archived                    = var.archived
+  archive_on_destroy          = var.archive_on_destroy
+  web_commit_signoff_required = var.web_commit_signoff_required
 
   dynamic "pages" {
     for_each = length(var.pages) != 0 ? [var.pages] : []
@@ -47,8 +48,8 @@ resource "github_repository" "main" {
 
 # see https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
 resource "github_branch_default" "main" {
- repository = github_repository.main.name
- branch     = var.default_branch
+  repository = github_repository.main.name
+  branch     = var.default_branch
 }
 
 # TODO

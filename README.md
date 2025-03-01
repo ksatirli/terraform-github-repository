@@ -84,6 +84,7 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | topics | List of Topics of the Repository. | `list(string)` | `null` | no |
 | visibility | Toggle to set the visibility of the Repository. | `string` | `"private"` | no |
 | vulnerability_alerts | Toggle to enable Vulnerability Alerts for the Repository. | `bool` | `true` | no |
+| web_commit_signoff_required | Toggle to require contributors to sign off on web-based commits. | `bool` | `false` | no |
 
 ### Outputs
 
