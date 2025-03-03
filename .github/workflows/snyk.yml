@@ -61,8 +61,8 @@ jobs:
           args: --policy-path=.snyk --org=${{ secrets.SNYK_ORG }}
           sarif: true
 
-#      # see https://github.com/github/codeql-action/tree/main/upload-sarif
-#      - name: Upload Snyk IaC results to GitHub Code Scanning
-#        uses: github/codeql-action/upload-sarif@v2
-#        with:
-#          sarif_file: snyk.sarif
+      # see https://github.com/github/codeql-action/tree/main/upload-sarif
+      - name: Upload Snyk IaC results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@codeql-bundle-v2.20.5
+        with:
+          sarif_file: snyk.sarif

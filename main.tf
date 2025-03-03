@@ -20,6 +20,7 @@ resource "github_repository" "main" {
   archived               = var.archived
   archive_on_destroy     = var.archive_on_destroy
 
+  # see https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "pages" {
     for_each = length(var.pages) != 0 ? [var.pages] : []
 
@@ -33,6 +34,7 @@ resource "github_repository" "main" {
 
   topics = var.topics
 
+  # see https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "template" {
     for_each = length(var.template) != 0 ? [var.template] : []
 
