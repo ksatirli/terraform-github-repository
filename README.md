@@ -13,6 +13,7 @@
     * [Inputs](#inputs)
     * [Outputs](#outputs)
   * [Notes](#notes)
+    * [Upgrading from `4.x.x` to `6.x.x`](#upgrading-from-4xx-to-6xx)
     * [Upgrading from `4.x.x` to `5.x.x`](#upgrading-from-4xx-to-5xx)
     * [Upgrading from `3.x.x` to `4.x.x`](#upgrading-from-3xx-to-4xx)
     * [Upgrading from `2.x.x` to `3.x.x`](#upgrading-from-2xx-to-3xx)
@@ -100,9 +101,11 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ## Notes
 
-### Upgrading from `4.x.x` to `5.x.x`
+### Upgrading from `4.x.x` to `6.x.x`
 
-As part of the updates and upgrades that were made for the `5.x.x` release, the following changes were made:
+As part of the updates and upgrades that were made for the `6.x.x` release, the following changes were made:
+
+The major version of this module now aligns with the _major_ version of the [GitHub Provider for Terraform](https://registry.terraform.io/providers/integrations/github/latest/docs). 
 
 #### Managing default branch through `github_branch_default` instead of `github_repository`
 
