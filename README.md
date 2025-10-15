@@ -150,7 +150,7 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 ### For `github_repository_deploy_key` resources
 
-- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file]https://developer.hashicorp.com/terraform/language/functions/file) function if key material is not available as a Terraform-variable already
+- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://developer.hashicorp.com/terraform/language/functions/file) function if key material is not available as a Terraform-variable already
 
 - For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
 
