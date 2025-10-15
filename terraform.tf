@@ -8,6 +8,6 @@ terraform {
     }
   }
 
-  # see https://developer.hashicorp.com/terraform/language/terraform#terraform-required_providers
+  # see https://developer.hashicorp.com/terraform/language/terraform#terraform-required_version
   required_version = ">= 1.3.0"
 }
