@@ -20,7 +20,7 @@ variable "visibility" {
   description = "Toggle to set the visibility of the Repository."
   default     = "private"
 
-  # see https://www.terraform.io/language/values/variables#custom-validation-rules
+  # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
   validation {
     condition     = contains(["public", "private", "internal"], var.visibility)
     error_message = "`visibility` must be one of `public`, `private`, or `internal` (GitHub Enterprise-only)."

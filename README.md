@@ -13,6 +13,7 @@
     * [Inputs](#inputs)
     * [Outputs](#outputs)
   * [Notes](#notes)
+    * [Upgrading from `4.x.x` to `6.x.x`](#upgrading-from-4xx-to-6xx)
     * [Upgrading from `4.x.x` to `5.x.x`](#upgrading-from-4xx-to-5xx)
     * [Upgrading from `3.x.x` to `4.x.x`](#upgrading-from-3xx-to-4xx)
     * [Upgrading from `2.x.x` to `3.x.x`](#upgrading-from-2xx-to-3xx)
@@ -27,7 +28,7 @@
 
 ## Dependencies
 
-This module depends on a correctly configured [GitHub Provider](https://www.terraform.io/docs/providers/github/index.html) in your Terraform codebase.
+This module depends on a correctly configured [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) in your Terraform codebase.
 
 ## Usage
 
@@ -60,12 +61,12 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | archive_on_destroy | Toggle to archive the Repository on destroy. | `bool` | `false` | no |
 | archived | Toggle to archive the Repository (see notes in `README.md`). | `bool` | `false` | no |
 | auto_init | Toggle to create an initial commit in the Repository. | `bool` | `false` | no |
-| branch_protections | List of Branch Protection Objects. | <pre>list(object({<br>    branch                 = string,<br>    enforce_admins         = bool,<br>    require_signed_commits = bool,<br>    required_status_checks = object({<br>      strict   = bool<br>      contexts = list(string)<br>    })<br><br>    required_pull_request_reviews = object({<br>      dismiss_stale_reviews           = bool,<br>      dismissal_users                 = list(string),<br>      dismissal_teams                 = list(string),<br>      require_code_owner_reviews      = bool,<br>      required_approving_review_count = number<br>    })<br><br>    restrictions = object({<br>      users = list(string),<br>      teams = list(string)<br>    })<br>  }))</pre> | `null` | no |
+| branch_protections | List of Branch Protection Objects. | <pre>list(object({<br/>    branch                 = string,<br/>    enforce_admins         = bool,<br/>    require_signed_commits = bool,<br/>    required_status_checks = object({<br/>      strict   = bool<br/>      contexts = list(string)<br/>    })<br/><br/>    required_pull_request_reviews = object({<br/>      dismiss_stale_reviews           = bool,<br/>      dismissal_users                 = list(string),<br/>      dismissal_teams                 = list(string),<br/>      require_code_owner_reviews      = bool,<br/>      required_approving_review_count = number<br/>    })<br/><br/>    restrictions = object({<br/>      users = list(string),<br/>      teams = list(string)<br/>    })<br/>  }))</pre> | `null` | no |
 | default_branch | Name of the Default Branch of the Repository. | `string` | `"main"` | no |
 | delete_branch_on_merge | Toggle to automatically delete merged Branches for the Repository. | `bool` | `false` | no |
-| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br>    title     = string,<br>    key       = string,<br>    read_only = bool<br>  }))</pre> | `[]` | no |
+| deploy_keys | List of Deploy Key Objects | <pre>list(object({<br/>    title     = string,<br/>    key       = string,<br/>    read_only = bool<br/>  }))</pre> | `[]` | no |
 | description | Description of the Repository. | `string` | `null` | no |
-| files | List of File Objects. | <pre>list(object({<br>    file                = string,<br>    content             = string,<br>    overwrite_on_create = string<br>  }))</pre> | `[]` | no |
+| files | List of File Objects. | <pre>list(object({<br/>    file                = string,<br/>    content             = string,<br/>    overwrite_on_create = string<br/>  }))</pre> | `[]` | no |
 | gitignore_template | Template to use for initial `.gitignore` file for the Repository. | `string` | `null` | no |
 | has_downloads | Toggle to enable (deprecated) GitHub Downloads for the Repository. | `bool` | `false` | no |
 | has_issues | Toggle to enable GitHub Issues for the Repository. | `bool` | `true` | no |
@@ -73,13 +74,13 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 | has_wiki | Toggle to enable GitHub Wiki for the Repository. | `bool` | `false` | no |
 | homepage_url | URL of a page describing the Repository. | `string` | `null` | no |
 | is_template | Toggle to enable Template use for the Repository. | `bool` | `false` | no |
-| issue_labels | List of Issue Label Objects. | <pre>list(object({<br>    name  = string,<br>    color = string<br>  }))</pre> | `[]` | no |
+| issue_labels | List of Issue Label Objects. | <pre>list(object({<br/>    name  = string,<br/>    color = string<br/>  }))</pre> | `[]` | no |
 | license_template | Identifier to use for initial `LICENSE` file for the Repository. | `string` | `null` | no |
 | pages | Configuration block for GitHub Pages. | `map(any)` | `{}` | no |
 | pages_branch | Name of the GitHub Pages Branch of the Repository. | `string` | `"gh-pages"` | no |
-| repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br>    username = string<br>  }))</pre> | `[]` | no |
-| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br>    active = bool<br>    events = list(string)<br><br>    configuration = object({<br>      url          = string<br>      content_type = string<br>      secret       = string<br>      insecure_ssl = bool<br>    })<br>  }))</pre> | `[]` | no |
-| team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br>    team_id    = string<br>    permission = string<br>  }))</pre> | `[]` | no |
+| repository_collaborators | List of Collaborator Objects. | <pre>list(object({<br/>    username = string<br/>  }))</pre> | `[]` | no |
+| repository_webhooks | A list of events which should trigger the webhook. | <pre>list(object({<br/>    active = bool<br/>    events = list(string)<br/><br/>    configuration = object({<br/>      url          = string<br/>      content_type = string<br/>      secret       = string<br/>      insecure_ssl = bool<br/>    })<br/>  }))</pre> | `[]` | no |
+| team_repository_teams | List of Team Repository Team Objects. | <pre>list(object({<br/>    team_id    = string<br/>    permission = string<br/>  }))</pre> | `[]` | no |
 | template | Template Repository to use when creating the Repository. | `map(string)` | `{}` | no |
 | topics | List of Topics of the Repository. | `list(string)` | `null` | no |
 | visibility | Toggle to set the visibility of the Repository. | `string` | `"private"` | no |
@@ -101,9 +102,11 @@ Additional usage examples are available in the `examples` directory via [GitHub]
 
 ## Notes
 
-### Upgrading from `4.x.x` to `5.x.x`
+### Upgrading from `4.x.x` to `6.x.x`
 
-As part of the updates and upgrades that were made for the `5.x.x` release, the following changes were made:
+As part of the updates and upgrades that were made for the `6.x.x` release, the following changes were made:
+
+The major version of this module now aligns with the _major_ version of the [GitHub Provider for Terraform](https://registry.terraform.io/providers/integrations/github/latest/docs). 
 
 #### Managing default branch through `github_branch_default` instead of `github_repository`
 
@@ -130,7 +133,7 @@ From `4.0.0` onwards, the branch for GitHub Pages can be set through the `pages_
 
 The `3.0.0` version of this module introduced support for the [github_branch_default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) resource, a property that was initially handled through the `github_repository` resource.
 
-For a better upgrade experience, it is advised to manually import this resource, using the [import](https://www.terraform.io/docs/cli/import/index.html) command:
+For a better upgrade experience, it is advised to manually import this resource, using the [import](https://developer.hashicorp.com/terraform/cli/import) command:
 
 ```sh
 terraform import module.my_repository.github_branch_default.this "my_repository"
@@ -148,13 +151,13 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 ### For `github_repository_deploy_key` resources
 
-- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if key material is not available as a Terraform-variable already
+- Deploy Key resources expect a string for the `deploy_key.key` variable. Use the [file](https://developer.hashicorp.com/terraform/language/functions/file) function if key material is not available as a Terraform-variable already
 
 - For a step-by-step guide on how to generate SSH Keys, see [this article](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) on GitHub
 
 ### For `github_branch_protection` resources
 
-- Branch Protection resources that set the [required_approving_review_count](https://www.terraform.io/docs/providers/github/r/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
+- Branch Protection resources that set the [required_approving_review_count](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection.html#required_approving_review_count) variable must be in a range of `>= 1` and `<= 6`
 
 ### For `github_repository_project` resources
 
@@ -164,7 +167,7 @@ Replace `module.my_repository` with the Module identifier in use and replace `"m
 
 - File resources require an (already existing) `main` branch, or an explicitly defined branch for the `files.branch` variable to avoid errors
 
-- File resources expect a string for the `files.content` variable. Use the [file](https://www.terraform.io/docs/configuration/functions/file.html) function if file data is not available as a Terraform-variable already
+- File resources expect a string for the `files.content` variable. Use the [file](https://developer.hashicorp.com/terraform/language/functions/file) function if file data is not available as a Terraform-variable already
 
 - File resources that are removed from Terraform will _also_ be removed from the Repository. This is visible in the Repository History
 

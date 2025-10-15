@@ -29,7 +29,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render documentation for Module and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.2.0
+        uses: terraform-docs/gh-actions@v1.3.0
         with:
           config-file: ".terraform-docs.yml"
           output-file: "README.md"
@@ -37,8 +37,9 @@ jobs:
           git-push: true
           working-dir: "./"
 
+      # see https://github.com/terraform-docs/gh-actions/releases
       - name: Render documentation for Examples and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.2.0
+        uses: terraform-docs/gh-actions@v1.3.0
         with:
           config-file: "../../.terraform-docs.yml"
           output-file: "README.md"

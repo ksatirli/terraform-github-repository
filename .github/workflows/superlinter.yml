@@ -15,8 +15,9 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
+      # see https://github.com/super-linter/super-linter/releases
       - name: Lint Code with Super-Linter
-        uses: super-linter/super-linter/slim@v6
+        uses: super-linter/super-linter/slim@v7
         env:
           DEFAULT_BRANCH: "main"
           DISABLE_ERRORS: false
